@@ -1,0 +1,10 @@
+@import '~@/styles/_variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+#app {
+  max-width: 900px;
+  margin: 0 auto;
+}
