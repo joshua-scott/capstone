@@ -1,11 +1,9 @@
 <template>
   <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/products">Products</a></li>
-      <li><a href="/rd">R&D</a></li>
-      <li><a href="/about">About/Contact</a></li>
-    </ul>
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/products">Products</a>
+      <a class="nav-link" href="/rd">R&D</a>
+      <a class="nav-link" href="/about">About/Contact</a>
   </nav>
 </template>
 
@@ -20,20 +18,25 @@ export default {
 
   nav {
     margin-top: 10px;
+    height: 3rem;
     background-color: $teal;
     display: flex;
-    flex: 1 1 100%;
+    justify-content: space-around;
+    align-items: center;
     border-bottom: 1px solid #ccc;
-    ul {
-      list-style: none;
-      li {
-        background-image: linear-gradient(
-          to bottom,
-          transparent 50%,
-          rgba(162,211,156, 1) 50%,
-          rgba(162,211,156,1) 95%,
-          rgba(124,197,118,1) 95%
-      );
+    a.nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      flex-grow: 1;
+      text-align: center;
+      border-left: 1px solid $blue;
+      &:hover {
+        background-color: $gray;
+      }
+      &:first-child {
+        border-left: none;
       }
     }
   }
