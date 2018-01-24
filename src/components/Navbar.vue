@@ -1,9 +1,9 @@
 <template>
   <nav>
-      <a class="nav-link" href="/">Home</a>
-      <a class="nav-link" href="/products">Products</a>
-      <a class="nav-link" href="/rd">R&D</a>
-      <a class="nav-link" href="/about">About/Contact</a>
+      <router-link class="nav-link" to="/" exact>Home</router-link>
+      <router-link class="nav-link" to="/products">Products</router-link>
+      <router-link class="nav-link" to="/rd">R&D</router-link>
+      <router-link class="nav-link" to="/about">About/Contact</router-link>
   </nav>
 </template>
 
@@ -39,5 +39,9 @@ export default {
         border-left: none;
       }
     }
+  }
+
+  .router-link-active {
+    background-color: yellowgreen;
   }
 </style>
