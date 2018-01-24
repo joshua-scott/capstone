@@ -2,7 +2,7 @@
   <div>
     <app-header></app-header>
     <navbar></navbar>
-    <h1>HOME PAGE</h1>
+    <h1>ABOUT PAGE</h1>
   </div>
 </template>
 
