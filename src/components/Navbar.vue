@@ -2,8 +2,8 @@
   <b-container role="navigation">
     <b-nav
       justified
-      :tabs="width > 500"
-      :vertical="width <= 500"
+      :tabs="width > 425"
+      :vertical="width <= 425"
     >
       <b-nav-item to="/" exact  >Home</b-nav-item>
       <b-nav-item to="/products">Products</b-nav-item>
@@ -17,12 +17,12 @@
 export default {
   data () {
     return {
-      width: window.outerWidth
+      width: window.innerWidth
     }
   },
   methods: {
     handleResize () {
-      this.width = window.outerWidth
+      this.width = window.innerWidth
     }
   },
   beforeMount () {
