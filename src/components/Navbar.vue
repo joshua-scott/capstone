@@ -5,19 +5,31 @@
       :tabs="width > 425"
       :vertical="width <= 425"
     >
-      <b-nav-item to="/" exact  >Home</b-nav-item>
-      <b-nav-item to="/products">Products</b-nav-item>
-      <b-nav-item to="/rd"      >R & D</b-nav-item>
-      <b-nav-item to="/about"   >About/Contact</b-nav-item>
+      <b-nav-item
+        v-for="( route, index ) in displayedRoutes"
+        :key="index"
+        :to="route.path"
+        exact
+      >
+          {{ route.name }}
+      </b-nav-item>
     </b-nav>
   </b-container>
 </template>
 
 <script>
+import routes from '@/router/routes.js'
+
 export default {
   data () {
     return {
+      routes,
       width: window.innerWidth
+    }
+  },
+  computed: {
+    displayedRoutes () {
+      return routes.filter(route => !route.hideInLists)
     }
   },
   methods: {
@@ -25,7 +37,7 @@ export default {
       this.width = window.innerWidth
     }
   },
-  beforeMount () {
+  mounted () {
     window.addEventListener('resize', this.handleResize)
   },
   beforeDestroy () {
