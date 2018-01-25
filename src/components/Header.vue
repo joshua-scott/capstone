@@ -17,6 +17,7 @@
         <b-button
           variant="link" size = "sm"
           class="language-select"
+          v-b-popover.hover="'Click to change language'"
           @click="toggleLanguage">
           <b-img rounded
             :src="flagImage"
