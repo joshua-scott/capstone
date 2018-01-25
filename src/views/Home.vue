@@ -2,18 +2,20 @@
   <div>
     <app-header></app-header>
     <navbar></navbar>
-    <h1>HOME PAGE</h1>
+    <carousel></carousel>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header.vue'
 import Navbar from '@/components/Navbar.vue'
+import Carousel from '@/components/Carousel.vue'
 
 export default {
   components: {
     appHeader: Header,
-    Navbar
+    Navbar,
+    Carousel
   }
 }
 </script>
