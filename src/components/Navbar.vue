@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav-container">
+  <b-container role="navigation">
     <b-nav justified tabs>
       <b-nav-item active="">
         <router-link to="/" exact>Home</router-link>
@@ -14,7 +14,7 @@
         <router-link to="/about">About/Contact</router-link>
       </b-nav-item>
     </b-nav>
-  </nav>
+  </b-container>
 </template>
 
 <script>
