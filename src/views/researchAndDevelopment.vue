@@ -2,7 +2,10 @@
   <div>
     <app-header></app-header>
     <navbar></navbar>
-    <h1>R & D PAGE</h1>
+    <b-container>
+      <h1>Research and Development Page</h1>
+      <p>Welcome to this page!</p>
+    </b-container>
   </div>
 </template>
 
