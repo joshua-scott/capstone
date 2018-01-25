@@ -26,6 +26,6 @@ export default {
 
 <style lang="scss" scoped>
   .products-jumbotron {
-    margin-top: 20px;
+    margin-top: 30px;
   }
 </style>

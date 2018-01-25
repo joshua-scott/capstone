@@ -49,7 +49,7 @@ export default {
 
 <style lang="scss" scoped>
   .carousel {
-    margin-top: 20px;
+    margin-top: 30px;
     text-shadow: 1px 1px 2px #333;
   }
 </style>
