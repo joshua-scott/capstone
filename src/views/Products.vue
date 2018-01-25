@@ -2,7 +2,6 @@
   <div>
     <app-header></app-header>
     <navbar></navbar>
-    <h1>PRODUCTS PAGE</h1>
     <products-jumbotron></products-jumbotron>
   </div>
 </template>

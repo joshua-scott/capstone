@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     flagImage () {
-      return require(`@/assets/${this.language === 'fi' ? 'gb' : 'fi'}.svg`)
+      return require(`@/assets/flags/${this.language === 'fi' ? 'gb' : 'fi'}.svg`)
     }
   }
 }
