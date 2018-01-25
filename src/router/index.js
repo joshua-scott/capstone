@@ -36,5 +36,7 @@ export default new Router({
       component: PageNotFound
     }
   ],
-  mode: 'history'
+  mode: 'history',
+  // linkActiveClass: 'active', // active class for non-exact links.
+  linkExactActiveClass: 'active' // active class for *exact* links.
 })

@@ -25,7 +25,6 @@ export default {
   @import '~@/styles/_variables.scss';
 
   .nav-container {
-    background-color: $silver;
     height: 150px;
     display: flex;
     justify-content: space-around;

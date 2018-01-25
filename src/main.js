@@ -3,8 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import '@/styles/normalize.css'
-import '@/styles/global.scss'
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+
+// import '@/styles/normalize.css'
+// import '@/styles/global.scss'
 
 // import SuiVue from 'semantic-ui-vue'
 // Vue.use(SuiVue)
