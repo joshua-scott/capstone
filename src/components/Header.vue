@@ -1,41 +1,61 @@
 <template>
-  <b-container>
-    <b-row align-v="center">
+  <b-container class="header">
 
-      <b-col>
+    <b-row
+      align-h="between"
+      align-v="center">
+
+      <b-col cols="3">
         <router-link to="/">
-          <b-img src="@/assets/logo.jpg" id="renotech-logo"/>
+          <b-img
+            src="@/assets/logo.jpg"
+            class="renotech-logo"/>
         </router-link>
       </b-col>
 
-      <b-col>
-        <span class="flags">
-          <b-img thumbnail fluid
-            src="@/assets/fi.svg"
-            @click="setLanguage('fi')"
-            id="flag-fi"
+      <b-col cols="2">
+        <b-button
+          variant="link" size = "sm"
+          class="language-select"
+          @click="toggleLanguage">
+          <b-img rounded
+            :src="flagImage"
             class="flag"/>
-          <b-img thumbnail fluid
-            src="@/assets/gb.svg"
-            @click="setLanguage('en')"
-            id="flag-en"
-            class="flag"/>
-        </span>
+          {{ language === 'fi' ? 'English' : 'Suomi' }}
+        </b-button>
       </b-col>
 
-      <b-col>
-        <input type="text" placeholder="Search">
-      </b-col>
+      <!-- Search bar could be added later -->
+      <!-- <b-col>
+        <div>
+          <b-form-input
+            type="text"
+            placeholder="Search"
+            class="search"></b-form-input>
+        </div>
+      </b-col> -->
 
     </b-row>
+
   </b-container>
+
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      language: 'en'
+    }
+  },
   methods: {
-    setLanguage (language) {
-      alert(`Change language to ${language}`)
+    toggleLanguage () {
+      this.language = this.language === 'fi' ? 'en' : 'fi'
+    }
+  },
+  computed: {
+    flagImage () {
+      return require(`@/assets/${this.language === 'fi' ? 'gb' : 'fi'}.svg`)
     }
   }
 }
@@ -44,13 +64,24 @@ export default {
 <style lang="scss" scoped>
   @import '~@/styles/_variables.scss';
 
-  #renotech-logo {
-    max-width: 300px;
+  .header {
+    margin: 20px auto;
   }
 
-  .flags img {
-    padding: auto 100px;
-    max-width: 40px;
-    cursor: pointer;
+  .renotech-logo {
+    max-width: 250px;
   }
+
+  .flag {
+    max-width: 40px;
+    margin-right: 10px;
+  }
+
+  .language-select {
+    text-decoration: none;
+    &:hover {
+      font-weight: 700;
+    }
+  }
+
 </style>
