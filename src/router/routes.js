@@ -16,7 +16,7 @@ export default [
     component: Products
   },
   {
-    name: 'Research and Development',
+    name: 'R & D',
     path: '/rd',
     component: ResearchDevelopment
   },
@@ -28,6 +28,7 @@ export default [
   {
     name: 'PageNotFound',
     path: '/*',
-    component: PageNotFound
+    component: PageNotFound,
+    hideInLists: true
   }
 ]
