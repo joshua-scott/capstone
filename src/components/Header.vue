@@ -13,7 +13,7 @@
         </router-link>
       </b-col>
 
-      <b-col cols="2">
+      <b-col cols="4">
         <b-button
           variant="link" size = "sm"
           class="language-select"
@@ -66,7 +66,8 @@ export default {
   @import '~@/styles/_variables.scss';
 
   .header {
-    margin: 20px auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   .renotech-logo {
