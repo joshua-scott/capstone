@@ -82,6 +82,9 @@ export default {
     &:hover {
       font-weight: 700;
     }
+    a:hover {
+      text-decoration: none;
+    }
   }
 
 </style>
