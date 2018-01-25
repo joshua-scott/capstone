@@ -3,8 +3,7 @@
     <app-header></app-header>
     <navbar></navbar>
     <b-container>
-      <h1>Research and Development Page</h1>
-      <p>Welcome to this page!</p>
+      <b-alert variant="success" show style="margin-top: 30px;">This will be the Research and Development page</b-alert>
     </b-container>
   </div>
 </template>

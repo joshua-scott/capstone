@@ -2,7 +2,9 @@
   <div>
     <app-header></app-header>
     <navbar></navbar>
-    <h1>ABOUT PAGE</h1>
+    <b-container>
+      <b-alert variant="success" show style="margin-top: 30px;">This will be the About/Contact page</b-alert>
+    </b-container>
   </div>
 </template>
 
