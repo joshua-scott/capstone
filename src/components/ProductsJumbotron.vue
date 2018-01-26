@@ -3,7 +3,7 @@
     <b-jumbotron
       :header="header"
       :lead="lead"
-      bg-variant="danger"
+      bg-variant="success"
       text-variant="light"
     >
       <p>For more information visit website</p>
@@ -27,10 +27,5 @@ export default {
 <style lang="scss" scoped>
   .products-jumbotron {
     margin-top: 30px;
-    background: #ff0000;
-  }
-
-  .bg-danger, .products-jumbotron {
-    background-color: coral;
   }
 </style>
