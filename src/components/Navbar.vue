@@ -11,6 +11,12 @@
         :to="route.path"
         exact
       >
+        <b-nav-item-dropdown v-if="route.path === '/rd'" :text="route.name" extra-toggle-classes="nav-link-custom" right>
+          <b-dropdown-item
+            v-for="( category, index ) in categories"
+            :key="index"
+          >{{ category }}</b-dropdown-item>
+        </b-nav-item-dropdown>
           {{ route.name }}
       </b-nav-item>
     </b-nav>
@@ -24,7 +30,8 @@ export default {
   data () {
     return {
       routes,
-      width: window.innerWidth
+      width: window.innerWidth,
+      categories: [ 'Services', 'The team', 'Publications', 'References', 'Partners', 'Contact', 'News' ]
     }
   },
   computed: {
