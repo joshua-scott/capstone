@@ -3,7 +3,7 @@
     <b-jumbotron
       :header="header"
       :lead="lead"
-      bg-variant="success"
+      bg-variant="danger"
       text-variant="light"
     >
       <p>For more information visit website</p>
