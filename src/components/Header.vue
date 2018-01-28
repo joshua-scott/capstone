@@ -44,19 +44,17 @@
 
 <script>
 export default {
-  data () {
-    return {
-      language: 'en'
-    }
-  },
   methods: {
     toggleLanguage () {
-      this.language = this.language === 'fi' ? 'en' : 'fi'
+      this.$store.commit('toggleLanguage')
     }
   },
   computed: {
+    language () {
+      return this.$store.state.language
+    },
     flagImage () {
-      return require(`@/assets/flags/${this.language === 'fi' ? 'gb' : 'fi'}.svg`)
+      return require(`@/assets/flags/${this.$store.state.language === 'fi' ? 'gb' : 'fi'}.svg`)
     }
   }
 }
