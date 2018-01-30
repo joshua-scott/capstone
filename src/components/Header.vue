@@ -21,9 +21,7 @@
           @click="toggleLanguage">
           <b-img rounded
             :src="flagImage"
-            class="flag"/>
-          {{ language === 'fi' ? 'English' : 'Suomi' }}
-        </b-button>
+            class="flag"/>{{ language === 'fi' ? 'English' : 'Suomi' }}</b-button>
       </b-col>
 
       <!-- Search bar could be added later -->
