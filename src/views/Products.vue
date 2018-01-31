@@ -1,5 +1,5 @@
 <template lang="pug">
-  ProductsJumbotron
+  products-jumbotron
 </template>
 
 <script>

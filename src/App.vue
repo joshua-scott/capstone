@@ -1,6 +1,6 @@
 <template lang="pug">
   #app
-    appHeader
+    app-header
     navbar
     router-view
 </template>
