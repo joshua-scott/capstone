@@ -1,20 +1,15 @@
-<template>
-  <b-container role="navigation">
-    <b-nav
+<template lang="pug">
+  b-container(role="navigation")
+    b-nav(
       justified
       :tabs="width > 425"
-      :vertical="width <= 425"
-    >
-      <b-nav-item
+      :vertical="width <= 425")
+      b-nav-item(
         v-for="( route, index ) in displayedRoutes"
         :key="index"
         :to="route.path"
-        exact
-      >
-        {{ route.name }}
-      </b-nav-item>
-    </b-nav>
-  </b-container>
+        exact)
+        | {{ route.name }}
 </template>
 
 <script>
