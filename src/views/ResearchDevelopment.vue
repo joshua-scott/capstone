@@ -3,7 +3,8 @@
     appHeader
     navbar
     b-container
-      b-alert(variant="success" show style="margin-top: 30px;") This will be the Research and Development page
+      b-alert(variant="success" show style="margin-top: 30px;") 
+        | {{ alertText }}
 </template>
 
 <script>
@@ -14,6 +15,11 @@ export default {
   components: {
     appHeader: Header,
     Navbar
+  },
+  data () {
+    return {
+      alertText: 'This will be the Research and Development page'
+    }
   }
 }
 </script>
