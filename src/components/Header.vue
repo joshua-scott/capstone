@@ -10,7 +10,7 @@
             src="@/assets/logo.jpg"
             class="renotech-logo")
 
-      b-col(cols="1")
+      b-col(cols="3")
         b-button(
           variant="link" size = "sm"
           @click="toggleLanguage")
@@ -60,7 +60,7 @@ export default {
 
   .flag {
     max-width: 40px;
-    // margin-right: 10px;
+    margin-right: 0;
   }
 
 </style>
