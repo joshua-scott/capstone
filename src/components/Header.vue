@@ -1,43 +1,31 @@
-<template>
-  <b-container class="header">
-
-    <b-row
+<template lang="pug">
+  b-container(class="header")
+    b-row(
       align-h="between"
-      align-v="center">
+      align-v="center")
 
-      <b-col cols="3">
-        <router-link to="/">
-          <b-img
+      b-col(cols="3")
+        router-link(to="/")
+          b-img(
             src="@/assets/logo.jpg"
-            class="renotech-logo"/>
-        </router-link>
-      </b-col>
+            class="renotech-logo")
 
-      <b-col cols="4">
-        <b-button
+      b-col(cols="1")
+        b-button(
           variant="link" size = "sm"
-          class="language-select"
-          v-b-popover.hover="'Click to change language'"
-          @click="toggleLanguage">
-          <b-img rounded
+          @click="toggleLanguage")
+          b-img(
+            rounded
             :src="flagImage"
-            class="flag"/>{{ language === 'fi' ? 'English' : 'Suomi' }}</b-button>
-      </b-col>
+            class="flag")
 
-      <!-- Search bar could be added later -->
-      <!-- <b-col>
-        <div>
-          <b-form-input
-            type="text"
-            placeholder="Search"
-            class="search"></b-form-input>
-        </div>
-      </b-col> -->
-
-    </b-row>
-
-  </b-container>
-
+      //- Search bar could be added later
+      //- b-col
+      //-   div
+      //-     b-form-input(
+      //-       type="text"
+      //-       placeholder="Search"
+      //-       class="search")
 </template>
 
 <script>
@@ -72,17 +60,7 @@ export default {
 
   .flag {
     max-width: 40px;
-    margin-right: 10px;
-  }
-
-  .language-select {
-    text-decoration: none;
-    &:hover {
-      font-weight: 700;
-    }
-    a:hover {
-      text-decoration: none;
-    }
+    // margin-right: 10px;
   }
 
 </style>
