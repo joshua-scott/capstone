@@ -1,11 +1,9 @@
-<template>
-  <div>
-    <app-header></app-header>
-    <navbar></navbar>
-    <b-container>
-      <b-alert variant="success" show style="margin-top: 30px;">This will be the About/Contact page</b-alert>
-    </b-container>
-  </div>
+<template lang="pug">
+   div
+    appHeader
+    navbar
+    b-container
+      b-alert(variant="success" show style="margin-top: 30px;") This will be the About/Contact page
 </template>
 
 <script>

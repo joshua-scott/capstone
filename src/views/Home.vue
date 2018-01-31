@@ -1,9 +1,8 @@
-<template>
-  <div>
-    <app-header></app-header>
-    <navbar></navbar>
-    <carousel></carousel>
-  </div>
+<template lang="pug">
+  div
+    appHeader
+    navbar
+    carousel
 </template>
 
 <script>

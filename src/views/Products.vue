@@ -1,9 +1,8 @@
-<template>
-  <div>
-    <app-header></app-header>
-    <navbar></navbar>
-    <products-jumbotron></products-jumbotron>
-  </div>
+<template lang="pug">
+  div
+    appHeader
+    navbar
+    ProductsJumbotron
 </template>
 
 <script>
