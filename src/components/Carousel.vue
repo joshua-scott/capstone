@@ -17,8 +17,6 @@
 export default {
   data () {
     return {
-      // slide: 0,
-      sliding: true,
       slides: [
         { img: require('@/assets/product_images/1.jpg'), caption: 'First Featured Product', text: 'A short product description' },
         { img: require('@/assets/product_images/2.jpg'), caption: 'Second Featured Product', text: 'A short product description' },
