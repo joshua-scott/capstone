@@ -1,16 +1,10 @@
-<template>
-  <b-container class="products-jumbotron">
-    <b-jumbotron
+<template lang="pug">
+  b-container(class="products-jumbotron")
+    b-jumbotron(
       :header="header"
       :lead="lead"
       bg-variant="success"
-      text-variant="light"
-    >
-      <p>For more information visit website</p>
-      <b-btn variant="primary" to="/products">More Info</b-btn>
-      <b-btn variant="success" to="/products">More Info</b-btn>
-    </b-jumbotron>
-  </b-container>
+      text-variant="light")
 </template>
 
 <script>
