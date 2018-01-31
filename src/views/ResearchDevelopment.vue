@@ -3,7 +3,7 @@
     appHeader
     navbar
     b-container
-      b-alert(variant="success" show style="margin-top: 30px;") 
+      b-alert(variant="success" show style="margin-top: 30px;")
         | {{ alertText }}
 </template>
 
