@@ -7,17 +7,14 @@
       b-col(cols="3")
         router-link(to="/")
           b-img(
-            src="@/assets/logo.jpg"
-            class="renotech-logo")
+            class="renotech-logo"
+            src="@/assets/logo.jpg")
 
       b-col(cols="3")
-        b-button(
-          variant="link" size = "sm"
-          @click="toggleLanguage")
           b-img(
-            rounded
+            class="flag"
             :src="flagImage"
-            class="flag")
+            @click="toggleLanguage")
 
       //- Search bar could be added later
       //- b-col
@@ -60,7 +57,9 @@ export default {
 
   .flag {
     max-width: 40px;
-    margin-right: 0;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
 </style>
