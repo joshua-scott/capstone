@@ -17,6 +17,7 @@ export default {
   },
   beforeMount () {
     this.$store.dispatch('loadAllData')
+    this.$store.dispatch('loadPrismic')
   }
 }
 </script>
