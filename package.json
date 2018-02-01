@@ -12,6 +12,7 @@
     "log": "git log --all --decorate --oneline --graph"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "bootstrap-vue": "^2.0.0-rc.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",

@@ -14,6 +14,9 @@ export default {
   components: {
     appHeader: Header,
     Navbar
+  },
+  beforeMount () {
+    this.$store.dispatch('loadSampleData')
   }
 }
 </script>

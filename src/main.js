@@ -3,22 +3,17 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
 import store from '@/store/store'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
 import BootstrapVue from 'bootstrap-vue'
+
 Vue.use(BootstrapVue)
+Vue.config.productionTip = false
 
 // import '@/styles/normalize.css'
 // import '@/styles/global.scss'
-
-// import SuiVue from 'semantic-ui-vue'
-// Vue.use(SuiVue)
-
-Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
