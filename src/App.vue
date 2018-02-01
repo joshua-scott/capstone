@@ -16,7 +16,7 @@ export default {
     Navbar
   },
   beforeMount () {
-    this.$store.dispatch('loadSampleData')
+    this.$store.dispatch('loadAllData')
   }
 }
 </script>

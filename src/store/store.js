@@ -8,13 +8,15 @@ export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: {
     language: 'en',
-    sampleData: {}
+    homepageData: {},
+    otherpageData: {}
   },
   actions: {
-    async loadSampleData ({ commit }) {
-      const sampleData = await axios.get('https://jsonplaceholder.typicode.com/posts')
-      console.log(sampleData)
-      commit('setSampleData', sampleData.data)
+    async loadAllData ({ dispatch, commit }) {
+      const homepageData = await axios.get('https://jsonplaceholder.typicode.com/posts')
+      const otherpageData = await axios.get('https://jsonplaceholder.typicode.com/posts')
+      commit('setHomepageData', homepageData)
+      commit('setOtherpageData', otherpageData)
     }
   },
   mutations: {
@@ -22,8 +24,11 @@ export default new Vuex.Store({
       state.language = state.language === 'fi' ? 'en' : 'fi'
       console.log(`Language changed to ${state.language}`)
     },
-    setSampleData (state, data) {
-      state.sampleData = data
+    setHomepageData (state, data) {
+      state.homepageData = data
+    },
+    setOtherpageData (state, data) {
+      state.otherpageData = data
     }
   }
 })

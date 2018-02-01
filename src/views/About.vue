@@ -12,7 +12,7 @@
 export default {
   computed: {
     posts () {
-      return this.$store.state.sampleData
+      return this.$store.state.otherpageData.data
     }
   }
 }
