@@ -1,13 +1,18 @@
 <template lang="pug">
-    carousel
+<div>
+    <carousel></carousel>
+    <app-footer></app-footer>
+</div>
 </template>
 
 <script>
 import Carousel from '@/components/Carousel.vue'
+import Footer from '@/components/Footer.vue'
 
 export default {
   components: {
-    Carousel
+    Carousel,
+    appFooter: Footer
   }
 }
 </script>
