@@ -9,16 +9,20 @@
     <h2 class="hours">OPENING HOURS</h2>
     </b-col>
     <b-col class="media-logo">
-    <b-img src="@/assets/facebook.svg"/>
+    <a href="https://www.facebook.com/renotechoy/" target="_blank">
+    <b-img src="@/assets/facebook.svg"/></a>
     </b-col>
     <b-col class="media-logo">
-    <b-img src="@/assets/twitter.svg"/>
+    <a href="https://twitter.com/" target="_blank">
+    <b-img src="@/assets/twitter.svg"/></a>
     </b-col>
     <b-col class="media-logo">
-    <b-img src="@/assets/instagram.svg"/>
+    <a href="https://www.instagram.com/" target="_blank">
+    <b-img src="@/assets/instagram.svg"/></a>
     </b-col>
     <b-col class="media-logo">
-    <b-img src="@/assets/linkedin.svg"/>
+    <a href="https://www.linkedin.com/" target="_blank">
+    <b-img src="@/assets/linkedin.svg"/></a>
     </b-col>
     </b-row>
 
