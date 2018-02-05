@@ -1,6 +1,14 @@
 <template lang="pug">
   <b-container class="footer">
-  <b-jumbotron bg-variant="info" text-variant="dark">
+  <b-jumbotron bg-variant="primary" text-variant="dark">
+  <b-row class="label">
+    <b-col sm="6"><label for="input-valid">JOIN US AND GET SPECIAL OFFER</label></b-col>
+    <b-col sm="5">
+      <b-form-input id="input-valid" :state="true" type="text" placeholder="your email"></b-form-input>
+    </b-col>
+  </b-row>
+  </b-jumbotron>
+  <b-jumbotron bg-variant="Light" text-variant="dark">
     <b-row>
     <b-col>
     <h1 class="title">CONTACT INFORMATION</h1>
@@ -26,9 +34,9 @@
     </b-col>
     </b-row>
 
-    <b-row class="time">
+    <b-row>
     <b-col>Renotech Oy</b-col>
-    <b-col>Mon - Fri 8:00-16:00</b-col>
+    <b-col class="time">Mon - Fri 8:00-16:00</b-col>
     <b-col></b-col>
     </b-row>
 
@@ -58,6 +66,16 @@ export default {
     color: #495057;
   }
 
+  .label {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    color: white;
+    height: 5px;
+  }
+
   .title {
     font-size: 20px;
     text-align: left;
@@ -71,7 +89,7 @@ export default {
   }
 
   .time {
-    align-self: auto;
+    text-align: center;
   }
 
   .media-logo {
