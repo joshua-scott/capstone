@@ -74,12 +74,7 @@ export default {
     text-align: justify;
   }
 
-  .time {
-    align-self: auto;
-  }
-
   .media-logo {
     max-width: 60px;
-    justify-content: flex-end;
   }
 </style>
