@@ -1,10 +1,10 @@
 <template lang="pug">
-  <b-container class="footer">
+  <b-container fluid class="footer">
   <b-jumbotron bg-variant="primary" text-variant="dark">
   <b-row class="label">
-    <b-col sm="6"><label for="input-valid">JOIN US AND GET SPECIAL OFFER</label></b-col>
+    <b-col sm="6"><label for="email">JOIN US AND GET SPECIAL OFFER</label></b-col>
     <b-col sm="5">
-      <b-form-input id="input-valid" :state="true" type="text" placeholder="your email"></b-form-input>
+    <b-form-input v-model="email" type="email" placeholder="Enter your email"></b-form-input>
     </b-col>
   </b-row>
   </b-jumbotron>
@@ -55,6 +55,11 @@
 
 <script>
 export default {
+  data () {
+    return {
+      email: ''
+    }
+  }
 }
 </script>
 
@@ -71,9 +76,10 @@ export default {
     font-weight: bold;
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 30px;
+    margin-left: 50px;
     color: white;
     height: 5px;
+    text-align: center;
   }
 
   .title {
@@ -94,6 +100,5 @@ export default {
 
   .media-logo {
     max-width: 60px;
-    justify-content: flex-end;
   }
 </style>
