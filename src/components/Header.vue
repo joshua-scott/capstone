@@ -18,26 +18,7 @@
 
       <!-- needs to be in a separate component other than Header-->
       b-col(cols="3")
-        <div>
-          <b-button v-b-modal.signInModal variant = "info button-wide">Sign In</b-button>
-          <b-modal id="signInModal" centered title="Sign In" hide-footer>
-            <div>
-              <b-form>
-                <b-form-group id="inputGroupEmail" label="Email:" label-for="inputEmail">
-                  <b-form-input id="inputEmail" type="email" v-model="form.email" required placeholder="Enter email">
-                  </b-form-input>
-                </b-form-group>
-                <b-form-group id="inputGroupPassword" label="Password:" label-for="inputPassword">
-                  <b-form-input id="inputPassword" type="password" v-model="form.password" required placeholder="Enter password">
-                  </b-form-input>
-                </b-form-group>
-                <b-button type="submit" variant="primary"><b>Sign In</b></b-button>
-                <b-button variant="info"><b>Sign Up</b></b-button>
-              </b-form>
-            </div>
-          </b-modal>
-        </div>
-
+      <SignIn></SignIn>
       //- Search bar could be added later
       //- b-col
       //-   div
@@ -48,13 +29,13 @@
 </template>
 
 <script>
+import SignIn from './SignIn.vue'
 export default {
+  components: {
+    SignIn
+  },
   data () {
     return {
-      form: {
-        email: '',
-        password: ''
-      }
     }
   },
   methods: {
@@ -92,7 +73,4 @@ export default {
     }
   }
 
-  .button-wide {
-    width: 70%;
-  }
 </style>
