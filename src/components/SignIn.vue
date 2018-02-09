@@ -20,22 +20,21 @@
     </div>
 </template>
 
-<script lang="ts">
+<script>
 export default {
-    data () {
-        return {
-            form: {
-                email: '',
-                password: ''
-            }
+  data () {
+    return {
+      form: {
+        email: '',
+        password: ''
+      }
     }
   }
 }
 </script>
 
-
 <style scoped>
-    .button-wide {
-        width: 70%;
-    }
+.button-wide {
+  width: 150px;
+}
 </style>
