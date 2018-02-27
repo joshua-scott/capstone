@@ -9,7 +9,7 @@ import Carousel from '@/components/Carousel.vue'
 
 export default {
   components: {
-    Carousel,
+    Carousel
   }
 }
 </script>
