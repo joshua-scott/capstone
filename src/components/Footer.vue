@@ -1,14 +1,7 @@
 <template lang="pug">
   <b-container fluid class="footer">
-  <b-jumbotron bg-variant="primary" text-variant="dark">
-  <b-row class="label">
-    <b-col sm="6"><label for="email">JOIN US AND GET SPECIAL OFFER</label></b-col>
-    <b-col sm="5">
-    <b-form-input v-model="email" type="email" placeholder="Enter your email"></b-form-input>
-    </b-col>
-  </b-row>
-  </b-jumbotron>
-  <b-jumbotron bg-variant="Light" text-variant="dark">
+  <hr class="hr">
+  <b-card text-variant="dark">
     <b-row>
     <b-col>
     <h1 class="title">CONTACT INFORMATION</h1>
@@ -49,38 +42,27 @@
     <b-row>
     <b-col>+358 40 485 1550/+358 50 558 1806</b-col>
     </b-row>
-    </b-jumbotron>
+    </b-card>
     </b-container>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      email: ''
-    }
-  }
 }
 </script>
 
 <style lang="scss" scoped>
   @import '~@/styles/_variables.scss';
 .footer {
-    margin-top: 20px;
+    margin-top: 50px;
     margin-bottom: 20px;
-    color: #495057;
+    background-color: #FFFFFF;
   }
 
-  .label {
-    font-size: 30px;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 50px;
-    color: white;
-    height: 5px;
-    text-align: center;
-  }
+.hr {
+  border-top: 5px solid #999;
+  margin-bottom: 50px;
+}
 
   .title {
     font-size: 20px;
