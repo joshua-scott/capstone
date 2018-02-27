@@ -1,4 +1,4 @@
-<template lang="pug">
+<template>
   <b-container fluid class="footer">
   <hr class="hr">
   <b-card text-variant="dark">
@@ -44,15 +44,18 @@
     </b-row>
     </b-card>
     </b-container>
+
 </template>
 
 <script>
 export default {
+
 }
 </script>
 
 <style lang="scss" scoped>
   @import '~@/styles/_variables.scss';
+
 .footer {
     margin-top: 50px;
     margin-bottom: 20px;
