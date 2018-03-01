@@ -2,11 +2,11 @@
   <b-container>
     <b-alert variant="success" show style="margin-top: 30px;"> TODO: add picture here, and links to certificates</b-alert>
     <div class="row">
-      <div class="col-sm-5">
+      <div class="col-sm-3">
         <p>​​Renotech Oy develops, manufactures, markets and imports innovative fire- and sound proofing products and other construction industry products.</p><br>
         <p align="Center"> CERTIFICATES LINK </p>
       </div>
-      <div class="col-sm-7">
+      <div class="col-sm-5">
         <p>Renotech Oy represents the following manufacturers:</p>
         <ul>
           <li><a href="https://gcpat.com/en/solutions/products/monokote-fireproofing" target="_blank">W.R Grace​:</a>  Steel and concrete fire proofing (with sound proofing)</li>
@@ -25,12 +25,21 @@
           <li><a href="https://www.pavepad.dk/en/default.asp" target="_blank">PavePad: </a>Paving supports</li>
         </ul>
       </div>
+      <div class="col-sm-4">
+        <LocationMap name="location"></LocationMap>
+      </div>
     </div>
+    
   </b-container>
 </template>
 
 <script>
+import LocationMap from '@/components/LocationMap.vue'
+
 export default {
+  components: {
+    LocationMap
+  },
   computed: {
     posts () {
       return this.$store.state.otherpageData.data
