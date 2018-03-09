@@ -46,12 +46,12 @@
 </template>
 
 <script>
-  export default {
-  }
+export default {
+}
 </script>
 
 <style lang="scss" scoped>
-  @import '~@/styles/_variables.scss';
+@import '~@/styles/_variables.scss';
 .footer {
     margin-top: 50px;
     margin-bottom: 20px;
