@@ -10,12 +10,13 @@
             class="renotech-logo"
             src="@/assets/logo.jpg")
 
-      b-col(cols="3")
+      b-col(cols="2")
           b-img(
             class="flag"
             :src="flagImage"
             @click="toggleLanguage")
 
+      <!-- needs to be in a separate component other than Header-->
       //- Search bar could be added later
       //- b-col
       //-   div
@@ -27,6 +28,12 @@
 
 <script>
 export default {
+  components: {
+  },
+  data () {
+    return {
+    }
+  },
   methods: {
     toggleLanguage () {
       this.$store.commit('toggleLanguage')

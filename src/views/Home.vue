@@ -1,5 +1,7 @@
 <template lang="pug">
-    carousel
+<div>
+    <carousel></carousel>
+</div>
 </template>
 
 <script>
