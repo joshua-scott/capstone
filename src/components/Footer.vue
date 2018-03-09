@@ -1,6 +1,6 @@
 <template>
   <b-container fluid class="footer">
-  <hr class="hr">
+    <hr class="hr">
     <b-card text-variant="dark">
       <b-row>
         <b-col xs="12" sm="6" md="4">
@@ -11,6 +11,7 @@
             <div>TURKU FINLAND</div>
             <div>+358 40 485 1550</div>
             <div>+358 50 558 1806</div>
+            <div><a href="rt@renotech.fi">rt@renotech.fi</a></div>
           </div>
         </b-col>
         <b-col xs="12" sm="6" md="4">
@@ -41,7 +42,7 @@
         </b-col>
       </b-row>
     </b-card>
-  </b-container>
+    </b-container>
 </template>
 
 <script>
