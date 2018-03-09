@@ -25,6 +25,40 @@
           <li><a href="https://www.pavepad.dk/en/default.asp" target="_blank">PavePad: </a>Paving supports</li>
         </ul>
       </div>
+      <div class="col-sm-5">
+        <a href="https://www.google.fi/maps/place/Sampsankatu+4%2c+20520+Turku/%4060.443233%2c22.315201%2c14z/data=%214m2%213m1%211s0x468c76da7bef8de7:0xa446277d9e00ead3?hl=fi" style="line-height:1.6;background-color:#ffffff;">
+          <img src="@/assets/Renotech_sijainti.jpg" data-themekey="#" alt="" style="margin:5px;width:328px;">​</a>
+      </div>
+      <div class="col-sm-7">
+        <div class="about-titles">Sales:</div>
+
+        <div class="about-titles">Fire protection for wooden constructions, and firestops:</div>
+        <div>Jari Koivisto <a href="mailto:jk@renotech.fi">jk@renotech.fi</a></div>
+        <div class="end-line">Tel. +358 40 485 1550</div>
+
+        <div class="about-titles">Fire protection for steel and concrete constructions, and acoustic compounds:</div>
+        <div>Bob Talling <a href="bt@renotech.fi">bt@renotech.fi</a></div>
+        <div class="end-line">Tel. +358 50 558 1806</div>
+
+        <div class="about-titles">Billing address:</div>
+        <span class="about-titles-underlined">e-invoicing:</span>
+        <div>003709674124</div>
+        <div>Operator: Liaison Technologies Oy</div>
+        <div class="end-line">Operator ID: 003708599126</div>
+
+        <span class="about-titles-underlined">Conventional invoicing:</span>
+        <div>Renotech Oy</div>
+        <div>c/o Laskentatieto Oy Irja Hirsinummi</div>
+        <div>Yliopistonkatu 33 G 122</div>
+        <div>20100 TURKU</div>
+        <div class="end-line"><a href="laskut@laskentatieto.fi">laskut@laskentatieto.fi</a></div>
+
+        <span class="about-titles">Office:</span>
+        <div>010 8301600 / <a href="rt@renotech.fi">rt@renotech.fi</a></div>
+        <div><b>MD:</b> Bob Talling:</div>
+        <div>y-tunnus: 0967412-4</div>
+        <div class="end-line">VAT: FI09674124</div>
+      </div>
     </div>
   </b-container>
 </template>
@@ -42,5 +76,16 @@ export default {
 <style lang="scss" scoped>
   li {
     list-style-type: none;
+  }
+  .about-titles {
+    font-weight: bold;
+    font-size: 110%;
+  }
+  .about-titles-underlined {
+    font-weight: 80%;
+    text-decoration: underline;
+  }
+  .end-line {
+    padding-bottom: 10px;
   }
 </style>
