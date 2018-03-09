@@ -1,55 +1,52 @@
-<template lang="pug">
+<template>
   <b-container fluid class="footer">
   <hr class="hr">
-  <b-card text-variant="dark">
-    <b-row>
-      <b-col>
-        <h1 class="title">CONTACT INFORMATION</h1>
-      </b-col>
-      <b-col>
-        <h2 class="hours">OPENING HOURS</h2>
-      </b-col>
-      <b-col class="media-logo">
-        <a href="https://www.facebook.com/renotechoy/" target="_blank">
-        <b-img src="@/assets/facebook.svg"/></a>
-      </b-col>
-      <b-col class="media-logo">
-        <a href="https://twitter.com/" target="_blank">
-      <b-img src="@/assets/twitter.svg"/></a>
-      </b-col>
-      <b-col class="media-logo">
-        <a href="https://www.instagram.com/" target="_blank">
-        <b-img src="@/assets/instagram.svg"/></a>
-      </b-col>
-      <b-col class="media-logo">
-        <a href="https://www.linkedin.com/" target="_blank">
-        <b-img src="@/assets/linkedin.svg"/></a>
-      </b-col>
-    </b-row>
-
-    <b-row>
-      <b-col>Renotech Oy</b-col>
-      <b-col class="time">Mon - Fri 8:00-16:00</b-col>
-      <b-col></b-col>
-    </b-row>
-
-    <b-row>
-      <b-col>Sampsankatu 4 B 20520</b-col>
-    </b-row>
-    <b-row>
-      <b-col>TURKU FINLAND</b-col>
-    </b-row>
-    <b-row>
-      <b-col>+358 40 485 1550/+358 50 558 1806</b-col>
-    </b-row>
+    <b-card text-variant="dark">
+      <b-row>
+        <b-col xs="12" sm="6" md="4">
+          <div class="info-block">
+            <h1 class="title">CONTACT INFORMATION</h1>
+            <div>Renotech Oy</div>
+            <div>Sampsankatu 4 B 20528</div>
+            <div>TURKU FINLAND</div>
+            <div>+358 40 485 1550</div>
+            <div>+358 50 558 1806</div>
+          </div>
+        </b-col>
+        <b-col xs="12" sm="6" md="4">
+          <div class="info-block">
+            <h2 class="hours">OPENING HOURS</h2>
+            <div>Mon - Fri 8:00-16:00</div>
+          </div>
+        </b-col>
+        <b-col sm="12" md="4" class="social-icons">
+          <ul>
+            <li>
+              <a href="https://www.facebook.com/renotechoy/" target="_blank">
+              <b-img class="icon" src="@/assets/facebook.svg"/></a>
+            </li>
+            <li>
+              <a href="https://twitter.com/" target="_blank">
+              <b-img class="icon" src="@/assets/twitter.svg"/></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/" target="_blank">
+              <b-img class="icon" src="@/assets/instagram.svg"/></a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/" target="_blank">
+              <b-img class="icon" src="@/assets/linkedin.svg"/></a>
+            </li>
+          </ul>
+        </b-col>
+      </b-row>
     </b-card>
-    </b-container>
+  </b-container>
 </template>
 
 <script>
-export default {
-
-}
+  export default {
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -65,23 +62,34 @@ export default {
   margin-bottom: 50px;
 }
 
+.info-block {
+  text-align: center;
+  padding-bottom: 15px;
+}
+
   .title {
     font-size: 20px;
-    text-align: left;
     font-weight: bold;
   }
 
   .hours {
     font-size: 20px;
     font-weight: bold;
-    text-align: justify;
   }
 
-  .time {
+  .icon {
+    max-width: 35px;
+    min-width: 35px;
+  }
+
+  .social-icons {
     text-align: center;
-  }
-
-  .media-logo {
-    max-width: 60px;
+    ul {
+      list-style-type: none;
+      padding: 0px;
+    }
+    li {
+      display: inline-block;
+    }
   }
 </style>
