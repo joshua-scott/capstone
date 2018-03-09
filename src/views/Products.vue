@@ -3,6 +3,7 @@
     products-jumbotron
     b-card(
       v-for="product in products"
+      :key="product.name"
     )
       p {{ product.name }}
       p {{ product.representative }}
