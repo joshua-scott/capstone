@@ -18,6 +18,9 @@ export default {
   computed: {
     posts () {
       return this.$store.state.otherpageData.data
+    },
+    products () {
+      return this.$store.state.products
     }
   }
 }
