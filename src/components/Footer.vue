@@ -15,7 +15,7 @@
         </b-col>
         <b-col xs="12" sm="6" md="4">
           <div class="info-block">
-            <h2 class="hours">OPENING HOURS</h2>
+            <h2 class="title">OPENING HOURS</h2>
             <div>Mon - Fri 8:00-16:00</div>
           </div>
         </b-col>
@@ -68,11 +68,6 @@
 }
 
   .title {
-    font-size: 20px;
-    font-weight: bold;
-  }
-
-  .hours {
     font-size: 20px;
     font-weight: bold;
   }
