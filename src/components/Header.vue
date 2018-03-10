@@ -10,7 +10,7 @@
             class="renotech-logo"
             src="@/assets/logo.jpg")
 
-      b-col(cols="3")
+      b-col(cols="2")
           b-img(
             class="flag"
             :src="flagImage"
@@ -29,10 +29,8 @@
 </template>
 
 <script>
-import SignIn from './SignIn.vue'
 export default {
   components: {
-    SignIn
   },
   data () {
     return {

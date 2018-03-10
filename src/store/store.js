@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import prismic from 'prismic-javascript'
+import Prismic from 'prismic-javascript'
 import axios from 'axios'
 
 Vue.use(Vuex)
@@ -11,7 +11,8 @@ export default new Vuex.Store({
     language: 'en',
     homepageData: {},
     otherpageData: {},
-    prismicData: {}
+    prismicData: {},
+    products: []
   },
   actions: {
     async loadAllData ({ commit }) {
@@ -23,7 +24,7 @@ export default new Vuex.Store({
     async loadPrismic ({ commit }) {
       // https://prismic.io/docs/javascript/getting-started/integrating-with-an-existing-javascript-project
       try {
-        const api = await prismic.getApi('https://renotech.prismic.io/api/v2')
+        const api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
         const response = await api.query('') // Empty query to get all data
         console.log(response)
         console.log(response.results)
@@ -31,6 +32,38 @@ export default new Vuex.Store({
         commit('setPrismicData', prismicData)
       } catch (err) {
         console.log('Error on loadPrismic action', err)
+      }
+    },
+    async getProducts ({ commit }) {
+      try {
+        const api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
+        const response = await api.query(
+          Prismic.Predicates.at('document.type', 'product')
+          // { orderings: '[my.product.date desc]' }
+        )
+        const data = response.results
+        console.log('data:')
+        console.dir(data)
+
+        let products = []
+
+        data.forEach(obj => {
+          console.log('object in data:')
+          console.log({ obj })
+          let product = []
+          let p = obj.data
+          product.name = p.product_name_and_number[0].text
+          product.representative = p.product_representative
+          product.image = p.repeatable_picture_field[0].picture_1.url
+
+          console.log({ product })
+
+          products.push(product)
+        })
+
+        commit('setProducts', products)
+      } catch (err) {
+        console.log('Error on getProducts action', err)
       }
     }
   },
@@ -47,6 +80,9 @@ export default new Vuex.Store({
     },
     setPrismicData (state, data) {
       state.prismicData = data
+    },
+    setProducts (state, data) {
+      state.products = data
     }
   }
 })
