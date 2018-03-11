@@ -55,6 +55,8 @@ export default new Vuex.Store({
           product.name = p.product_name_and_number[0].text
           product.representative = p.product_representative
           product.image = p.repeatable_picture_field[0].picture_1.url
+          product.descriptionHeading = p.product_description[0].text
+          product.descriptionText = p.product_description[1].text
 
           console.log({ product })
 
