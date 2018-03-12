@@ -9,7 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: {
-    language: 'en',
+    language: 'en-gb',
     homepageData: {},
     otherpageData: {},
     prismicData: {},
@@ -39,7 +39,8 @@ export default new Vuex.Store({
       try {
         const api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
         const response = await api.query(
-          Prismic.Predicates.at('document.type', 'product')
+          Prismic.Predicates.at('document.type', 'product'),
+          { lang: '*' }
           // { orderings: '[my.product.date desc]' }
         )
         const data = response.results
@@ -52,11 +53,11 @@ export default new Vuex.Store({
           console.log('object in data:')
           console.log({ obj })
           let product = {}
-          let p = obj.data
+          const p = obj.data
+          product.language = obj.lang
           product.name = p.product_name_and_number[0].text
           product.representative = p.product_representative
           product.image = p.repeatable_picture_field[0].picture_1.url
-
           product.description = PrismicDOM.RichText.asHtml(p.product_description)
           product.salesUnit = p.sales_unit
 
@@ -73,7 +74,7 @@ export default new Vuex.Store({
   },
   mutations: {
     toggleLanguage (state) {
-      state.language = state.language === 'fi' ? 'en' : 'fi'
+      state.language = state.language === 'fi' ? 'en-gb' : 'fi'
       console.log(`Language changed to ${state.language}`)
     },
     setHomepageData (state, data) {
