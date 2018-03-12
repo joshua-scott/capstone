@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Prismic from 'prismic-javascript'
 import axios from 'axios'
+import Prismic from 'prismic-javascript'
+import PrismicDOM from 'prismic-dom'
 
 Vue.use(Vuex)
 
@@ -50,13 +51,14 @@ export default new Vuex.Store({
         data.forEach(obj => {
           console.log('object in data:')
           console.log({ obj })
-          let product = []
+          let product = {}
           let p = obj.data
           product.name = p.product_name_and_number[0].text
           product.representative = p.product_representative
           product.image = p.repeatable_picture_field[0].picture_1.url
-          product.descriptionHeading = p.product_description[0].text
-          product.descriptionText = p.product_description[1].text
+
+          product.description = PrismicDOM.RichText.asHtml(p.product_description)
+          product.salesUnit = p.sales_unit
 
           console.log({ product })
 

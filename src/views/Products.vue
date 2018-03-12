@@ -5,10 +5,13 @@
       v-for="product in products"
       :key="product.name"
     >
-      <p>{{ product.name }}</p>
-      <p>{{ product.descriptionHeading }}</p>
-      <p>{{ product.descriptionText }}</p>
-      <p>{{ product.representative }}</p>
+      <p><strong>Product: </strong>{{ product.name }}</p>
+
+      <p><strong>Description: </strong></p>
+      <div v-html="product.description"></div>
+
+      <p><strong>Representative: </strong>{{ product.representative }}</p>
+      <p><strong>Sold by the: </strong>{{ product.salesUnit }}</p>
       <b-img fluid :src="product.image" />
     </b-card>
   </div>
@@ -30,5 +33,7 @@ export default {
 </script>
 
 <style>
-
+.product-description {
+  white-space:pre-line;
+}
 </style>
