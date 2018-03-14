@@ -78,11 +78,11 @@ export default new Vuex.Store({
       try {
         let api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
         await api.query(
-          Prismic.Predicates.at('document.type', 'category'), 
+          Prismic.Predicates.at('document.type', 'category'),
           { lang: '*' }
-        ).then(function(response) {
-          let data = response.results;
-          let categories = [];
+        ).then(function (response) {
+          let data = response.results
+          let categories = []
           data.forEach(obj => {
             let category = {}
             let c = obj.data
@@ -90,15 +90,12 @@ export default new Vuex.Store({
             category.name = c.name[0].text
             category.image = c.logo.url
             category.description = c.description
-  
-            // console.log({ product })
-  
             categories.push(category)
-          });
+          })
           commit('setCategories', categories)
-        }); 
-        
-      } catch (err) {
+        })
+      } 
+      catch (err) {
         console.log('Error on getCategories action', err)
       }
     },
@@ -109,11 +106,9 @@ export default new Vuex.Store({
         await api.query(
           Prismic.Predicates.at('document.type', 'sub-category'), 
           { lang: '*' }
-        ).then(function(response) {
-          let data = response.results;
-          console.log(data);
-          
-          let subCategories = [];
+        ).then(function (response) {
+          let data = response.results
+          let subCategories = []
           data.forEach(obj => {
             let subCategory = {}
             let s = obj.data
@@ -123,11 +118,11 @@ export default new Vuex.Store({
             subCategory.description = s.description
             
             subCategories.push(subCategory)
-          });
+          })
           commit('setSubCategories', subCategories)
-        }); 
-        
-      } catch (err) {
+        })
+      }
+      catch (err) {
         console.log('Error on getSubCategories action', err)
       }
     }

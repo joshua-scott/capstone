@@ -11,7 +11,7 @@
         <b-collapse :id="category.name" class="mt-2">
             <b-card v-for="subCategory in subCategories(category.name)" :key="`${subCategory.name}-${subCategory.language}`">
             <p class="card-text">{{ subCategory.name }}</p>
-            
+
             </b-card>
         </b-collapse>
     </b-jumbotron>
@@ -22,39 +22,37 @@
 export default {
   data () {
     return {
-      variantIndex: 0,
+      variantIndex: 0
     }
   },
   methods: {
     // set random color for each Category
     randomVariant () {
       let variants = [
-        "primary",
-        "secondary",
-        "success ",
-        "warning",
-        "danger",
-        "info",
-        "dark"
-      ];
-      return variants[(this.variantIndex++) % 7];
+        'primary',
+        'secondary',
+        'success ',
+        'warning',
+        'danger',
+        'info',
+        'dark'
+      ]
+      return variants[(this.variantIndex++) % 7]
     },
 
     // gets the subCategories by the Main Category
     subCategories (categoryName) {
-      const subCategories = this.$store.state.subCategories;
+      const subCategories = this.$store.state.subCategories
       const language = this.$store.state.language
-      return subCategories.filter(subCategory => subCategory.category === categoryName.toLowerCase())
+      return subCategories.filter(subCategory => subCategory.language === language && subCategory.category === categoryName.toLowerCase())
     }
   },
   computed: {
     categories () {
-      const categories = this.$store.state.categories;
+      const categories = this.$store.state.categories
       const language = this.$store.state.language
       return categories.filter(category => category.language === language)
-    },
-
-    
+    }
   }
 }
 </script>
@@ -67,5 +65,3 @@ export default {
         color: black !important;
     }
 </style>
-
-
