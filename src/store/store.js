@@ -13,7 +13,8 @@ export default new Vuex.Store({
     homepageData: {},
     otherpageData: {},
     prismicData: {},
-    products: []
+    products: [],
+    categories: []
   },
   actions: {
     async loadAllData ({ commit }) {
@@ -27,8 +28,8 @@ export default new Vuex.Store({
       try {
         const api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
         const response = await api.query('') // Empty query to get all data
-        console.log(response)
-        console.log(response.results)
+        // console.log(response)
+        // console.log(response.results)
         const prismicData = response.results
         commit('setPrismicData', prismicData)
       } catch (err) {
@@ -44,14 +45,14 @@ export default new Vuex.Store({
           // { orderings: '[my.product.date desc]' }
         )
         const data = response.results
-        console.log('data:')
-        console.dir(data)
+        // console.log('data:')
+        // console.dir(data)
 
         let products = []
 
         data.forEach(obj => {
-          console.log('object in data:')
-          console.log({ obj })
+          // console.log('object in data:')
+          // console.log({ obj })
           let product = {}
           const p = obj.data
           product.language = obj.lang
@@ -61,7 +62,7 @@ export default new Vuex.Store({
           product.description = PrismicDOM.RichText.asHtml(p.product_description)
           product.salesUnit = p.sales_unit
 
-          console.log({ product })
+          // console.log({ product })
 
           products.push(product)
         })
@@ -70,7 +71,38 @@ export default new Vuex.Store({
       } catch (err) {
         console.log('Error on getProducts action', err)
       }
-    }
+    },
+
+    async getCategories ({ commit }) {
+      try {
+        let api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
+        await api.query(
+          Prismic.Predicates.at('document.type', 'category'), 
+          { lang: '*' }
+        ).then(function(response) {
+          let data = response.results;
+          let categories = [];
+          data.forEach(obj => {
+            let category = {}
+            let c = obj.data
+            category.language = obj.lang
+            category.name = c.name[0].text
+            category.image = c.logo.url
+            category.description = c.description
+  
+            // console.log({ product })
+  
+            categories.push(category)
+          });
+          commit('setCategories', categories)
+        }); 
+        
+      } catch (err) {
+        console.log('Error on getCategories action', err)
+      }
+    },
+
+    
   },
   mutations: {
     toggleLanguage (state) {
@@ -88,6 +120,9 @@ export default new Vuex.Store({
     },
     setProducts (state, data) {
       state.products = data
+    },
+    setCategories (state, data) {
+      state.categories = data
     }
   }
 })
