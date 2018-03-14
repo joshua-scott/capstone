@@ -14,7 +14,8 @@ export default new Vuex.Store({
     otherpageData: {},
     prismicData: {},
     products: [],
-    categories: []
+    categories: [],
+    subCategories: []
   },
   actions: {
     async loadAllData ({ commit }) {
@@ -102,7 +103,34 @@ export default new Vuex.Store({
       }
     },
 
-    
+    async getSubCategories ({ commit }) {
+      try {
+        let api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
+        await api.query(
+          Prismic.Predicates.at('document.type', 'sub-category'), 
+          { lang: '*' }
+        ).then(function(response) {
+          let data = response.results;
+          console.log(data);
+          
+          let subCategories = [];
+          data.forEach(obj => {
+            let subCategory = {}
+            let s = obj.data
+            subCategory.language = obj.lang
+            subCategory.category = s.category.slug
+            subCategory.name = s.name[0].text
+            subCategory.description = s.description
+            
+            subCategories.push(subCategory)
+          });
+          commit('setSubCategories', subCategories)
+        }); 
+        
+      } catch (err) {
+        console.log('Error on getSubCategories action', err)
+      }
+    }
   },
   mutations: {
     toggleLanguage (state) {
@@ -123,6 +151,9 @@ export default new Vuex.Store({
     },
     setCategories (state, data) {
       state.categories = data
+    },
+    setSubCategories (state, data) {
+      state.subCategories = data
     }
   }
 })

@@ -23,6 +23,7 @@ export default {
     this.$store.dispatch('loadPrismic')
     this.$store.dispatch('getProducts')
     this.$store.dispatch('getCategories')
+    this.$store.dispatch('getSubCategories')
   }
 }
 </script>

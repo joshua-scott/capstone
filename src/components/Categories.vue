@@ -1,6 +1,6 @@
 <template>
   <b-container class="container">
-      <b-jumbotron v-for="category in categories" :key="`${category.name}-${category.language}`" :bg-variant="randomVariant()" text-variant="white" border-variant="dark">
+      <b-jumbotron v-b-toggle="category.name" v-for="category in categories" :key="`${category.name}-${category.language}`" :bg-variant="randomVariant()" text-variant="white" border-variant="dark">
         <template slot="header">
           {{ category.name }}
         </template>
@@ -8,6 +8,12 @@
           {{ category.description }}
         </template>
         <!-- <hr class="my-4"> -->
+        <b-collapse :id="category.name" class="mt-2">
+            <b-card v-for="subCategory in subCategories(category.name)" :key="`${subCategory.name}-${subCategory.language}`">
+            <p class="card-text">{{ subCategory.name }}</p>
+            
+            </b-card>
+        </b-collapse>
     </b-jumbotron>
     </b-container>
 </template>
@@ -32,6 +38,13 @@ export default {
         "dark"
       ];
       return variants[(this.variantIndex++) % 7];
+    },
+
+    // gets the subCategories by the Main Category
+    subCategories (categoryName) {
+      const subCategories = this.$store.state.subCategories;
+      const language = this.$store.state.language
+      return subCategories.filter(subCategory => subCategory.category === categoryName.toLowerCase())
     }
   },
   computed: {
@@ -39,7 +52,9 @@ export default {
       const categories = this.$store.state.categories;
       const language = this.$store.state.language
       return categories.filter(category => category.language === language)
-    }
+    },
+
+    
   }
 }
 </script>
@@ -47,6 +62,9 @@ export default {
 <style scoped>
     .container {
         margin-top: 30px;
+    }
+    .card-text {
+        color: black !important;
     }
 </style>
 
