@@ -79,7 +79,7 @@ export default {
   }
   .about-titles {
     font-weight: bold;
-    font-size: 110%;
+    font-size: 100%;
   }
   .about-titles-underlined {
     font-weight: 80%;
