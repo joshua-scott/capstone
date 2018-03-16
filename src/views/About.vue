@@ -28,10 +28,6 @@
       <div class="col-sm-4">
         <LocationMap name="location"></LocationMap>
       </div>
-      <div class="col-sm-5">
-        <a href="https://www.google.fi/maps/place/Sampsankatu+4%2c+20520+Turku/%4060.443233%2c22.315201%2c14z/data=%214m2%213m1%211s0x468c76da7bef8de7:0xa446277d9e00ead3?hl=fi" style="line-height:1.6;background-color:#ffffff;">
-          <img src="@/assets/Renotech_sijainti.jpg" data-themekey="#" alt="" style="margin:5px;width:328px;">​</a>
-      </div>
       <div class="col-sm-7">
         <div class="about-titles">Sales:</div>
 
