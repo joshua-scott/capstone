@@ -42,11 +42,11 @@
         </b-col>
       </b-row>
     </b-card>
-    </b-container>
+  </b-container>
 </template>
 
 <style lang="scss" scoped>
-  @import '~@/styles/_variables.scss';
+@import '~@/styles/_variables.scss';
 .footer {
     margin-top: 50px;
     margin-bottom: 20px;
@@ -63,24 +63,24 @@
   padding-bottom: 15px;
 }
 
-  .title {
-    font-size: 20px;
-    font-weight: bold;
-  }
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
 
-  .icon {
-    max-width: 35px;
-    min-width: 35px;
-  }
+.icon {
+  max-width: 35px;
+  min-width: 35px;
+}
 
-  .social-icons {
-    text-align: center;
-    ul {
-      list-style-type: none;
-      padding: 0px;
-    }
-    li {
-      display: inline-block;
-    }
+.social-icons {
+  text-align: center;
+  ul {
+    list-style-type: none;
+    padding: 0px;
   }
+  li {
+    display: inline-block;
+  }
+}
 </style>
