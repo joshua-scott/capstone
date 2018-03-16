@@ -26,6 +26,7 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     // allow irregular whitespace (squash errors in About.vue file)
-    'no-irregular-whitespace': 'off'
+    'no-irregular-whitespace': 'off',
+    'eol-last': 'off'
   }
 }
