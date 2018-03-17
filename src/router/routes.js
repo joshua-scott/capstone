@@ -38,7 +38,6 @@ export default [
   {
     name: 'PageNotFound',
     path: '*',
-    component: PageNotFound,
-    hideInLists: true
+    component: PageNotFound
   }
 ]
