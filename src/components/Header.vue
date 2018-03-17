@@ -16,9 +16,6 @@
             :src="flagImage"
             @click="toggleLanguage")
 
-      <!-- needs to be in a separate component other than Header-->
-      b-col(cols="3")
-        <SignIn></SignIn>
       //- Search bar could be added later
       //- b-col
       //-   div
