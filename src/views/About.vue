@@ -29,7 +29,6 @@
         <LocationMap name="location"></LocationMap>
       </div>
     </div>
-    
   </b-container>
 </template>
 
