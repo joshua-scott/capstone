@@ -37,7 +37,7 @@ export default new Vuex.Store({
     },
     async getProducts ({ commit }) {
       try {
-        const api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
+        const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
           Prismic.Predicates.at('document.type', 'product'),
           { lang: '*' }
@@ -55,7 +55,8 @@ export default new Vuex.Store({
           let product = {}
           const p = obj.data
           product.language = obj.lang
-          product.name = p.product_name_and_number[0].text
+          product.name = p.product_name[0].text
+          product.number = p.product_number
           product.representative = p.product_representative
           product.image = p.repeatable_picture_field[0].picture_1.url
           product.description = PrismicDOM.RichText.asHtml(p.product_description)

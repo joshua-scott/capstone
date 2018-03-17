@@ -14,7 +14,7 @@ export default [
   // View a specific product
   {
     name: 'Product',
-    path: '/products/:category/:subcategory/:productName',
+    path: '/products/:category/:subcategory/:productNumber',
     component: ProductView,
     props: true
   },
