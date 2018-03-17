@@ -19,7 +19,7 @@ export default {
     appFooter: Footer
   },
   beforeMount () {
-    this.$store.dispatch('loadAllData')
+    this.$store.dispatch('getHomepageData')
     this.$store.dispatch('getProducts')
   }
 }

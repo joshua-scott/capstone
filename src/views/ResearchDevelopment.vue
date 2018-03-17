@@ -1,12 +1,12 @@
 <template lang="pug">
-<div>
-    <div>
-    <rdcarousel></rdcarousel>
-    </div>
-    <div>
-    <articles></articles>
-    </div>
-</div>
+  <div>
+      <div>
+        <rdcarousel></rdcarousel>
+      </div>
+      <div>
+        <articles></articles>
+      </div>
+  </div>
 </template>
 
 <script>
