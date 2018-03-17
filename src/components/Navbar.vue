@@ -19,13 +19,12 @@ export default {
   data () {
     return {
       routes,
-      width: window.innerWidth,
-      categories: [ 'Services', 'The team', 'Publications', 'References', 'Partners', 'Contact', 'News' ]
+      width: window.innerWidth
     }
   },
   computed: {
     displayedRoutes () {
-      return routes.filter(route => !route.hideInLists)
+      return routes.filter(route => ['Home', 'Products', 'R & D', 'About'].includes(route.name))
     }
   },
   methods: {
