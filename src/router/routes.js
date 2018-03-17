@@ -1,4 +1,5 @@
 import Home from '@/views/Home'
+import ProductView from '@/views/ProductView'
 import Products from '@/views/Products'
 import ResearchDevelopment from '@/views/ResearchDevelopment'
 import About from '@/views/About'
@@ -10,6 +11,15 @@ export default [
     path: '/',
     component: Home
   },
+  // View a specific product
+  {
+    name: 'Product',
+    path: '/products/:category/:subcategory/:productName',
+    component: ProductView,
+    props: true
+  },
+  // View a specific category of products
+  // View all Categories of products
   {
     name: 'Products',
     path: '/products',
