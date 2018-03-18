@@ -8,21 +8,18 @@
       template(v-for="(slide, index) in slides")
         b-carousel-slide(
           :key="index"
-          :img-src="slide.img"
-          :caption="slide.caption"
-          :text="slide.text")
+          :img-src="slide.imageUrl"
+          :caption="slide.heading"
+          :text="slide.description")
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      slides: [
-        { img: require('@/assets/product_images/1.jpg'), caption: 'First Featured Product', text: 'A short product description' },
-        { img: require('@/assets/product_images/2.jpg'), caption: 'Second Featured Product', text: 'A short product description' },
-        { img: require('@/assets/product_images/3.jpg'), caption: 'Third Featured Product', text: 'A short product description' },
-        { img: require('@/assets/product_images/4.jpg'), caption: 'Final Featured Product', text: 'A short product description' }
-      ]
+  computed: {
+    slides () {
+      const slides = this.$store.state.carouselItems
+      const language = this.$store.state.language
+      return slides.filter(slide => slide.language === language)
     }
   }
 }

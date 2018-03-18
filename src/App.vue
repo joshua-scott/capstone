@@ -20,6 +20,7 @@ export default {
   },
   beforeMount () {
     this.$store.dispatch('getHomepageData')
+    this.$store.dispatch('getCarousel')
     this.$store.dispatch('getProducts')
   }
 }
