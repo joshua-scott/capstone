@@ -7,6 +7,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import BootstrapVue from 'bootstrap-vue'
 import * as VueGoogleMaps from 'vue2-google-maps'
 
+import fontawesome from '@fortawesome/fontawesome'
+import { faFacebook, faYoutube } from '@fortawesome/fontawesome-free-brands'
+import faSpinner from '@fortawesome/fontawesome-free-solid/faSpinner'
+
+fontawesome.library.add(faFacebook, faYoutube, faSpinner)
+
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 Vue.use(VueGoogleMaps, {

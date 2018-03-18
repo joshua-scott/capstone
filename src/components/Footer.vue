@@ -5,7 +5,7 @@
       <b-row>
         <b-col xs="12" sm="6" md="4">
           <div class="info-block">
-            <h1 class="title">CONTACT INFORMATION</h1>
+            <h1 class="title">Contact Information</h1>
             <div>Renotech Oy</div>
             <div>Sampsankatu 4 B 20528</div>
             <div>TURKU FINLAND</div>
@@ -16,37 +16,34 @@
         </b-col>
         <b-col xs="12" sm="6" md="4">
           <div class="info-block">
-            <h2 class="title">OPENING HOURS</h2>
+            <h2 class="title">Opening Hours</h2>
             <div>Mon - Fri 8:00-16:00</div>
           </div>
         </b-col>
         <b-col sm="12" md="4" class="social-icons">
-          <ul>
-            <li>
-              <a href="https://www.facebook.com/renotechoy/" target="_blank">
-              <b-img class="icon" src="@/assets/facebook.svg"/></a>
-            </li>
-            <li>
-              <a href="https://twitter.com/" target="_blank">
-              <b-img class="icon" src="@/assets/twitter.svg"/></a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/" target="_blank">
-              <b-img class="icon" src="@/assets/instagram.svg"/></a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/" target="_blank">
-              <b-img class="icon" src="@/assets/linkedin.svg"/></a>
-            </li>
-          </ul>
+          <a href="https://www.facebook.com/renotechoy/">
+            <font-awesome-icon :icon="['fab', 'facebook']" size="2x" />
+          </a>
+          <a href="https://www.youtube.com/channel/UCSVXFiTqwXWa69nrHBHsDVw">
+            <font-awesome-icon :icon="['fab', 'youtube']" size="2x" />
+          </a>
         </b-col>
       </b-row>
     </b-card>
   </b-container>
 </template>
 
+<script>
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+
+export default {
+  components: {
+    FontAwesomeIcon
+  }
+}
+</script>
+
 <style lang="scss" scoped>
-@import '~@/styles/_variables.scss';
 .footer {
     margin-top: 50px;
     margin-bottom: 20px;
@@ -55,12 +52,12 @@
 
 .hr {
   border-top: 5px solid #999;
-  margin-bottom: 50px;
+  margin-bottom: 1rem;
 }
 
 .info-block {
   text-align: center;
-  padding-bottom: 15px;
+  padding-bottom: 1rem;
 }
 
 .title {
@@ -68,19 +65,11 @@
   font-weight: bold;
 }
 
-.icon {
-  max-width: 35px;
-  min-width: 35px;
-}
-
 .social-icons {
   text-align: center;
-  ul {
-    list-style-type: none;
-    padding: 0px;
-  }
-  li {
-    display: inline-block;
+  a {
+    padding: 1rem;
+    color: inherit;
   }
 }
 </style>
