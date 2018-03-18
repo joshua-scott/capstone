@@ -1,6 +1,5 @@
 <template>
   <b-container>
-    <b-alert variant="success" show style="margin-top: 30px;"> TODO: add picture here, and links to certificates</b-alert>
     <div class="row">
       <div class="col-sm-3">
         <p>​​Renotech Oy develops, manufactures, markets and imports innovative fire- and sound proofing products and other construction industry products.</p><br>
@@ -26,23 +25,18 @@
         </ul>
       </div>
       <div class="col-sm-4">
-        <LocationMap name="location"></LocationMap>
+        <google-map></google-map>
       </div>
     </div>
   </b-container>
 </template>
 
 <script>
-import LocationMap from '@/components/LocationMap.vue'
+import GoogleMap from '@/components/GoogleMap.vue'
 
 export default {
   components: {
-    LocationMap
-  },
-  computed: {
-    posts () {
-      return this.$store.state.otherpageData.data
-    }
+    GoogleMap
   }
 }
 </script>
