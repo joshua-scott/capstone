@@ -21,10 +21,10 @@
           </div>
         </b-col>
         <b-col sm="12" md="4" class="social-icons">
-          <a href="https://www.facebook.com/renotechoy/">
+          <a href="https://www.facebook.com/renotechoy/" target="_blank">
             <font-awesome-icon :icon="['fab', 'facebook']" size="2x" />
           </a>
-          <a href="https://www.youtube.com/channel/UCSVXFiTqwXWa69nrHBHsDVw">
+          <a href="https://www.youtube.com/channel/UCSVXFiTqwXWa69nrHBHsDVw" target="_blank">
             <font-awesome-icon :icon="['fab', 'youtube']" size="2x" />
           </a>
         </b-col>
