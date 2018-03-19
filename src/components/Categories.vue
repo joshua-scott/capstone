@@ -1,5 +1,5 @@
 <template>
-  <b-container class="container">
+  <b-container class="container clickable">
     <b-jumbotron v-b-toggle="category.name" v-for="category in categories" :key="`${category.name}-${category.language}`" :bg-variant="randomVariant()" text-variant="white" border-variant="dark">
       <template slot="header">
         {{ category.name }}
@@ -63,5 +63,8 @@ export default {
     }
     .card-text {
         color: black !important;
+    }
+    .clickable :hover {
+      cursor: pointer;
     }
 </style>
