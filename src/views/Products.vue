@@ -26,11 +26,11 @@ export default {
     Categories
   },
   computed: {
-    products () {
-      const products = this.$store.state.products
-      const language = this.$store.state.language
-      return products.filter(prod => prod.language === language)
-    }
+    // products () {
+    //   const products = this.$store.state.products
+    //   const language = this.$store.state.language
+    //   return products.filter(prod => prod.language === language)
+    // }
   }
 }
 </script>

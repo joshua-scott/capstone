@@ -37,6 +37,8 @@ export default new Vuex.Store({
         console.log('Error on loadPrismic action', err)
       }
     },
+
+    // gets all product type documents
     async getProducts ({ commit }) {
       try {
         const api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
@@ -46,8 +48,7 @@ export default new Vuex.Store({
           // { orderings: '[my.product.date desc]' }
         )
         const data = response.results
-        // console.log('data:')
-        // console.dir(data)
+        // console.log('products:', data)
 
         let products = []
 
@@ -57,7 +58,9 @@ export default new Vuex.Store({
           let product = {}
           const p = obj.data
           product.language = obj.lang
-          product.name = p.product_name_and_number[0].text
+          product.subCategory = p['sub-category'].id
+          product.name = p.product_name[0].text
+          product.number = p.product_number
           product.representative = p.product_representative
           product.image = p.repeatable_picture_field[0].picture_1.url
           product.description = PrismicDOM.RichText.asHtml(p.product_description)
@@ -74,6 +77,7 @@ export default new Vuex.Store({
       }
     },
 
+    // gets all category type documents
     async getCategories ({ commit }) {
       try {
         let api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
@@ -100,6 +104,7 @@ export default new Vuex.Store({
       }
     },
 
+    // gets all sub-category type documents
     async getSubCategories ({ commit }) {
       try {
         let api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
@@ -108,11 +113,14 @@ export default new Vuex.Store({
           { lang: '*' }
         ).then(function (response) {
           let data = response.results
+          // console.log('sub category',data);
+          
           let subCategories = []
           data.forEach(obj => {
             let subCategory = {}
             let s = obj.data
             subCategory.language = obj.lang
+            subCategory.id = obj.id
             subCategory.category = s.category.slug
             subCategory.name = s.name[0].text
             subCategory.description = s.description
