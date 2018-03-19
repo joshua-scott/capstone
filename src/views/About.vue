@@ -28,8 +28,7 @@
       <div class="col-sm-4">
         <LocationMap name="location"></LocationMap>
       </div>
-    </div>
-    
+    </div>    
   </b-container>
 </template>
 
