@@ -114,7 +114,9 @@ export default new Vuex.Store({
             subCategory.language = obj.lang
             subCategory.id = obj.id
             subCategory.category = s.category.slug
-            subCategory.name = s.name[0].text
+            if (s.name[0].text) {
+              subCategory.name = s.name[0].text
+            }
             subCategory.description = s.description
 
             subCategories.push(subCategory)
