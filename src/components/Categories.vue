@@ -31,7 +31,7 @@
           >
           <!-- <p class="card-text">{{ subCategory.name }}</p> -->
             <router-link
-              :to="{name: 'ProductList', params: { subCategory: subCategory.id }}"
+              :to="{name: 'ProductList', params: { subCategory: slug(subCategory.name) }}"
               class="nav-link"
             >{{ subCategory.name }}</router-link>
           </b-card>
@@ -69,9 +69,12 @@ export default {
       const language = this.$store.state.language
 
       return subCats.filter(subCat => {
-        const catName = slugify(categoryName, this.slugOptions)
+        const catName = this.slug(categoryName)
         return subCat.language === language && subCat.category === catName
       })
+    },
+    slug (str) {
+      return slugify(str, this.slugOptions)
     }
   },
   computed: {
