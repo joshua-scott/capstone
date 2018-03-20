@@ -166,9 +166,9 @@ export default new Vuex.Store({
   },
   // Mutations are the only place we actually alter the state
   mutations: {
-    toggleLanguage (state) {
-      state.language = state.language === 'fi' ? 'en-gb' : 'fi'
-      console.log(`Language changed to ${state.language}`)
+    setLanguage (state, newLanguage) {
+      state.language = newLanguage
+      console.log(`Language changed to ${newLanguage}`)
     },
     setHomepageData (state, data) {
       state.homepageData = data

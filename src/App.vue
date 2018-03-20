@@ -1,6 +1,6 @@
 <template lang="pug">
   #app
-    app-header
+    app-header(:width="width")
     navbar(:width="width")
     router-view
     app-footer
