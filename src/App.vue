@@ -1,7 +1,7 @@
 <template lang="pug">
   #app
     app-header
-    navbar
+    navbar(:width="width")
     router-view
     app-footer
 </template>
@@ -13,10 +13,20 @@ import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'App',
+  data () {
+    return {
+      width: window.innerWidth
+    }
+  },
   components: {
     appHeader: Header,
     Navbar,
     appFooter: Footer
+  },
+  methods: {
+    handleResize () {
+      this.width = window.innerWidth
+    }
   },
   beforeMount () {
     this.$store.dispatch('getHomepageData')
@@ -24,6 +34,12 @@ export default {
     this.$store.dispatch('getProducts')
     this.$store.dispatch('getCategories')
     this.$store.dispatch('getSubCategories')
+  },
+  mounted () {
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize', this.handleResize)
   }
 }
 </script>

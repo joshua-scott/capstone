@@ -16,10 +16,10 @@
 import routes from '@/router/routes.js'
 
 export default {
+  props: ['width'],
   data () {
     return {
-      routes,
-      width: window.innerWidth
+      routes
     }
   },
   computed: {
@@ -29,17 +29,6 @@ export default {
     language () {
       return this.$store.state.language
     }
-  },
-  methods: {
-    handleResize () {
-      this.width = window.innerWidth
-    }
-  },
-  mounted () {
-    window.addEventListener('resize', this.handleResize)
-  },
-  beforeDestroy () {
-    window.removeEventListener('resize', this.handleResize)
   }
 }
 </script>
