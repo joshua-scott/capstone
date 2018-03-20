@@ -1,4 +1,5 @@
 <template>
+  <b-col xs="12" sm="6" md="4">
     <b-card :title="product.name"
             :img-src="product.image"
             :img-alt="`Photograph of ${product.name}`"
@@ -7,6 +8,7 @@
     >
       <b-button href="#" variant="primary">Find out more</b-button>
     </b-card>
+  </b-col>
 </template>
 
 <script>
