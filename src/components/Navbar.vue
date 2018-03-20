@@ -9,35 +9,26 @@
         :key="index"
         :to="route.path"
         exact)
-        | {{ route.name }}
+        | {{ language === 'en-gb' ? route.name : route.nameFin }}
 </template>
 
 <script>
 import routes from '@/router/routes.js'
 
 export default {
+  props: ['width'],
   data () {
     return {
-      routes,
-      width: window.innerWidth,
-      categories: [ 'Services', 'The team', 'Publications', 'References', 'Partners', 'Contact', 'News' ]
+      routes
     }
   },
   computed: {
     displayedRoutes () {
-      return routes.filter(route => !route.hideInLists)
+      return routes.filter(route => ['Home', 'Products', 'R & D', 'About'].includes(route.name))
+    },
+    language () {
+      return this.$store.state.language
     }
-  },
-  methods: {
-    handleResize () {
-      this.width = window.innerWidth
-    }
-  },
-  mounted () {
-    window.addEventListener('resize', this.handleResize)
-  },
-  beforeDestroy () {
-    window.removeEventListener('resize', this.handleResize)
   }
 }
 </script>

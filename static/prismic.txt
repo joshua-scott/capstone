@@ -1,0 +1,160 @@
+// 'Product' custom type
+{
+  "Main" : {
+    "product_name" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label" : "Product name",
+        "placeholder" : "Product name"
+      }
+    },
+    "product_number" : {
+      "type" : "Number",
+      "config" : {
+        "label" : "Product number",
+        "placeholder" : "Product number"
+      }
+    },
+    "repeatable_picture_field" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "picture_1" : {
+            "type" : "Image",
+            "config" : {
+              "constraint" : { },
+              "thumbnails" : [ ],
+              "label" : "Picture 1"
+            }
+          }
+        },
+        "label" : "Repeatable picture field"
+      }
+    },
+    "product_description" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "label" : "Product description",
+        "placeholder" : "Product description"
+      }
+    },
+    "sales_unit" : {
+      "type" : "Select",
+      "config" : {
+        "options" : [ "tonne", "kg", "piece", "litre", "sack" ],
+        "label" : "Sales unit",
+        "placeholder" : "Choose sales unit"
+      }
+    },
+    "product_representative" : {
+      "type" : "Select",
+      "config" : {
+        "options" : [ "Mr. Bob Talling +358 50 558 1806 / bt@renotech.fi", "Mr. Jari Koivisto +358 40 485 1550 / jk@renotech.fi", "Office +358 10 8301600 / rt@renotech.fi" ],
+        "label" : "Product representative",
+        "placeholder" : "Who's selling the product"
+      }
+    },
+    "product_documents" : {
+      "config" : {
+        "fields" : {
+          "repeatable_product_documents" : {
+            "type" : "Link",
+            "config" : {
+              "select" : "media",
+              "label" : "Repeatable product documents",
+              "placeholder" : "For more documents, add here"
+            }
+          }
+        },
+        "label" : "Product documents"
+      },
+      "type" : "Group"
+    }
+  }
+}
+
+// 'Category' custom type
+{
+  "Main" : {
+    "name" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label" : "Category Name",
+        "placeholder" : "Fireproofing"
+      }
+    },
+    "logo" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : { },
+        "thumbnails" : [ ],
+        "label" : "Logo"
+      }
+    },
+    "description" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Category Description",
+        "placeholder" : "Short description of Category"
+      }
+    }
+  }
+}
+
+// 'Sub-category' custom type
+{
+  "Main" : {
+    "category" : {
+      "type" : "Link",
+      "config" : {
+        "select" : "document",
+        "customtypes" : [ "category" ],
+        "label" : "Category"
+      }
+    },
+    "name" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label" : "Name"
+      }
+    },
+    "description" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Description"
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
