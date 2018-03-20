@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import slugify from 'slugify'
+
 export default {
   data () {
     return {
@@ -53,19 +55,23 @@ export default {
         'danger',
         'info',
         'dark'
-      ]
+      ],
+      slugOptions: {
+        lower: true,
+        remove: /[$*_+~.()'"!\-:@]/g
+      }
     }
   },
   methods: {
     // gets the subCategories by the Main Category
     subCategories (categoryName) {
-      const subCategories = this.$store.state.subCategories
+      const subCats = this.$store.state.subCategories
       const language = this.$store.state.language
-      return subCategories
-      // console.log({ subCategories, subCategory, categoryName })
-      // return subCategories.filter(subCategory => {
-      //   subCategory.language === language && subCategory.category === categoryName.toLowerCase()
-      // })
+
+      return subCats.filter(subCat => {
+        const catName = slugify(categoryName, this.slugOptions)
+        return subCat.language === language && subCat.category == catName
+      })
     }
   },
   computed: {
