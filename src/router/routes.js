@@ -9,6 +9,7 @@ import ProductListView from '@/views/ProductListView'
 export default [
   {
     name: 'Home',
+    nameFin: 'Koti',
     path: '/',
     component: Home
   },
@@ -23,6 +24,7 @@ export default [
   // View all Categories of products
   {
     name: 'Products',
+    nameFin: 'Tuotteet',
     path: '/products',
     component: CategoryView
   },
@@ -33,11 +35,13 @@ export default [
   },
   {
     name: 'R & D',
+    nameFin: 'R & D',
     path: '/rd',
     component: ResearchDevelopment
   },
   {
     name: 'About',
+    nameFin: 'Meistä',
     path: '/about',
     component: About
   },

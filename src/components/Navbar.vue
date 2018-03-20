@@ -9,7 +9,7 @@
         :key="index"
         :to="route.path"
         exact)
-        | {{ route.name }}
+        | {{ language === 'en-gb' ? route.name : route.nameFin }}
 </template>
 
 <script>
@@ -25,6 +25,9 @@ export default {
   computed: {
     displayedRoutes () {
       return routes.filter(route => ['Home', 'Products', 'R & D', 'About'].includes(route.name))
+    },
+    language () {
+      return this.$store.state.language
     }
   },
   methods: {
