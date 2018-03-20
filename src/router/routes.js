@@ -29,8 +29,7 @@ export default [
   {
     name: 'ProductList',
     path: '/products/:subCategory',
-    component: Product,
-    hideInLists: true
+    component: Product
   },
   {
     name: 'R & D',

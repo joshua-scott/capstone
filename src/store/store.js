@@ -16,9 +16,9 @@ export default new Vuex.Store({
     language: 'en-gb',
     homepageData: {},
     products: [],
-    carouselItems: []
-    subCategories: []
     categories: [],
+    subCategories: [],
+    carouselItems: []
   },
   // Actions main job is to get data from somewhere else
   // and then commit the mutations defined below
@@ -39,7 +39,7 @@ export default new Vuex.Store({
         let products = []
 
         data.forEach(obj => {
-          // if (dev) console.log({ obj })
+          if (dev) console.log({ obj })
           let product = {}
           const p = obj.data
           product.language = obj.lang
@@ -47,12 +47,19 @@ export default new Vuex.Store({
           product.number = p.product_number
           product.description = PrismicDOM.RichText.asHtml(p.product_description)
           product.image = p.repeatable_picture_field[0].picture_1.url
-          product.subCategory = p['sub-category'].id
+
+          if (p['sub-category'].id) {
+            console.log(`it is ${p['sub-category'].slug}`)
+            product.subCategory = p['sub-category'].id
+            product.subCategorySlug = p['sub-category'].slug
+          } else {
+            console.log('it\'s english')
+          }
+
           product.representative = p.product_representative
           product.salesUnit = p.sales_unit
-          // if (dev) console.log({ product })
 
-          // console.log({ product })
+          if (dev) console.log({ product })
 
           products.push(product)
         })
@@ -66,7 +73,7 @@ export default new Vuex.Store({
     // gets all category type documents
     async getCategories ({ commit }) {
       try {
-        let api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
+        let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
           Prismic.Predicates.at('document.type', 'category'),
           { lang: '*' }
@@ -84,8 +91,7 @@ export default new Vuex.Store({
           })
           commit('setCategories', categories)
         })
-      } 
-      catch (err) {
+      } catch (err) {
         console.log('Error on getCategories action', err)
       }
     },
@@ -93,14 +99,14 @@ export default new Vuex.Store({
     // gets all sub-category type documents
     async getSubCategories ({ commit }) {
       try {
-        let api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
+        let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
-          Prismic.Predicates.at('document.type', 'sub-category'), 
+          Prismic.Predicates.at('document.type', 'sub-category'),
           { lang: '*' }
         ).then(function (response) {
           let data = response.results
           // console.log('sub category',data);
-          
+
           let subCategories = []
           data.forEach(obj => {
             let subCategory = {}
@@ -110,16 +116,16 @@ export default new Vuex.Store({
             subCategory.category = s.category.slug
             subCategory.name = s.name[0].text
             subCategory.description = s.description
-            
+
             subCategories.push(subCategory)
           })
           commit('setSubCategories', subCategories)
         })
-      }
-      catch (err) {
+      } catch (err) {
         console.log('Error on getSubCategories action', err)
       }
     },
+
     async getCarousel ({ commit }) {
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
