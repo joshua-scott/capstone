@@ -5,10 +5,10 @@
       <b-row>
         <b-col xs="12" sm="6" md="4">
           <div class="info-block">
-            <h1 class="title">Contact Information</h1>
+            <h1 class="title">{{ contactInfo[language] }}</h1>
             <div>Renotech Oy</div>
             <div>Sampsankatu 4 B 20528</div>
-            <div>TURKU FINLAND</div>
+            <div>Turku, Finland</div>
             <div>+358 40 485 1550</div>
             <div>+358 50 558 1806</div>
             <div><a href="rt@renotech.fi">rt@renotech.fi</a></div>
@@ -16,8 +16,8 @@
         </b-col>
         <b-col xs="12" sm="6" md="4">
           <div class="info-block">
-            <h2 class="title">Opening Hours</h2>
-            <div>Mon - Fri 8:00-16:00</div>
+            <h2 class="title">{{ openingHours[language] }}</h2>
+            <div>{{ days[language] }} 8:00-16:00</div>
           </div>
         </b-col>
         <b-col sm="12" md="4" class="social-icons">
@@ -37,6 +37,27 @@
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
 export default {
+  data () {
+    return {
+      contactInfo: {
+        fi: 'Yhteystiedot',
+        'en-gb': 'Contact Information'
+      },
+      openingHours: {
+        fi: 'Aukioloajat',
+        'en-gb': 'Opening hours'
+      },
+      days: {
+        fi: 'Maa - Per',
+        'en-gb': 'Mon - Fri'
+      }
+    }
+  },
+  computed: {
+    language () {
+      return this.$store.state.language
+    }
+  },
   components: {
     FontAwesomeIcon
   }
