@@ -6,15 +6,17 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import BootstrapVue from 'bootstrap-vue'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import BackToTop from 'vue-backtotop'
 
 import fontawesome from '@fortawesome/fontawesome'
 import { faFacebook, faYoutube } from '@fortawesome/fontawesome-free-brands'
-import faSpinner from '@fortawesome/fontawesome-free-solid/faSpinner'
+import { faSpinner, faChevronUp } from '@fortawesome/fontawesome-free-solid'
 
-fontawesome.library.add(faFacebook, faYoutube, faSpinner)
+fontawesome.library.add(faFacebook, faYoutube, faSpinner, faChevronUp)
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
+Vue.use(BackToTop)
 Vue.use(VueGoogleMaps, {
   load: { key: 'AIzaSyBAhIUWHFPvIsQVKeSemfaVf88fdQl4oCs' }
 })
