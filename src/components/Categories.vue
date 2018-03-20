@@ -70,7 +70,7 @@ export default {
 
       return subCats.filter(subCat => {
         const catName = slugify(categoryName, this.slugOptions)
-        return subCat.language === language && subCat.category == catName
+        return subCat.language === language && subCat.category === catName
       })
     }
   },

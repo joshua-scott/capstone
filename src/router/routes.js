@@ -4,7 +4,6 @@ import CategoryView from '@/views/CategoryView'
 import ResearchDevelopment from '@/views/ResearchDevelopment'
 import About from '@/views/About'
 import PageNotFound from '@/views/PageNotFound'
-import Product from '@/components/Product'
 
 export default [
   {
@@ -29,7 +28,7 @@ export default [
   {
     name: 'ProductList',
     path: '/products/:subCategory',
-    component: Product
+    component: ProductView
   },
   {
     name: 'R & D',
