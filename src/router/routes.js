@@ -1,10 +1,9 @@
 import Home from '@/views/Home'
 import ProductView from '@/views/ProductView'
-import Products from '@/views/Products'
+import CategoryView from '@/views/CategoryView'
 import ResearchDevelopment from '@/views/ResearchDevelopment'
 import About from '@/views/About'
 import PageNotFound from '@/views/PageNotFound'
-import Product from '@/components/Product'
 
 export default [
   {
@@ -24,12 +23,12 @@ export default [
   {
     name: 'Products',
     path: '/products',
-    component: Products
+    component: CategoryView
   },
   {
     name: 'ProductList',
     path: '/products/:subCategory',
-    component: Product
+    component: ProductView
   },
   {
     name: 'R & D',
