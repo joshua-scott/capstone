@@ -1,7 +1,13 @@
 <template>
-  <div>
-    <!-- <product-simple v-for="product in products" /> -->
-  </div>
+  <b-container class="product-list-view">
+    <b-card-group deck>
+      <product-simple
+        v-for="(product, index) in products"
+        :key="index"
+        :product="product"
+      />
+    </b-card-group>
+  </b-container>
 </template>
 
 <script>
@@ -25,6 +31,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  .product-list-view {
+    margin-top: 2rem;
+  }
 </style>
+
