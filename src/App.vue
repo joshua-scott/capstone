@@ -22,6 +22,8 @@ export default {
     this.$store.dispatch('getHomepageData')
     this.$store.dispatch('getCarousel')
     this.$store.dispatch('getProducts')
+    this.$store.dispatch('getCategories')
+    this.$store.dispatch('getSubCategories')
   }
 }
 </script>
