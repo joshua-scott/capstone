@@ -1,12 +1,20 @@
 <template>
   <b-container class="container clickable">
-    <b-jumbotron v-b-toggle="category.name" v-for="category in categories" :key="`${category.name}-${category.language}`" :bg-variant="randomVariant()" text-variant="white" border-variant="dark">
-      <template slot="header">
-        {{ category.name }}
-      </template>
-      <template slot="lead">
-        {{ category.description }}
-      </template>
+    <b-jumbotron class="edited-jumbotron" v-b-toggle="category.name" v-for="category in categories" :key="`${category.name}-${category.language}`" :bg-variant="randomVariant()" text-variant="white" border-variant="dark">
+      <b-row>
+        <b-col cols="3">
+          <b-img class="reposition-logo" src="http://www.pngmart.com/files/2/Black-Panther-Logo-Transparent-Background.png" fluid alt="Responsive image" />
+        </b-col>
+        <b-col>
+          <h2 slot="header" class="display-3">
+            {{ category.name }}
+          </h2>
+          <h3 slot="lead" class="lead">
+            {{ category.description }}
+          </h3>
+          <hr class="thick-hr">
+        </b-col>
+      </b-row>
       <!-- <hr class="my-4"> -->
       <b-collapse :id="category.name" class="mt-2">
           <b-card v-for="subCategory in subCategories(category.name)" :key="`${subCategory.name}-${subCategory.language}`">
@@ -66,5 +74,18 @@ export default {
     }
     .clickable :hover {
       cursor: pointer;
+    }
+    .thick-hr {
+    border: none;
+    height: 10px;
+    /* Set the hr color */
+    background-color:rgba(255,255,255,0.5);
+    }
+    .edited-jumbotron{
+      padding-top: 30px;
+      padding-bottom:15px;
+    }
+    .reposition-logo{
+      margin-top:10px;
     }
 </style>
