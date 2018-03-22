@@ -30,7 +30,7 @@ export default [
   },
   {
     name: 'ProductList',
-    path: '/products/:subCategory',
+    path: '/products/:subCategoryName',
     component: ProductListView,
     props: true
   },

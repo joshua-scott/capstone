@@ -31,7 +31,7 @@
           >
           <!-- <p class="card-text">{{ subCategory.name }}</p> -->
             <router-link
-              :to="{name: 'ProductList', params: { subCategory: slug(subCategory.name), subCategoryId: subCategory.id }}"
+              :to="`/products/${slug(subCategory.name)}`"
               class="nav-link"
             >{{ subCategory.name }}</router-link>
           </b-card>

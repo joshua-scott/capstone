@@ -13,7 +13,7 @@
 <script>
 import ProductSimple from '@/components/ProductSimple.vue'
 export default {
-  props: ['subCategory'],
+  props: ['subCategoryName'],
   components: {
     ProductSimple
   },
@@ -23,7 +23,7 @@ export default {
       const language = this.$store.state.language
       return prods.filter(product => {
         console.log({ product })
-        return product.subCategory === this.subCategory &&
+        return product.subCategorySlug === this.subCategory &&
           product.language === language
       })
     },
