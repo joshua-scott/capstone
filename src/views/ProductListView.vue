@@ -22,8 +22,8 @@ export default {
       const prods = this.$store.state.products
       const language = this.$store.state.language
       return prods.filter(product => {
-        console.log({ product })
-        return product.subCategorySlug === this.subCategory &&
+        console.log(product.subCategorySlug, this.subCategoryName)
+        return product.subCategorySlug === this.subCategoryName &&
           product.language === language
       })
     },
