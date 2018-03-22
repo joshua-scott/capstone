@@ -41,23 +41,10 @@ export default {
   },
   methods: {
     setLanguage (newLanguage) {
-      // If user changes language while viewing product subcategories, link to the new language version if possible.
-      if (this.$route.params.subCategoryName) {
-        const currentSubName = this.$route.params.subCategoryName
-        const allSubcats = this.$store.state.subCategories
-        const oldSubcat = allSubcats.find(subcat => this.slug(subcat.name) === currentSubName)
-        const newSubcat = allSubcats.find(subcat => oldSubcat.id === subcat.id && newLanguage === subcat.language)
-
-        if (newSubcat) {
-          console.log(`Redirecting from ${oldSubcat.name} to matching subcategory ${newSubcat.name}`)
-          this.$router.push({ name: 'ProductList', params: { subCategory: this.slug(newSubcat.name) } })
-        } else {
-          console.log(`Can't find translation for subcategory: '${oldSubcat.name}'. Redirecting to products.`)
-          this.$router.push('/products')
-        }
-      }
-
       this.$store.commit('setLanguage', newLanguage)
+
+      // If user changes language while viewing product subcategories, link to the new language version if possible.
+      if (this.$route.params.subCategoryName) this.$router.push('/products')
     }
   },
   computed: {
