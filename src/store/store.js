@@ -110,7 +110,7 @@ export default new Vuex.Store({
           let subCategories = []
           data.forEach(obj => {
             let subCategory = {}
-            let s = obj.data
+            const s = obj.data
             subCategory.language = obj.lang
             subCategory.id = obj.id
             subCategory.category = s.category.slug
