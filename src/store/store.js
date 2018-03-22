@@ -39,7 +39,6 @@ export default new Vuex.Store({
         let products = []
 
         data.forEach(obj => {
-          if (dev) console.log({ obj })
           let product = {}
           const p = obj.data
           product.language = obj.lang
@@ -49,24 +48,22 @@ export default new Vuex.Store({
           product.image = p.repeatable_picture_field[0].picture_1.url
 
           if (p['sub-category'].id) {
-            console.log(`it is ${p['sub-category'].slug}`)
             product.subCategory = p['sub-category'].id
             product.subCategorySlug = p['sub-category'].slug
+            console.log(`"${product.language} ${product.name}"'s subcategory: ${product.subCategorySlug}`)
           } else {
-            console.log('it\'s english')
+            console.log(`"${product.language} ${product.name}" HAS NO SUBCATEGORY :(`)
           }
 
           product.representative = p.product_representative
           product.salesUnit = p.sales_unit
-
-          if (dev) console.log({ product })
 
           products.push(product)
         })
 
         commit('setProducts', products)
       } catch (err) {
-        console.log('Error on getProducts action', err)
+        console.warn('Error on getProducts action', err)
       }
     },
 
@@ -92,7 +89,7 @@ export default new Vuex.Store({
           commit('setCategories', categories)
         })
       } catch (err) {
-        console.log('Error on getCategories action', err)
+        console.warn('Error on getCategories action', err)
       }
     },
 
@@ -105,7 +102,6 @@ export default new Vuex.Store({
           { lang: '*' }
         ).then(function (response) {
           let data = response.results
-          // console.log('sub category',data);
 
           let subCategories = []
           data.forEach(obj => {
@@ -124,7 +120,7 @@ export default new Vuex.Store({
           commit('setSubCategories', subCategories)
         })
       } catch (err) {
-        console.log('Error on getSubCategories action', err)
+        console.warn('Error on getSubCategories action', err)
       }
     },
 
@@ -160,7 +156,7 @@ export default new Vuex.Store({
 
         commit('setCarousel', carouselItems)
       } catch (err) {
-        console.log('Error on getCarousel action', err)
+        console.warn('Error on getCarousel action', err)
       }
     }
   },
@@ -168,7 +164,7 @@ export default new Vuex.Store({
   mutations: {
     setLanguage (state, newLanguage) {
       state.language = newLanguage
-      console.log(`Language changed to ${newLanguage}`)
+      console.info(`Language changed to ${newLanguage}`)
     },
     setHomepageData (state, data) {
       state.homepageData = data
