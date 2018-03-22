@@ -31,7 +31,8 @@ export default [
   {
     name: 'ProductList',
     path: '/products/:subCategory',
-    component: ProductListView
+    component: ProductListView,
+    props: true
   },
   {
     name: 'R & D',
