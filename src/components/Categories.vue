@@ -41,8 +41,6 @@
 </template>
 
 <script>
-import slug from '../helpers/slug'
-
 export default {
   data () {
     return {
@@ -59,7 +57,6 @@ export default {
     }
   },
   methods: {
-    slug,
     // gets the subCategories by the Main Category
     subCategories (categoryName) {
       const subCats = this.$store.state.subCategories

@@ -7,6 +7,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import BootstrapVue from 'bootstrap-vue'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import BackToTop from 'vue-backtotop'
+import slugify from 'slugify'
 
 import fontawesome from '@fortawesome/fontawesome'
 import { faFacebook, faYoutube } from '@fortawesome/fontawesome-free-brands'
@@ -19,6 +20,19 @@ Vue.use(BootstrapVue)
 Vue.use(BackToTop)
 Vue.use(VueGoogleMaps, {
   load: { key: 'AIzaSyBAhIUWHFPvIsQVKeSemfaVf88fdQl4oCs' }
+})
+
+// A mixin is a way to have little 'helper functions' globally available on any Vue component
+// This is an alternative to having a 'helpers' folder and importing functions in components (less boilerplate)
+Vue.mixin({
+  methods: {
+    slug: str => {
+      return slugify(str, {
+        lower: true,
+        remove: /[$*_+~.()'"!\-:@]/g
+      })
+    }
+  }
 })
 
 // import '@/styles/normalize.css'
