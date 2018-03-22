@@ -31,7 +31,7 @@
           >
           <!-- <p class="card-text">{{ subCategory.name }}</p> -->
             <router-link
-              :to="{name: 'ProductList', params: { subCategory: slug(subCategory.name) }}"
+              :to="{name: 'ProductList', params: { subCategory: slug(subCategory.name), subCategoryId: subCategory.id }}"
               class="nav-link"
             >{{ subCategory.name }}</router-link>
           </b-card>
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import slugify from 'slugify'
+import slug from '../helpers/slug'
 
 export default {
   data () {
@@ -55,14 +55,11 @@ export default {
         'danger',
         'info',
         'dark'
-      ],
-      slugOptions: {
-        lower: true,
-        remove: /[$*_+~.()'"!\-:@]/g
-      }
+      ]
     }
   },
   methods: {
+    slug,
     // gets the subCategories by the Main Category
     subCategories (categoryName) {
       const subCats = this.$store.state.subCategories
@@ -72,9 +69,6 @@ export default {
         const catName = this.slug(categoryName)
         return subCat.language === language && subCat.category === catName
       })
-    },
-    slug (str) {
-      return slugify(str, this.slugOptions)
     }
   },
   computed: {
