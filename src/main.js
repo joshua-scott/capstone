@@ -10,9 +10,9 @@ import BackToTop from 'vue-backtotop'
 
 import fontawesome from '@fortawesome/fontawesome'
 import { faFacebook, faYoutube } from '@fortawesome/fontawesome-free-brands'
-import { faSpinner, faChevronUp } from '@fortawesome/fontawesome-free-solid'
+import { faSpinner, faChevronUp, faSearch } from '@fortawesome/fontawesome-free-solid'
 
-fontawesome.library.add(faFacebook, faYoutube, faSpinner, faChevronUp)
+fontawesome.library.add(faFacebook, faYoutube, faSpinner, faChevronUp, faSearch)
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
