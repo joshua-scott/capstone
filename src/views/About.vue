@@ -2,12 +2,12 @@
   <b-container v-if="page">
     <b-row>
 
-      <b-col class="mt-4" xs="12" md="8">
+      <b-col class="mt-4" xs="12" md="6" >
         <div v-html="page.title"></div>
         <div v-html="page.description"></div>
       </b-col>
 
-      <b-col class="mt-4" xs="12" md="4">
+      <b-col class="mt-4" xs="12" md="6">
          <google-map></google-map>
       </b-col>
 
