@@ -2,7 +2,7 @@
   <gmap-map
     :center="center"
     :zoom="13"
-    style="width:100%; max-width: 400px; height: 400px;"
+    style="width:100%; max-width: 100%; height: 400px;"
   >
     <gmap-marker
       v-for="(m, index) in markers"
