@@ -17,6 +17,7 @@ import Header from '@/components/Header.vue'
 import Navbar from '@/components/Navbar.vue'
 import Footer from '@/components/Footer.vue'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+
 export default {
   name: 'App',
   data () {
@@ -36,11 +37,11 @@ export default {
     }
   },
   beforeMount () {
-    this.$store.dispatch('getHomepageData')
     this.$store.dispatch('getCarousel')
-    this.$store.dispatch('getProducts')
+    this.$store.dispatch('getAboutPage')
     this.$store.dispatch('getCategories')
     this.$store.dispatch('getSubCategories')
+    this.$store.dispatch('getProducts')
   },
   mounted () {
     window.addEventListener('resize', this.handleResize)

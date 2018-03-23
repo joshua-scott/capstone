@@ -42,6 +42,9 @@ export default {
   methods: {
     setLanguage (newLanguage) {
       this.$store.commit('setLanguage', newLanguage)
+
+      // If user changes language while viewing product subcategories, link to the new language version if possible.
+      if (this.$route.params.subCategoryName) this.$router.push('/products')
     }
   },
   computed: {

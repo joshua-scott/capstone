@@ -31,7 +31,7 @@
           >
           <!-- <p class="card-text">{{ subCategory.name }}</p> -->
             <router-link
-              :to="{name: 'ProductList', params: { subCategory: slug(subCategory.name) }}"
+              :to="`/products/${slug(subCategory.name)}`"
               class="nav-link"
             >{{ subCategory.name }}</router-link>
           </b-card>
@@ -41,8 +41,6 @@
 </template>
 
 <script>
-import slugify from 'slugify'
-
 export default {
   data () {
     return {
@@ -55,11 +53,7 @@ export default {
         'danger',
         'info',
         'dark'
-      ],
-      slugOptions: {
-        lower: true,
-        remove: /[$*_+~.()'"!\-:@]/g
-      }
+      ]
     }
   },
   methods: {
@@ -72,9 +66,6 @@ export default {
         const catName = this.slug(categoryName)
         return subCat.language === language && subCat.category === catName
       })
-    },
-    slug (str) {
-      return slugify(str, this.slugOptions)
     }
   },
   computed: {

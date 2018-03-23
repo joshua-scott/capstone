@@ -30,8 +30,9 @@ export default [
   },
   {
     name: 'ProductList',
-    path: '/products/:subCategory',
-    component: ProductListView
+    path: '/products/:subCategoryName',
+    component: ProductListView,
+    props: true
   },
   {
     name: 'R & D',
