@@ -3,6 +3,7 @@ import ProductView from '@/views/ProductView'
 import CategoryView from '@/views/CategoryView'
 import ResearchDevelopment from '@/views/ResearchDevelopment'
 import About from '@/views/About'
+import SearchResult from '@/views/SearchResult'
 import PageNotFound from '@/views/PageNotFound'
 
 export default [
@@ -39,6 +40,11 @@ export default [
     name: 'About',
     path: '/about',
     component: About
+  },
+  {
+    name: 'SearchResult',
+    path: '/search',
+    component: SearchResult
   },
   {
     name: 'PageNotFound',
