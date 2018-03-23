@@ -45,6 +45,7 @@ export default new Vuex.Store({
           aboutPages[lang].description = PrismicDOM.RichText.asHtml(page.data.about_description)
           aboutPages[lang].contactInfo = PrismicDOM.RichText.asHtml(page.data.sales_billing_contact_info)
           aboutPages[lang].manufacturerList = PrismicDOM.RichText.asHtml(page.data.manufacturer_list)
+          aboutPages[lang].certificatesList = PrismicDOM.RichText.asHtml(page.data.certificates_list)
         })
 
         commit('setAboutPages', aboutPages)

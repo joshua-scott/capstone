@@ -17,6 +17,7 @@
 
       <b-col class="mt-4" xs="12" md="6">
         <div v-html="page.manufacturerList"></div>
+        <div v-html="page.certificatesList"></div>
       </b-col>
 
     </b-row>
