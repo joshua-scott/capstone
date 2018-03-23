@@ -1,7 +1,7 @@
 <template>
   <b-container class="product-list-view">
     <b-card-group deck>
-      <product-simple
+      <product-card
         v-for="(product, index) in products"
         :key="index"
         :product="product"
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import ProductSimple from '@/components/ProductSimple.vue'
+import ProductCard from '@/components/ProductCard.vue'
 export default {
   props: ['subCategoryName'],
   components: {
-    ProductSimple
+    ProductCard
   },
   computed: {
     products () {
