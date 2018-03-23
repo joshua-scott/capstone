@@ -2,18 +2,8 @@
   <b-container>
     <b-row>
       <b-col class="mt-4" xs="12" md="8">
-        <h5>RENOTECH OY - over 20 years of experience!</h5>
-        <p>Renotech Oy develops, manufactures, markets and imports products for house building and renovation as well as for interior decoration and shipbuilding.</p>
-        <p>There are several products with special features in our interior design selection. These properties include incombustibility, soundproofing, sound absorption, lightness, durability or appearance requirements, such as likeness to the preceding structure.</p>
-        <ul>
-          <li>Shipbuilding and interior design products</li>
-          <li>Spray-​on​ ​a​coustic ​p​roducts and ​noise reduction flooring</li>
-          <li>Fire protection products and non-flammable composite structures</li>
-          <li>Quick-curing floor level​ling compounds​ and ​screeds</li>
-          <li>​Adhesive systems (Bonding solutions) and special concrete for demanding conditions</li>
-          <li>Special​ist​ products for renovation​ work and concrete protection</li>
-          <li>Special paints and coatings</li>
-        </ul>
+        <div v-html="page.title"></div>
+        <div v-html="page.description"></div>
       </b-col>
 
       <b-col class="mt-4" xs="12" md="4">
@@ -72,12 +62,17 @@
 
 <script>
 /* eslint-disable */
-//Goddamn "new line required at end of file" bullshit
 import GoogleMap from '@/components/GoogleMap.vue'
 
 export default {
   components: {
     GoogleMap
+  },
+  computed: {
+    page () {
+      const language = this.$store.state.language
+      return this.$store.state.aboutPages[language]
+    }
   }
 }
 </script>

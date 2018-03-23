@@ -41,8 +41,8 @@ export default new Vuex.Store({
         response.results.forEach(page => {
           const lang = page.lang
           aboutPages[lang] = {}
-          aboutPages[lang].title = page.data.main_title[0].text
-          aboutPages[lang].description = PrismicDOM.RichText.asHtml(page.data.renotech_brief)
+          aboutPages[lang].title = PrismicDOM.RichText.asHtml(page.data.about_title)
+          aboutPages[lang].description = PrismicDOM.RichText.asHtml(page.data.about_description)
         })
 
         commit('setAboutPages', aboutPages)
@@ -74,9 +74,9 @@ export default new Vuex.Store({
           if (p['sub-category'].id) {
             product.subCategory = p['sub-category'].id
             product.subCategorySlug = p['sub-category'].slug
-            console.log(`"${product.language} ${product.name}"'s subcategory: ${product.subCategorySlug}`)
+            // console.log(`"${product.language} ${product.name}"'s subcategory: ${product.subCategorySlug}`)
           } else {
-            console.log(`"${product.language} ${product.name}" HAS NO SUBCATEGORY :(`)
+            // console.log(`"${product.language} ${product.name}" HAS NO SUBCATEGORY :(`)
           }
 
           product.representative = p.product_representative
