@@ -37,7 +37,6 @@ export default {
     }
   },
   beforeMount () {
-    this.$store.dispatch('getHomepageData')
     this.$store.dispatch('getCarousel')
     this.$store.dispatch('getAboutPage')
     this.$store.dispatch('getCategories')
