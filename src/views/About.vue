@@ -1,6 +1,5 @@
 <template>
   <b-container>
-    <b-alert variant="success" show style="margin-top: 30px;"> TODO: add picture here, and links to certificates</b-alert>
     <b-row>
       <b-col xs="12" md="8">
         <h5>RENOTECH OY - over 20 years of experience!</h5>
