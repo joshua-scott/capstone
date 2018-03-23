@@ -1,8 +1,8 @@
 <template>
   <b-container>
     <b-alert variant="success" show style="margin-top: 30px;"> TODO: add picture here, and links to certificates</b-alert>
-    <div class="row">
-      <div class="col-sm-8">
+    <b-row>
+      <b-col xs="12" md="8">
         <h5>RENOTECH OY - over 20 years of experience!</h5>
         <p>Renotech Oy develops, manufactures, markets and imports products for house building and renovation as well as for interior decoration and shipbuilding.</p>
         <p>There are several products with special features in our interior design selection. These properties include incombustibility, soundproofing, sound absorption, lightness, durability or appearance requirements, such as likeness to the preceding structure.</p>
@@ -15,11 +15,13 @@
           <li>Special​ist​ products for renovation​ work and concrete protection</li>
           <li>Special paints and coatings</li>
         </ul>
-      </div>
-      <div class="col-sm-4">
+      </b-col>
+
+      <b-col xs="12" md="4">
          <google-map></google-map>
-      </div>
-      <div class="col-sm-6">
+      </b-col>
+
+      <b-col xs="12" md="6">
         <div class="about-titles">Sales:</div>
 
         <div class="about-titles">Fire protection for wooden constructions, and firestops:</div>
@@ -48,9 +50,9 @@
         <div><b>MD:</b> Bob Talling:</div>
         <div>y-tunnus: 0967412-4</div>
         <div class="end-line">VAT: FI09674124</div>
-      </div>
+      </b-col>
 
-      <div class="col-sm-6">
+      <b-col xs="12" md="6">
         <p>Renotech Oy represents the following manufacturers:</p>
         <ul class='list-unstyled'>
           <li><a href="https://gcpat.com/en/solutions/products/monokote-fireproofing" target="_blank">W.R Grace​:</a>  Steel and concrete fire proofing (with sound proofing)</li>
@@ -69,14 +71,14 @@
           <li><a href="https://www.pavepad.dk/en/default.asp" target="_blank">PavePad: </a>Paving supports</li>
         </ul>
         <p align="Center"> CERTIFICATES LINK </p>
-      </div>
-    </div>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
 <script>
 /* eslint-disable */
-//Goddamn "new line required at end of file" bullshit error
+//Goddamn "new line required at end of file" bullshit
 import GoogleMap from '@/components/GoogleMap.vue'
 
 export default {
