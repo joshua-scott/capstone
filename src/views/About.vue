@@ -19,7 +19,7 @@
       <div class="col-sm-4">
          <google-map></google-map>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <div class="about-titles">Sales:</div>
 
         <div class="about-titles">Fire protection for wooden constructions, and firestops:</div>
@@ -49,11 +49,8 @@
         <div>y-tunnus: 0967412-4</div>
         <div class="end-line">VAT: FI09674124</div>
       </div>
-            <div class="col-sm-4">
-        <p>​​Renotech Oy develops, manufactures, markets and imports innovative fire- and sound proofing products and other construction industry products.</p><br>
-        <p align="Center"> CERTIFICATES LINK </p>
-      </div>
-      <div class="col-sm-4">
+
+      <div class="col-sm-6">
         <p>Renotech Oy represents the following manufacturers:</p>
         <ul class='list-unstyled'>
           <li><a href="https://gcpat.com/en/solutions/products/monokote-fireproofing" target="_blank">W.R Grace​:</a>  Steel and concrete fire proofing (with sound proofing)</li>
@@ -71,13 +68,15 @@
           <li><a href="https://progeo.com/?portfolio=enviro-quality-control" target="_blank">PROGEO:</a> Waterproofing monitoring systems​</li>
           <li><a href="https://www.pavepad.dk/en/default.asp" target="_blank">PavePad: </a>Paving supports</li>
         </ul>
+        <p align="Center"> CERTIFICATES LINK </p>
       </div>
     </div>
   </b-container>
 </template>
 
 <script>
-/* eslint-disable */ 
+/* eslint-disable */
+//Goddamn "new line required at end of file" bullshit error
 import GoogleMap from '@/components/GoogleMap.vue'
 
 export default {
