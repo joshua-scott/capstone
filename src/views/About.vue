@@ -1,6 +1,7 @@
 <template>
-  <b-container>
+  <b-container v-if="page">
     <b-row>
+
       <b-col class="mt-4" xs="12" md="8">
         <div v-html="page.title"></div>
         <div v-html="page.description"></div>
@@ -11,51 +12,13 @@
       </b-col>
 
       <b-col class="mt-4" xs="12" md="6">
-        <div class="about-titles">Sales:</div>
-
-        <div class="about-titles">Fire protection for wooden constructions, and firestops:</div>
-        <div>Jari Koivisto <a href="mailto:jk@renotech.fi">jk@renotech.fi</a></div>
-        <div class="end-line">Tel. +358 40 485 1550</div>
-
-        <div class="about-titles">Fire protection for steel and concrete constructions, and acoustic compounds:</div>
-        <div>Bob Talling <a href="bt@renotech.fi">bt@renotech.fi</a></div>
-        <div class="end-line">Tel. +358 50 558 1806</div>
-
-        <div class="about-titles">Billing address:</div>
-        <span class="about-titles-underlined">e-invoicing:</span>
-        <div>003709674124</div>
-        <div>Operator: Liaison Technologies Oy</div>
-        <div class="end-line">Operator ID: 003708599126</div>
-
-        <span class="about-titles-underlined">Conventional invoicing:</span>
-        <div>Renotech Oy</div>
-        <div>c/o Laskentatieto Oy Irja Hirsinummi</div>
-        <div>Yliopistonkatu 33 G 122</div>
-        <div>20100 TURKU</div>
-        <div class="end-line"><a href="laskut@laskentatieto.fi">laskut@laskentatieto.fi</a></div>
-
-        <span class="about-titles">Office:</span>
-        <div>010 8301600 / <a href="rt@renotech.fi">rt@renotech.fi</a></div>
-        <div><b>MD:</b> Bob Talling:</div>
-        <div>y-tunnus: 0967412-4</div>
-        <div class="end-line">VAT: FI09674124</div>
+        <div v-html="page.contactInfo"></div>
       </b-col>
 
       <b-col class="mt-4" xs="12" md="6">
-        <p>Renotech Oy represents the following manufacturers:</p>
-        <ul class='list-unstyled'>
-          <li><a href="https://gcpat.com/en/solutions/products/monokote-fireproofing" target="_blank">W.R Grace​:</a>  Steel and concrete fire proofing (with sound proofing)</li>
-          <li><a href="https://securo.no/" target="_blank">Securo:</a> Fire stop air vents for wood constructions</li>
-          <li><a href="https://www.vanbaerle.com/" target="_blank">van Baerle​:</a> ​Incombustible adhesives</li>
-          <li><a href="https://www.siniat.co.uk/en/" target="_blank">Lafarge Siniat:</a> Specialized gypsum products</li>
-          <li><a href="http://www.formglas.com/" target="_blank">Formglas:</a> ​Reinforced gypsum elements</li>
-          <li><a href="http://www.sto.fi/fi/tuotteet_jarjestelmat/lattiat/lattiat.html" target="_blank">Sto floor compounds​</a></li>
-          <li><a href="http://www.datbim.com/partner/ead/Produit-SONOPHONE-1069.html" target="_blank">EAD Sonophone​:</a> Sound proofing compounds</li>
-          <li><a href="http://www.kerneos.com/" target="_blank">Kerneos:</a> Aluminate cement​</li>
-          <li><a href="http://www.vogl-ceilingsystems.de/" target="_blank">Vogl Deckensysteme GmbH: </a> ​Acoustic panels​</li>
-        </ul>
-        <p align="Center"> CERTIFICATES LINK </p>
+        <div v-html="page.manufacturerList"></div>
       </b-col>
+
     </b-row>
   </b-container>
 </template>
@@ -78,20 +41,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .list-unstyled {
-    li {
-      list-style-type: none;
-    }
-  }
-  .about-titles {
-    font-weight: bold;
-    font-size: 100%;
-  }
-  .about-titles-underlined {
-    font-weight: 80%;
-    text-decoration: underline;
-  }
-  .end-line {
-    padding-bottom: 10px;
-  }
+
 </style>
