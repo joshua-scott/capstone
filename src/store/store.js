@@ -15,7 +15,7 @@ export default new Vuex.Store({
   state: {
     language: 'en-gb',
     homepageData: {},
-    aboutPageData: {},
+    aboutPages: {},
     products: [],
     categories: [],
     subCategories: [],
@@ -36,24 +36,18 @@ export default new Vuex.Store({
           Prismic.Predicates.at('document.type', 'about-page'),
           { lang: '*' }
         )
-        const data = response.results[0].data
 
-        console.log('THIS IS THE ABOUT PAGE DATA')
-        console.log({ data })
+        let aboutPages = {}
+        response.results.forEach(page => {
+          const lang = page.lang
+          aboutPages[lang] = {}
+          aboutPages[lang].title = page.data.main_title[0].text
+          aboutPages[lang].description = PrismicDOM.RichText.asHtml(page.data.renotech_brief)
+        })
 
-        const language = response.results[0].lang
-        let aboutPageData = this.aboutPageData
-        if (language !== undefined) {
-          aboutPageData[language] = {}
-          aboutPageData[language].title = data.main_title[0].text
-          aboutPageData[language].description = PrismicDOM.RichText.asHtml(data.renotech_brief)
-        } else {
-          return
-        }
-
-        commit('setAboutPage', aboutPageData)
+        commit('setAboutPages', aboutPages)
       } catch (err) {
-        console.warn('Error on getAboutPage action', err)
+        console.warn('Error on getAboutPages action', err)
       }
     },
 
@@ -196,10 +190,8 @@ export default new Vuex.Store({
     setHomepageData (state, data) {
       state.homepageData = data
     },
-    setAboutPage (state, data) {
-      state.aboutPageData = data
-      // state.aboutPageData[data.language] = data.language.title
-      // state.aboutPageData[data.language] = data.language.description
+    setAboutPages (state, data) {
+      state.aboutPages = data
     },
     setProducts (state, data) {
       state.products = data
