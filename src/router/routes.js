@@ -14,6 +14,12 @@ export default [
     component: Home
   },
   {
+    name: 'Products',
+    nameFin: 'Tuotteet',
+    path: '/products',
+    component: Categories
+  },
+  {
     name: 'R & D',
     nameFin: 'R & D',
     path: '/rd',
@@ -24,12 +30,6 @@ export default [
     nameFin: 'Meistä',
     path: '/about',
     component: About
-  },
-  {
-    name: 'Products',
-    nameFin: 'Tuotteet',
-    path: '/products',
-    component: Categories
   },
   {
     name: 'ProductList',
