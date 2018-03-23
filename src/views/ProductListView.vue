@@ -1,21 +1,21 @@
 <template>
-  <b-container class="product-list-view">
+  <b-container class="product-list">
     <b-card-group deck>
-      <product-simple
+      <product-card
         v-for="(product, index) in products"
-        :key="index"
-        :product="product"
+          :key="index"
+          :product="product"
       />
     </b-card-group>
   </b-container>
 </template>
 
 <script>
-import ProductSimple from '@/components/ProductSimple.vue'
+import ProductCard from '@/components/ProductCard.vue'
 export default {
   props: ['subCategoryName'],
   components: {
-    ProductSimple
+    ProductCard
   },
   computed: {
     products () {
@@ -25,21 +25,13 @@ export default {
         return product.subCategorySlug === this.subCategoryName &&
           product.language === language
       })
-    },
-
-    subCategoryId () {
-      return ''
-    },
-
-    translatedSubcategory () {
-      return ''
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .product-list-view {
+  .product-list {
     margin-top: 2rem;
   }
 </style>
