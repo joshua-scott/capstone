@@ -39,9 +39,10 @@ export default {
   beforeMount () {
     this.$store.dispatch('getHomepageData')
     this.$store.dispatch('getCarousel')
-    this.$store.dispatch('getProducts')
+    this.$store.dispatch('getAboutPage')
     this.$store.dispatch('getCategories')
     this.$store.dispatch('getSubCategories')
+    this.$store.dispatch('getProducts')
   },
   mounted () {
     window.addEventListener('resize', this.handleResize)

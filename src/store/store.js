@@ -15,6 +15,7 @@ export default new Vuex.Store({
   state: {
     language: 'en-gb',
     homepageData: {},
+    aboutPageData: {},
     products: [],
     categories: [],
     subCategories: [],
@@ -27,12 +28,41 @@ export default new Vuex.Store({
       const homepageData = await axios.get('https://jsonplaceholder.typicode.com/posts') // Just pretend data for now
       commit('setHomepageData', homepageData)
     },
+
+    async getAboutPage ({ commit }) {
+      try {
+        const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
+        const response = await api.query(
+          Prismic.Predicates.at('document.type', 'about-page'),
+          { lang: '*' }
+        )
+        const data = response.results[0].data
+
+        console.log('THIS IS THE ABOUT PAGE DATA')
+        console.log({ data })
+
+        const language = response.results[0].lang
+        let aboutPageData = this.aboutPageData
+        if (language !== undefined) {
+          aboutPageData[language] = {}
+          aboutPageData[language].title = data.main_title[0].text
+          aboutPageData[language].description = PrismicDOM.RichText.asHtml(data.renotech_brief)
+        } else {
+          return
+        }
+
+        commit('setAboutPage', aboutPageData)
+      } catch (err) {
+        console.warn('Error on getAboutPage action', err)
+      }
+    },
+
     async getProducts ({ commit }) {
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
           Prismic.Predicates.at('document.type', 'product'),
-          { lang: '*' }
+          { lang: '*', pageSize: 1000 }
         )
         const data = response.results
 
@@ -73,7 +103,7 @@ export default new Vuex.Store({
         let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
           Prismic.Predicates.at('document.type', 'category'),
-          { lang: '*' }
+          { lang: '*', pageSize: 1000 }
         ).then(function (response) {
           let data = response.results
           let categories = []
@@ -99,20 +129,17 @@ export default new Vuex.Store({
         let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
           Prismic.Predicates.at('document.type', 'sub-category'),
-          { lang: '*' }
+          { lang: '*', pageSize: 1000 }
         ).then(function (response) {
           let data = response.results
-
           let subCategories = []
+
           data.forEach(obj => {
             let subCategory = {}
             const s = obj.data
             subCategory.language = obj.lang
-            subCategory.id = obj.id
+            subCategory.name = s.name[0].text
             subCategory.category = s.category.slug
-            if (s.name[0].text) {
-              subCategory.name = s.name[0].text
-            }
             subCategory.description = s.description
 
             subCategories.push(subCategory)
@@ -168,6 +195,11 @@ export default new Vuex.Store({
     },
     setHomepageData (state, data) {
       state.homepageData = data
+    },
+    setAboutPage (state, data) {
+      state.aboutPageData = data
+      // state.aboutPageData[data.language] = data.language.title
+      // state.aboutPageData[data.language] = data.language.description
     },
     setProducts (state, data) {
       state.products = data
