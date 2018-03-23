@@ -19,13 +19,11 @@
         <div v-html="page.manufacturerList"></div>
         <div v-html="page.certificatesList"></div>
       </b-col>
-
     </b-row>
   </b-container>
 </template>
 
 <script>
-/* eslint-disable */
 import GoogleMap from '@/components/GoogleMap.vue'
 
 export default {
@@ -42,5 +40,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

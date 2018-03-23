@@ -4,10 +4,15 @@
       {{ noProduct[lang] }} <router-link to="/products">{{ viewAll[lang] }}</router-link>
     </b-alert>
     <b-row v-else>
-      <b-col col="12">
+      <b-col cols="6">
         <h2>{{ product.name }}</h2>
         <div v-html="product.description"></div>
-        <b-img fluid :src="product.image"></b-img>
+      </b-col>
+      <b-col cols="6">
+        <!-- <a :href="product.image" target="_blank"><b-img fluid :src="product.image"></b-img></a> -->
+        <b-img v-img fluid :src="product.image"></b-img>
+      </b-col>
+      <b-col cols="12">
         <p>Sold by the: {{ product.salesUnit }}</p>
         <p>Contact: {{ product.representative }}</p>
       </b-col>

@@ -5,6 +5,7 @@ import store from '@/store/store'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import BootstrapVue from 'bootstrap-vue'
+import VueImg from 'v-img'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import BackToTop from 'vue-backtotop'
 import slugify from 'slugify'
@@ -18,6 +19,7 @@ fontawesome.library.add(faFacebook, faYoutube, faSpinner, faChevronUp)
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 Vue.use(BackToTop)
+Vue.use(VueImg)
 Vue.use(VueGoogleMaps, {
   load: { key: 'AIzaSyBAhIUWHFPvIsQVKeSemfaVf88fdQl4oCs' }
 })
