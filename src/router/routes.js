@@ -1,10 +1,10 @@
 import Home from '@/views/Home'
-import Product from '@/views/Product'
-import CategoryView from '@/views/CategoryView'
-import ResearchDevelopment from '@/views/ResearchDevelopment'
 import About from '@/views/About'
+import ResearchDevelopment from '@/views/ResearchDevelopment'
+import Categories from '@/views/Categories'
+import ProductList from '@/views/ProductList'
+import Product from '@/views/Product'
 import PageNotFound from '@/views/PageNotFound'
-import ProductListView from '@/views/ProductListView'
 
 export default [
   {
@@ -12,27 +12,6 @@ export default [
     nameFin: 'Koti',
     path: '/',
     component: Home
-  },
-  // View a specific product
-  {
-    name: 'Product',
-    path: '/product/:productNumber',
-    component: Product,
-    props: true
-  },
-  // View a specific category of products
-  // View all Categories of products
-  {
-    name: 'Products',
-    nameFin: 'Tuotteet',
-    path: '/products',
-    component: CategoryView
-  },
-  {
-    name: 'ProductList',
-    path: '/products/:subCategoryName',
-    component: ProductListView,
-    props: true
   },
   {
     name: 'R & D',
@@ -45,6 +24,24 @@ export default [
     nameFin: 'Meistä',
     path: '/about',
     component: About
+  },
+  {
+    name: 'Products',
+    nameFin: 'Tuotteet',
+    path: '/products',
+    component: Categories
+  },
+  {
+    name: 'ProductList',
+    path: '/products/:subCategoryName',
+    component: ProductList,
+    props: true
+  },
+  {
+    name: 'Product',
+    path: '/product/:productNumber',
+    component: Product,
+    props: true
   },
   {
     name: 'PageNotFound',
