@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
 import Prismic from 'prismic-javascript'
 import PrismicDOM from 'prismic-dom'
 
@@ -14,7 +13,6 @@ export default new Vuex.Store({
   // State is where all the data is stored
   state: {
     language: 'en-gb',
-    homepageData: {},
     aboutPages: {},
     products: [],
     categories: [],
@@ -24,11 +22,6 @@ export default new Vuex.Store({
   // Actions main job is to get data from somewhere else
   // and then commit the mutations defined below
   actions: {
-    async getHomepageData ({ commit }) {
-      const homepageData = await axios.get('https://jsonplaceholder.typicode.com/posts') // Just pretend data for now
-      commit('setHomepageData', homepageData)
-    },
-
     async getAboutPage ({ commit }) {
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
@@ -189,9 +182,6 @@ export default new Vuex.Store({
     setLanguage (state, newLanguage) {
       state.language = newLanguage
       console.info(`Language changed to ${newLanguage}`)
-    },
-    setHomepageData (state, data) {
-      state.homepageData = data
     },
     setAboutPages (state, data) {
       state.aboutPages = data
