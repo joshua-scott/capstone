@@ -6,9 +6,9 @@
       :vertical="width <= 425")
       b-nav-item(
         v-for="( route, index ) in displayedRoutes"
-        :key="index"
-        :to="route.path"
-        exact)
+          :key="index"
+          :to="route.path"
+          :exact="route.name === 'Home'")
         | {{ language === 'en-gb' ? route.name : route.nameFin }}
 </template>
 
