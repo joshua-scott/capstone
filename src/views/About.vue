@@ -1,7 +1,7 @@
 <template>
   <b-container>
     <b-row>
-      <b-col xs="12" md="8">
+      <b-col class="mt-4" xs="12" md="8">
         <h5>RENOTECH OY - over 20 years of experience!</h5>
         <p>Renotech Oy develops, manufactures, markets and imports products for house building and renovation as well as for interior decoration and shipbuilding.</p>
         <p>There are several products with special features in our interior design selection. These properties include incombustibility, soundproofing, sound absorption, lightness, durability or appearance requirements, such as likeness to the preceding structure.</p>
@@ -16,11 +16,11 @@
         </ul>
       </b-col>
 
-      <b-col xs="12" md="4">
+      <b-col class="mt-4" xs="12" md="4">
          <google-map></google-map>
       </b-col>
 
-      <b-col xs="12" md="6">
+      <b-col class="mt-4" xs="12" md="6">
         <div class="about-titles">Sales:</div>
 
         <div class="about-titles">Fire protection for wooden constructions, and firestops:</div>
@@ -51,14 +51,11 @@
         <div class="end-line">VAT: FI09674124</div>
       </b-col>
 
-      <b-col xs="12" md="6">
+      <b-col class="mt-4" xs="12" md="6">
         <p>Renotech Oy represents the following manufacturers:</p>
         <ul class='list-unstyled'>
           <li><a href="https://gcpat.com/en/solutions/products/monokote-fireproofing" target="_blank">W.R Grace​:</a>  Steel and concrete fire proofing (with sound proofing)</li>
           <li><a href="https://securo.no/" target="_blank">Securo:</a> Fire stop air vents for wood constructions</li>
-          <li><a href="http://tenapors.lv/en" target="_blank">Tenax Group:</a> MS-Polymer® based sealants and adhesives​</li>
-          <li><a href="https://fin.sika.com/" target="_blank">Sika-Finland:</a>  ​Viscoelastic, floating floors</li>
-          <li>​​<a href="http://www.firetherm.com/" target="_blank">Firetherm: </a>Fire stops</li>
           <li><a href="https://www.vanbaerle.com/" target="_blank">van Baerle​:</a> ​Incombustible adhesives</li>
           <li><a href="https://www.siniat.co.uk/en/" target="_blank">Lafarge Siniat:</a> Specialized gypsum products</li>
           <li><a href="http://www.formglas.com/" target="_blank">Formglas:</a> ​Reinforced gypsum elements</li>
@@ -66,8 +63,6 @@
           <li><a href="http://www.datbim.com/partner/ead/Produit-SONOPHONE-1069.html" target="_blank">EAD Sonophone​:</a> Sound proofing compounds</li>
           <li><a href="http://www.kerneos.com/" target="_blank">Kerneos:</a> Aluminate cement​</li>
           <li><a href="http://www.vogl-ceilingsystems.de/" target="_blank">Vogl Deckensysteme GmbH: </a> ​Acoustic panels​</li>
-          <li><a href="https://progeo.com/?portfolio=enviro-quality-control" target="_blank">PROGEO:</a> Waterproofing monitoring systems​</li>
-          <li><a href="https://www.pavepad.dk/en/default.asp" target="_blank">PavePad: </a>Paving supports</li>
         </ul>
         <p align="Center"> CERTIFICATES LINK </p>
       </b-col>
