@@ -27,7 +27,7 @@ export default new Vuex.Store({
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
           Prismic.Predicates.at('document.type', 'about-page'),
-          { lang: '*' }
+          { lang: '*', pageSize: 100 }
         )
 
         let aboutPages = {}
@@ -52,7 +52,7 @@ export default new Vuex.Store({
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
           Prismic.Predicates.at('document.type', 'product'),
-          { lang: '*', pageSize: 1000 }
+          { lang: '*', pageSize: 100 }
         )
         const data = response.results
 
@@ -93,7 +93,7 @@ export default new Vuex.Store({
         let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
           Prismic.Predicates.at('document.type', 'category'),
-          { lang: '*', pageSize: 1000 }
+          { lang: '*', pageSize: 100 }
         ).then(function (response) {
           let data = response.results
           let categories = []
@@ -119,7 +119,7 @@ export default new Vuex.Store({
         let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
           Prismic.Predicates.at('document.type', 'sub-category'),
-          { lang: '*', pageSize: 1000 }
+          { lang: '*', pageSize: 100 }
         ).then(function (response) {
           let data = response.results
           let subCategories = []
@@ -145,7 +145,8 @@ export default new Vuex.Store({
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
-          Prismic.Predicates.at('document.type', 'homepage_carousel')
+          Prismic.Predicates.at('document.type', 'homepage_carousel'),
+          { pageSize: 100 }
         )
         const data = response.results
 

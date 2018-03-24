@@ -4,7 +4,7 @@
       {{ noProduct[lang] }} <router-link to="/products">{{ viewAll[lang] }}</router-link>
     </b-alert>
     <b-row v-else>
-      <b-col xs="12" lg=6>
+      <b-col xs="12" lg="6">
         <h2>{{ product.name }}</h2>
         <div v-html="product.description"></div>
         <p>Sold by the: {{ product.salesUnit }}</p>
