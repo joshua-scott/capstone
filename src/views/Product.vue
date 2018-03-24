@@ -13,10 +13,6 @@
       <b-col xs="12" lg="6">
         <b-img v-img fluid :src="product.image"></b-img>
       </b-col>
-      <!-- <b-col cols="12">
-        <p>Sold by the: {{ product.salesUnit }}</p>
-        <p>Contact: {{ product.representative }}</p>
-      </b-col> -->
     </b-row>
   </b-container>
 </template>
