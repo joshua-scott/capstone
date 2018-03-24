@@ -6,6 +6,7 @@ import PrismicDOM from 'prismic-dom'
 Vue.use(Vuex)
 
 // eslint-disable-next-line
+/* eslint-disable */
 const dev = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
@@ -27,7 +28,7 @@ export default new Vuex.Store({
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
           Prismic.Predicates.at('document.type', 'about-page'),
-          { lang: '*', pageSize: 100 }
+          { lang: '*' }
         )
 
         let aboutPages = {}
@@ -54,8 +55,21 @@ export default new Vuex.Store({
           Prismic.Predicates.at('document.type', 'product'),
           { lang: '*', pageSize: 100 }
         )
-        const data = response.results
-
+        var data = response.results
+        if (response.total_pages != 1)
+        {
+          for (var i=2; i <= response.total_pages; i++)
+          {
+            var colResponse = await api.query(
+              Prismic.Predicates.at('document.type', 'product'),
+              { lang: '*', pageSize: 100, page: i }
+            )
+            console.log(colResponse)
+            data = data.concat(colResponse.results)
+            console.log(data)
+          }
+        }
+        
         let products = []
 
         data.forEach(obj => {
