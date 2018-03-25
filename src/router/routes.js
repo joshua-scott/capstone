@@ -1,9 +1,10 @@
 import Home from '@/views/Home'
-import Products from '@/views/Products'
+import ProductView from '@/views/ProductView'
+import CategoryView from '@/views/CategoryView'
 import ResearchDevelopment from '@/views/ResearchDevelopment'
 import About from '@/views/About'
+import SearchResult from '@/views/SearchResult'
 import PageNotFound from '@/views/PageNotFound'
-import Product from '@/components/Product'
 
 export default [
   {
@@ -11,16 +12,24 @@ export default [
     path: '/',
     component: Home
   },
+  // View a specific product
+  {
+    name: 'Product',
+    path: '/products/:category/:subcategory/:productNumber',
+    component: ProductView,
+    props: true
+  },
+  // View a specific category of products
+  // View all Categories of products
   {
     name: 'Products',
     path: '/products',
-    component: Products
+    component: CategoryView
   },
   {
     name: 'ProductList',
     path: '/products/:subCategory',
-    component: Product,
-    hideInLists: true
+    component: ProductView
   },
   {
     name: 'R & D',
@@ -33,9 +42,13 @@ export default [
     component: About
   },
   {
+    name: 'SearchResult',
+    path: '/search',
+    component: SearchResult
+  },
+  {
     name: 'PageNotFound',
     path: '*',
-    component: PageNotFound,
-    hideInLists: true
+    component: PageNotFound
   }
 ]

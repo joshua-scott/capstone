@@ -1,6 +1,14 @@
 <template>
   <b-container class="container clickable">
-    <b-jumbotron class="edited-jumbotron" v-b-toggle="category.name" v-for="category in categories" :key="`${category.name}-${category.language}`" :bg-variant="randomVariant()" text-variant="white" border-variant="dark">
+    <b-jumbotron
+      class="edited-jumbotron"
+      v-b-toggle="category.name"
+      v-for="category in categories"
+      :key="`${category.name}-${category.language}`"
+      :bg-variant="colours[Math.floor(Math.random() * 8)]"
+      text-variant="white"
+      border-variant="dark"
+    >
       <b-row>
         <b-col cols="3">
           <b-img class="reposition-logo" src="http://www.pngmart.com/files/2/Black-Panther-Logo-Transparent-Background.png" fluid alt="Responsive image" />
@@ -17,9 +25,15 @@
       </b-row>
       <!-- <hr class="my-4"> -->
       <b-collapse :id="category.name" class="mt-2">
-          <b-card v-for="subCategory in subCategories(category.name)" :key="`${subCategory.name}-${subCategory.language}`">
+          <b-card
+            v-for="subCategory in subCategories(category.name)"
+            :key="`${subCategory.name}-${subCategory.language}`"
+          >
           <!-- <p class="card-text">{{ subCategory.name }}</p> -->
-          <router-link :to="{name: 'ProductList', params: { subCategory: subCategory.id }}" class="nav-link">{{ subCategory.name }}</router-link>
+            <router-link
+              :to="{name: 'ProductList', params: { subCategory: subCategory.id }}"
+              class="nav-link"
+            >{{ subCategory.name }}</router-link>
           </b-card>
       </b-collapse>
     </b-jumbotron>
@@ -27,16 +41,13 @@
 </template>
 
 <script>
+import slugify from 'slugify'
+
 export default {
   data () {
     return {
-      variantIndex: 0
-    }
-  },
-  methods: {
-    // set random color for each Category
-    randomVariant () {
-      let variants = [
+      variantIndex: 0,
+      colours: [
         'primary',
         'secondary',
         'success ',
@@ -44,15 +55,23 @@ export default {
         'danger',
         'info',
         'dark'
-      ]
-      return variants[(this.variantIndex++) % 7]
-    },
-
+      ],
+      slugOptions: {
+        lower: true,
+        remove: /[$*_+~.()'"!\-:@]/g
+      }
+    }
+  },
+  methods: {
     // gets the subCategories by the Main Category
     subCategories (categoryName) {
-      const subCategories = this.$store.state.subCategories
+      const subCats = this.$store.state.subCategories
       const language = this.$store.state.language
-      return subCategories.filter(subCategory => subCategory.language === language && subCategory.category === categoryName.toLowerCase())
+
+      return subCats.filter(subCat => {
+        const catName = slugify(categoryName, this.slugOptions)
+        return subCat.language === language && subCat.category === catName
+      })
     }
   },
   computed: {
@@ -66,26 +85,26 @@ export default {
 </script>
 
 <style scoped>
-    .container {
-        margin-top: 30px;
-    }
-    .card-text {
-        color: black !important;
-    }
-    .clickable :hover {
-      cursor: pointer;
-    }
-    .thick-hr {
-    border: none;
-    height: 10px;
-    /* Set the hr color */
-    background-color:rgba(255,255,255,0.5);
-    }
-    .edited-jumbotron{
-      padding-top: 30px;
-      padding-bottom:15px;
-    }
-    .reposition-logo{
-      margin-top:10px;
-    }
+  .container {
+      margin-top: 30px;
+  }
+  .card-text {
+      color: black !important;
+  }
+  .clickable :hover {
+    cursor: pointer;
+  }
+  .thick-hr {
+  border: none;
+  height: 10px;
+  /* Set the hr color */
+  background-color:rgba(255,255,255,0.5);
+  }
+  .edited-jumbotron{
+    padding-top: 30px;
+    padding-bottom:15px;
+  }
+  .reposition-logo{
+    margin-top:10px;
+  }
 </style>

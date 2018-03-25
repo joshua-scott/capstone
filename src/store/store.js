@@ -6,67 +6,60 @@ import PrismicDOM from 'prismic-dom'
 
 Vue.use(Vuex)
 
+// eslint-disable-next-line
+const dev = process.env.NODE_ENV !== 'production'
+
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
+  // State is where all the data is stored
   state: {
     language: 'en-gb',
     homepageData: {},
-    otherpageData: {},
-    prismicData: {},
     products: [],
     categories: [],
-    subCategories: []
+    subCategories: [],
+    carouselItems: []
   },
+  // Actions main job is to get data from somewhere else
+  // and then commit the mutations defined below
   actions: {
-    async loadAllData ({ commit }) {
-      const homepageData = await axios.get('https://jsonplaceholder.typicode.com/posts')
-      const otherpageData = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    async getHomepageData ({ commit }) {
+      const homepageData = await axios.get('https://jsonplaceholder.typicode.com/posts') // Just pretend data for now
       commit('setHomepageData', homepageData)
-      commit('setOtherpageData', otherpageData)
     },
-    async loadPrismic ({ commit }) {
-      // https://prismic.io/docs/javascript/getting-started/integrating-with-an-existing-javascript-project
-      try {
-        const api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
-        const response = await api.query('') // Empty query to get all data
-        // console.log(response)
-        // console.log(response.results)
-        const prismicData = response.results
-        commit('setPrismicData', prismicData)
-      } catch (err) {
-        console.log('Error on loadPrismic action', err)
-      }
-    },
-
-    // gets all product type documents
     async getProducts ({ commit }) {
       try {
-        const api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
+        const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
           Prismic.Predicates.at('document.type', 'product'),
           { lang: '*' }
-          // { orderings: '[my.product.date desc]' }
         )
         const data = response.results
-        // console.log('products:', data)
 
         let products = []
 
         data.forEach(obj => {
-          // console.log('object in data:')
-          // console.log({ obj })
+          if (dev) console.log({ obj })
           let product = {}
           const p = obj.data
           product.language = obj.lang
-          product.subCategory = p['sub-category'].id
           product.name = p.product_name[0].text
           product.number = p.product_number
-          product.representative = p.product_representative
-          product.image = p.repeatable_picture_field[0].picture_1.url
           product.description = PrismicDOM.RichText.asHtml(p.product_description)
+          product.image = p.repeatable_picture_field[0].picture_1.url
+
+          if (p['sub-category'].id) {
+            console.log(`it is ${p['sub-category'].slug}`)
+            product.subCategory = p['sub-category'].id
+            product.subCategorySlug = p['sub-category'].slug
+          } else {
+            console.log('it\'s english')
+          }
+
+          product.representative = p.product_representative
           product.salesUnit = p.sales_unit
 
-          // console.log({ product })
+          if (dev) console.log({ product })
 
           products.push(product)
         })
@@ -80,7 +73,7 @@ export default new Vuex.Store({
     // gets all category type documents
     async getCategories ({ commit }) {
       try {
-        let api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
+        let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
           Prismic.Predicates.at('document.type', 'category'),
           { lang: '*' }
@@ -98,8 +91,7 @@ export default new Vuex.Store({
           })
           commit('setCategories', categories)
         })
-      } 
-      catch (err) {
+      } catch (err) {
         console.log('Error on getCategories action', err)
       }
     },
@@ -107,14 +99,14 @@ export default new Vuex.Store({
     // gets all sub-category type documents
     async getSubCategories ({ commit }) {
       try {
-        let api = await Prismic.getApi('https://renotech.prismic.io/api/v2')
+        let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
-          Prismic.Predicates.at('document.type', 'sub-category'), 
+          Prismic.Predicates.at('document.type', 'sub-category'),
           { lang: '*' }
         ).then(function (response) {
           let data = response.results
           // console.log('sub category',data);
-          
+
           let subCategories = []
           data.forEach(obj => {
             let subCategory = {}
@@ -124,17 +116,53 @@ export default new Vuex.Store({
             subCategory.category = s.category.slug
             subCategory.name = s.name[0].text
             subCategory.description = s.description
-            
+
             subCategories.push(subCategory)
           })
           commit('setSubCategories', subCategories)
         })
-      }
-      catch (err) {
+      } catch (err) {
         console.log('Error on getSubCategories action', err)
+      }
+    },
+
+    async getCarousel ({ commit }) {
+      try {
+        const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
+        const response = await api.query(
+          Prismic.Predicates.at('document.type', 'homepage_carousel')
+        )
+        const data = response.results
+
+        let carouselItems = []
+
+        data.forEach(obj => {
+          const i = obj.data
+
+          // English
+          let slideEng = {}
+          slideEng.language = 'en-gb'
+          slideEng.imageUrl = i.image.url
+          slideEng.heading = i.heading__english_[0].text
+          slideEng.description = i.description__english_[0].text
+          carouselItems.push(slideEng)
+
+          // Finnish
+          let slideFin = {}
+          slideFin.language = 'fi'
+          slideFin.imageUrl = i.image.url
+          slideFin.heading = i.heading__finnish_[0].text
+          slideFin.description = i.description__finnish_[0].text
+          carouselItems.push(slideFin)
+        })
+
+        commit('setCarousel', carouselItems)
+      } catch (err) {
+        console.log('Error on getCarousel action', err)
       }
     }
   },
+  // Mutations are the only place we actually alter the state
   mutations: {
     toggleLanguage (state) {
       state.language = state.language === 'fi' ? 'en-gb' : 'fi'
@@ -143,14 +171,11 @@ export default new Vuex.Store({
     setHomepageData (state, data) {
       state.homepageData = data
     },
-    setOtherpageData (state, data) {
-      state.otherpageData = data
-    },
-    setPrismicData (state, data) {
-      state.prismicData = data
-    },
     setProducts (state, data) {
       state.products = data
+    },
+    setCarousel (state, data) {
+      state.carouselItems = data
     },
     setCategories (state, data) {
       state.categories = data

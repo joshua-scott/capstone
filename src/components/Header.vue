@@ -10,27 +10,25 @@
             class="renotech-logo"
             src="@/assets/logo.jpg")
 
+      //- adds a global search box
+      b-col(cols="4")
+        div
+          <SearchBox></SearchBox>
+
       b-col(cols="2")
           b-img(
             class="flag"
             :src="flagImage"
             @click="toggleLanguage")
 
-      <!-- needs to be in a separate component other than Header-->
-      b-col(cols="3")
-        <SignIn></SignIn>
-      //- Search bar could be added later
-      //- b-col
-      //-   div
-      //-     b-form-input(
-      //-       type="text"
-      //-       placeholder="Search"
-      //-       class="search")
 </template>
 
 <script>
+import SearchBox from '@/components/SearchBox.vue'
+
 export default {
   components: {
+    SearchBox
   },
   data () {
     return {
