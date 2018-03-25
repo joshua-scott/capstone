@@ -31,7 +31,7 @@ Vue.mixin({
     slug: str => {
       return slugify(str, {
         lower: true,
-        remove: /[$*_+~.()'"!:@]/g
+        remove: /[$*_+~.()'"!:@,]/g
       })
     }
   }

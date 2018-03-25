@@ -64,9 +64,7 @@ export default new Vuex.Store({
               Prismic.Predicates.at('document.type', 'product'),
               { lang: '*', pageSize: 100, page: i }
             )
-            console.log(colResponse)
             data = data.concat(colResponse.results)
-            console.log(data)
           }
         }
         
