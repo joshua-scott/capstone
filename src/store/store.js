@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
 import Prismic from 'prismic-javascript'
 import PrismicDOM from 'prismic-dom'
 
 Vue.use(Vuex)
 
 // eslint-disable-next-line
+/* eslint-disable */
 const dev = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
@@ -14,7 +14,7 @@ export default new Vuex.Store({
   // State is where all the data is stored
   state: {
     language: 'en-gb',
-    homepageData: {},
+    aboutPages: {},
     products: [],
     categories: [],
     subCategories: [],
@@ -23,23 +23,54 @@ export default new Vuex.Store({
   // Actions main job is to get data from somewhere else
   // and then commit the mutations defined below
   actions: {
-    async getHomepageData ({ commit }) {
-      const homepageData = await axios.get('https://jsonplaceholder.typicode.com/posts') // Just pretend data for now
-      commit('setHomepageData', homepageData)
+    async getAboutPage ({ commit }) {
+      try {
+        const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
+        const response = await api.query(
+          Prismic.Predicates.at('document.type', 'about-page'),
+          { lang: '*' }
+        )
+
+        let aboutPages = {}
+        response.results.forEach(page => {
+          const lang = page.lang
+          aboutPages[lang] = {}
+          aboutPages[lang].title = PrismicDOM.RichText.asHtml(page.data.about_title)
+          aboutPages[lang].description = PrismicDOM.RichText.asHtml(page.data.about_description)
+          aboutPages[lang].contactInfo = PrismicDOM.RichText.asHtml(page.data.sales_billing_contact_info)
+          aboutPages[lang].manufacturerList = PrismicDOM.RichText.asHtml(page.data.manufacturer_list)
+          aboutPages[lang].certificatesList = PrismicDOM.RichText.asHtml(page.data.certificates_list)
+        })
+
+        commit('setAboutPages', aboutPages)
+      } catch (err) {
+        console.warn('Error on getAboutPages action', err)
+      }
     },
+
     async getProducts ({ commit }) {
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
           Prismic.Predicates.at('document.type', 'product'),
-          { lang: '*' }
+          { lang: '*', pageSize: 100 }
         )
-        const data = response.results
-
+        var data = response.results
+        if (response.total_pages != 1)
+        {
+          for (var i=2; i <= response.total_pages; i++)
+          {
+            var colResponse = await api.query(
+              Prismic.Predicates.at('document.type', 'product'),
+              { lang: '*', pageSize: 100, page: i }
+            )
+            data = data.concat(colResponse.results)
+          }
+        }
+        
         let products = []
 
         data.forEach(obj => {
-          if (dev) console.log({ obj })
           let product = {}
           const p = obj.data
           product.language = obj.lang
@@ -49,24 +80,22 @@ export default new Vuex.Store({
           product.image = p.repeatable_picture_field[0].picture_1.url
 
           if (p['sub-category'].id) {
-            console.log(`it is ${p['sub-category'].slug}`)
             product.subCategory = p['sub-category'].id
             product.subCategorySlug = p['sub-category'].slug
+            // console.log(`"${product.language} ${product.name}"'s subcategory: ${product.subCategorySlug}`)
           } else {
-            console.log('it\'s english')
+            // console.log(`"${product.language} ${product.name}" HAS NO SUBCATEGORY :(`)
           }
 
           product.representative = p.product_representative
           product.salesUnit = p.sales_unit
-
-          if (dev) console.log({ product })
 
           products.push(product)
         })
 
         commit('setProducts', products)
       } catch (err) {
-        console.log('Error on getProducts action', err)
+        console.warn('Error on getProducts action', err)
       }
     },
 
@@ -76,7 +105,7 @@ export default new Vuex.Store({
         let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
           Prismic.Predicates.at('document.type', 'category'),
-          { lang: '*' }
+          { lang: '*', pageSize: 100 }
         ).then(function (response) {
           let data = response.results
           let categories = []
@@ -92,7 +121,7 @@ export default new Vuex.Store({
           commit('setCategories', categories)
         })
       } catch (err) {
-        console.log('Error on getCategories action', err)
+        console.warn('Error on getCategories action', err)
       }
     },
 
@@ -102,19 +131,17 @@ export default new Vuex.Store({
         let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
           Prismic.Predicates.at('document.type', 'sub-category'),
-          { lang: '*' }
+          { lang: '*', pageSize: 100 }
         ).then(function (response) {
           let data = response.results
-          // console.log('sub category',data);
-
           let subCategories = []
+
           data.forEach(obj => {
             let subCategory = {}
-            let s = obj.data
+            const s = obj.data
             subCategory.language = obj.lang
-            subCategory.id = obj.id
-            subCategory.category = s.category.slug
             subCategory.name = s.name[0].text
+            subCategory.category = s.category.slug
             subCategory.description = s.description
 
             subCategories.push(subCategory)
@@ -122,7 +149,7 @@ export default new Vuex.Store({
           commit('setSubCategories', subCategories)
         })
       } catch (err) {
-        console.log('Error on getSubCategories action', err)
+        console.warn('Error on getSubCategories action', err)
       }
     },
 
@@ -130,7 +157,8 @@ export default new Vuex.Store({
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
-          Prismic.Predicates.at('document.type', 'homepage_carousel')
+          Prismic.Predicates.at('document.type', 'homepage_carousel'),
+          { pageSize: 100 }
         )
         const data = response.results
 
@@ -158,18 +186,18 @@ export default new Vuex.Store({
 
         commit('setCarousel', carouselItems)
       } catch (err) {
-        console.log('Error on getCarousel action', err)
+        console.warn('Error on getCarousel action', err)
       }
     }
   },
   // Mutations are the only place we actually alter the state
   mutations: {
-    toggleLanguage (state) {
-      state.language = state.language === 'fi' ? 'en-gb' : 'fi'
-      console.log(`Language changed to ${state.language}`)
+    setLanguage (state, newLanguage) {
+      state.language = newLanguage
+      console.info(`Language changed to ${newLanguage}`)
     },
-    setHomepageData (state, data) {
-      state.homepageData = data
+    setAboutPages (state, data) {
+      state.aboutPages = data
     },
     setProducts (state, data) {
       state.products = data

@@ -1,12 +1,28 @@
 <template>
   <div class="articles">
-    <ul>
-      <li v-for="article in articles"
-      :key="article.id">
-        {{article.text}}
-        <img v-bind:src="article.img">
-      </li>
-    </ul>
+
+        <div class="container" v-for="article in articles"
+        :key="article.id">
+
+          <div class="row">
+            <div class="col-md-6">
+
+                  <img  v-bind:src="article.img" style="width:100%">
+                  <div class="caption">
+                    {{article.text}}
+                  </div>
+            </div>
+
+            <div class="col-md-6">
+
+                  <img v-bind:src="article.img" style="width:100%">
+                  <div class="caption">
+                    {{article.text}}
+                  </div>
+            </div>
+          </div>
+
+  </div>
   </div>
 </template>
 
@@ -49,5 +65,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  .row{
+    margin-top: 50px;
+    text-align: center;
+  }
 </style>

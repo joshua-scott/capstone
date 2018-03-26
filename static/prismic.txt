@@ -131,30 +131,17 @@
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// useful for parsing data from Prismic, adjust to your needs
+if (subCategory.language === 'en-gb') {
+  console.log(`ENGLISH SUBCAT CATEGORY IS: ${subCategory.category}`)
+  console.log(`ENGLISH SUBCAT NAME IS: ${subCategory.name}`)
+  console.count('english')
+} else if (subCategory.language === 'fi') {
+  console.log(`FINNISH SUBCAT CATEGORY IS: ${subCategory.category}`)
+  console.log(`FINNISH SUBCAT NAME IS: ${subCategory.name}`)
+  console.count('finnish')
+} else {
+  console.log(`NOLANGUAGE SUBCAT CATEGORY IS: ${subCategory.category}`)
+  console.log(`NOLANGUAGE SUBCAT NAME IS: ${subCategory.name}`)
+  console.count('nolanguage')
+}

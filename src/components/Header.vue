@@ -1,26 +1,37 @@
-<template lang="pug">
-  b-container(class="header")
-    b-row(
+<template>
+  <b-container class="header">
+    <b-row
       align-h="between"
-      align-v="center")
-
-      b-col(cols="3")
-        router-link(to="/")
-          b-img(
+      align-v="center">
+      <b-col cols="auto" class="mr-auto">
+        <router-link to="/">
+          <b-img
             class="renotech-logo"
-            src="@/assets/logo.jpg")
+            src="@/assets/logo.jpg">
+            </b-img>
+        </router-link>
+      </b-col>
 
-      //- adds a global search box
-      b-col(cols="4")
-        div
+      <!-- //- adds a global search box -->
+      <b-col cols="4">
+        <div>
           <SearchBox></SearchBox>
+        </div>
+      </b-col>
 
-      b-col(cols="2")
-          b-img(
-            class="flag"
-            :src="flagImage"
-            @click="toggleLanguage")
+      <b-col cols="auto" class="language-select-group">
+        <span @click="setLanguage('fi')" class="language-select">
+          <span v-if="width >= 768" class="language-text" :class="{ active: language === 'fi' }">Suomi:</span>
+          <img :src="flags.fi" alt="Finland flag" class="flag">
+        </span>
+        <span @click="setLanguage('en-gb')" class="language-select">
+          <span v-if="width >= 768" class="language-text" :class="{ active: language === 'en-gb' }">English:</span>
+          <img :src="flags.gb" alt="GB flag" class="flag">
+        </span>
+      </b-col>
 
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -30,21 +41,26 @@ export default {
   components: {
     SearchBox
   },
+  props: ['width'],
   data () {
     return {
+      flags: {
+        fi: require('@/assets/flags/fi.svg'),
+        gb: require('@/assets/flags/gb.svg')
+      }
     }
   },
   methods: {
-    toggleLanguage () {
-      this.$store.commit('toggleLanguage')
+    setLanguage (newLanguage) {
+      this.$store.commit('setLanguage', newLanguage)
+
+      // If user changes language while viewing product subcategories, link to the new language version if possible.
+      if (this.$route.params.subCategoryName) this.$router.push('/products')
     }
   },
   computed: {
     language () {
       return this.$store.state.language
-    },
-    flagImage () {
-      return require(`@/assets/flags/${this.$store.state.language === 'fi' ? 'gb' : 'fi'}.svg`)
     }
   }
 }
@@ -60,13 +76,36 @@ export default {
 
   .renotech-logo {
     max-width: 250px;
+
+    @media screen and (max-width: 400px) {
+      max-width: 175px;
+    }
+  }
+
+  .language-select {
+    &:first-of-type {
+      padding-right: 1rem;
+
+      @media screen and (max-width: 410px) {
+        padding-right: 0.1rem;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .language-text {
+    padding-right: 5px;
+
+    &.active {
+      text-decoration: underline;
+    }
   }
 
   .flag {
     max-width: 40px;
-    &:hover {
-      cursor: pointer;
-    }
   }
 
 </style>
