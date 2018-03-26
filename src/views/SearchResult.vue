@@ -37,10 +37,10 @@ export default {
       const language = this.$store.state.language
       let products = this.$store.state.products.filter(product => product.language === language)
       products = products.filter(product =>
-        product.name.toLowerCase().includes(this.searchInput) ||
-        product.representative.toLowerCase().includes(this.searchInput) ||
-        product.description.toLowerCase().includes(this.searchInput) ||
-        product.subCategorySlug.toLowerCase().includes(this.searchInput)
+        (product.name && product.name.toLowerCase().includes(this.searchInput)) ||
+        (product.representative && product.representative.toLowerCase().includes(this.searchInput)) ||
+        (product.description && product.description.toLowerCase().includes(this.searchInput)) ||
+        (product.subCategorySlug && product.subCategorySlug.toLowerCase().includes(this.searchInput))
       )
       // console.log(products)
       return products
