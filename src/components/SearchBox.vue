@@ -27,10 +27,13 @@ export default {
   },
   methods: {
     search () {
-      if (this.searchInput)
-        this.$router.push({ name: 'SearchResult', query: { searchInput: this.searchInput } })
-      else
+      if (this.searchInput) {
+        this.$router.push({
+          name: 'SearchResult', query: { searchInput: this.searchInput }
+        })
+      } else {
         this.$router.push('/')
+      }
       if (event) event.preventDefault()
     }
   }
