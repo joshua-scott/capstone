@@ -27,7 +27,10 @@ export default {
   },
   methods: {
     search () {
-      this.$router.push({ name: 'SearchResult', query: { searchInput: this.searchInput } })
+      if (this.searchInput)
+        this.$router.push({ name: 'SearchResult', query: { searchInput: this.searchInput } })
+      else
+        this.$router.push('/')
       if (event) event.preventDefault()
     }
   }
