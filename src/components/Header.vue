@@ -2,15 +2,21 @@
   <b-container class="header">
     <b-row
       align-h="between"
-      align-v="center"
-    >
+      align-v="center">
       <b-col cols="auto" class="mr-auto">
         <router-link to="/">
           <b-img
             class="renotech-logo"
-            src="@/assets/logo.jpg"
-          />
+            src="@/assets/logo.jpg">
+            </b-img>
         </router-link>
+      </b-col>
+
+      <!-- //- adds a global search box -->
+      <b-col cols="4">
+        <div>
+          <SearchBox></SearchBox>
+        </div>
       </b-col>
 
       <b-col cols="auto" class="language-select-group">
@@ -29,7 +35,12 @@
 </template>
 
 <script>
+import SearchBox from '@/components/SearchBox.vue'
+
 export default {
+  components: {
+    SearchBox
+  },
   props: ['width'],
   data () {
     return {

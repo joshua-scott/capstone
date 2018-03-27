@@ -1,5 +1,6 @@
 import Home from '@/views/Home'
 import About from '@/views/About'
+import SearchResult from '@/views/SearchResult'
 import ResearchDevelopment from '@/views/ResearchDevelopment'
 import Categories from '@/views/Categories'
 import ProductList from '@/views/ProductList'
@@ -30,6 +31,11 @@ export default [
     nameFin: 'Meistä',
     path: '/about',
     component: About
+  },
+  {
+    name: 'SearchResult',
+    path: '/search',
+    component: SearchResult
   },
   {
     name: 'ProductList',
