@@ -42,6 +42,7 @@ export default {
     this.$store.dispatch('getCategories')
     this.$store.dispatch('getSubCategories')
     this.$store.dispatch('getProducts')
+    this.$store.dispatch('getHomePage')
   },
   mounted () {
     window.addEventListener('resize', this.handleResize)
