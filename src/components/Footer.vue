@@ -66,7 +66,6 @@ export default {
 
 <style lang="scss" scoped>
 .footer {
-    margin-top: 50px;
     margin-bottom: 20px;
     background-color: #FFFFFF;
   }
@@ -89,7 +88,6 @@ export default {
 .social-icons {
   text-align: center;
   a {
-    padding: 1rem;
     color: inherit;
   }
 }
