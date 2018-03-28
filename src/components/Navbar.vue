@@ -15,9 +15,13 @@
 
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-      <b-navbar-brand href="#">
-        <b-img class="imgedit" src="@/assets/logo.jpg">
-        </b-img>
+      <b-navbar-brand>
+        <router-link to="/">
+          <b-img
+            class="imgedit"
+            src="@/assets/logo.jpg">
+          </b-img>
+        </router-link>
       </b-navbar-brand>
 
       <b-collapse is-nav id="nav_collapse">
