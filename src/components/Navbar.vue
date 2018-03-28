@@ -24,7 +24,7 @@
 
         <b-navbar-nav class="nav-list">
           <b-nav-item v-for="( route, index ) in displayedRoutes" :key="index" :to="route.path" exact>
-            {{ route.name }}
+            {{ language === 'en-gb' ? route.name : route.nameFin }}
           </b-nav-item>
         </b-navbar-nav>
 
