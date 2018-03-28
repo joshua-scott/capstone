@@ -1,6 +1,5 @@
 <template lang="pug">
   #app
-    app-header
     navbar
     router-view
     app-footer

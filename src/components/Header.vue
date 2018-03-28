@@ -1,5 +1,5 @@
 <template lang="pug">
-  b-container(class="header")
+  <b-container fluid class="header">
     b-row(
       align-h="between"
       align-v="center")
@@ -9,7 +9,6 @@
           b-img(
             class="renotech-logo"
             src="@/assets/logo.jpg")
-
       //- adds a global search box
       b-col(cols="4")
         div
@@ -20,7 +19,7 @@
             class="flag"
             :src="flagImage"
             @click="toggleLanguage")
-
+  </b-container>
 </template>
 
 <script>
