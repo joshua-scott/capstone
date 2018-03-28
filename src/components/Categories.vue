@@ -6,14 +6,13 @@
       v-for="category in categories"
       :key="`${category.name}-${category.language}`"
       text-variant="white"
-      border-variant="dark"
     >
       <b-row>
         <b-col cols="3">
           <b-img src="http://www.pngmart.com/files/2/Black-Panther-Logo-Transparent-Background.png" fluid alt="Responsive image" />
         </b-col>
         <b-col>
-          <h2 slot="header" class="display-3">
+          <h2 slot="header" class="display-4">
             {{ category.name }}
           </h2>
           <h3 slot="lead" class="lead">
@@ -102,7 +101,7 @@ export default {
   .edited-jumbotron{
     padding-top: 30px;
     padding-bottom:15px;
-    background-color:black;
+    background-color:#282e34;
   }
   .reposition-logo{
     margin-top:10px;

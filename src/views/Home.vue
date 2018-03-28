@@ -33,7 +33,7 @@
     <h2>Section Three</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
     </section>
-    <div class="pimg3">
+    <div class="pimg4">
       <div class="ptext">
         <span class="border">
           Image 4 text
@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style>
-.pimg1, .pimg2, .pimg3{
+.pimg1, .pimg2, .pimg3, .pimg4{
   position: relative;
   opacity: 0.80;
   background-position: center;
@@ -65,15 +65,19 @@ export default {
   background-color: blue;
 }
 .pimg1{
-  background-image: url('http://momentumauctions.com/wp-content/uploads/2017/09/Kiev_Apt_MARTIN_architects_1.0.jpg');
-  min-height: 500px;
+  background-image: url('https://images.pexels.com/photos/704982/pexels-photo-704982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  min-height: 700px;
 }
 .pimg2{
-  background-image: url('http://momentumauctions.com/wp-content/uploads/2017/09/Kiev_Apt_MARTIN_architects_1.0.jpg');
+  background-image: url('https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
   min-height: 400px;
 }
 .pimg3{
-  background-image: url('http://momentumauctions.com/wp-content/uploads/2017/09/Kiev_Apt_MARTIN_architects_1.0.jpg');
+  background-image: url('https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  min-height: 400px;
+}
+.pimg4{
+  background-image: url('https://images.pexels.com/photos/584399/living-room-couch-interior-room-584399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
   min-height: 400px;
 }
 
