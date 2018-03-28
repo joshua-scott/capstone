@@ -107,14 +107,21 @@ export default new Vuex.Store({
           Prismic.Predicates.at('document.type', 'category'),
           { lang: '*', pageSize: 100 }
         ).then(function (response) {
+
           let data = response.results
           let categories = []
+
           data.forEach(obj => {
             let category = {}
             let c = obj.data
+            if (c.logo.url != undefined) {
+              category.image = c.logo.url
+            }
+            else {
+              category.image = "http://www.pngmart.com/files/2/Black-Panther-Logo-Transparent-Background.png"
+            }
             category.language = obj.lang
             category.name = c.name[0].text
-            category.image = c.logo.url
             category.description = c.description
             categories.push(category)
           })
