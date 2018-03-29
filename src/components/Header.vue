@@ -1,6 +1,6 @@
 <template>
-  <b-container class="header">
-    <b-row
+  <b-container fluid class="header">
+    <!-- <b-row
       align-h="between"
       align-v="center">
       <b-col cols="auto" class="mr-auto">
@@ -8,11 +8,10 @@
           <b-img
             class="renotech-logo"
             src="@/assets/logo.jpg">
-            </b-img>
+          </b-img>
         </router-link>
       </b-col>
 
-      <!-- //- adds a global search box -->
       <b-col cols="4">
         <div>
           <SearchBox></SearchBox>
@@ -30,16 +29,21 @@
         </span>
       </b-col>
 
-    </b-row>
+    </b-row> -->
+      <b-col cols="2">
+        <b-img
+          class="flag"
+          :src="flagImage"
+          @click="toggleLanguage">
+        </b-img>
+      </b-col>
   </b-container>
 </template>
 
 <script>
-import SearchBox from '@/components/SearchBox.vue'
 
 export default {
   components: {
-    SearchBox
   },
   props: ['width'],
   data () {
@@ -51,12 +55,7 @@ export default {
     }
   },
   methods: {
-    setLanguage (newLanguage) {
-      this.$store.commit('setLanguage', newLanguage)
 
-      // If user changes language while viewing product subcategories, link to the new language version if possible.
-      if (this.$route.params.subCategoryName) this.$router.push('/products')
-    }
   },
   computed: {
     language () {
