@@ -5,19 +5,21 @@ import store from '@/store/store'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import BootstrapVue from 'bootstrap-vue'
+import VueImg from 'v-img'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import BackToTop from 'vue-backtotop'
 import slugify from 'slugify'
 
 import fontawesome from '@fortawesome/fontawesome'
 import { faFacebook, faYoutube } from '@fortawesome/fontawesome-free-brands'
-import { faSpinner, faChevronUp } from '@fortawesome/fontawesome-free-solid'
+import { faSpinner, faChevronUp, faSearch } from '@fortawesome/fontawesome-free-solid'
 
-fontawesome.library.add(faFacebook, faYoutube, faSpinner, faChevronUp)
+fontawesome.library.add(faFacebook, faYoutube, faSpinner, faChevronUp, faSearch)
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 Vue.use(BackToTop)
+Vue.use(VueImg)
 Vue.use(VueGoogleMaps, {
   load: { key: 'AIzaSyBAhIUWHFPvIsQVKeSemfaVf88fdQl4oCs' }
 })
@@ -29,7 +31,7 @@ Vue.mixin({
     slug: str => {
       return slugify(str, {
         lower: true,
-        remove: /[$*_+~.()'"!:@]/g
+        remove: /[$*_+~.()'"!:@,]/g
       })
     }
   }

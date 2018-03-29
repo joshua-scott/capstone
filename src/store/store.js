@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
 import Prismic from 'prismic-javascript'
 import PrismicDOM from 'prismic-dom'
 
 Vue.use(Vuex)
 
 // eslint-disable-next-line
+/* eslint-disable */
 const dev = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
@@ -14,7 +14,6 @@ export default new Vuex.Store({
   // State is where all the data is stored
   state: {
     language: 'en-gb',
-    homepageData: {},
     aboutPages: {},
     products: [],
     categories: [],
@@ -24,11 +23,6 @@ export default new Vuex.Store({
   // Actions main job is to get data from somewhere else
   // and then commit the mutations defined below
   actions: {
-    async getHomepageData ({ commit }) {
-      const homepageData = await axios.get('https://jsonplaceholder.typicode.com/posts') // Just pretend data for now
-      commit('setHomepageData', homepageData)
-    },
-
     async getAboutPage ({ commit }) {
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
@@ -59,10 +53,21 @@ export default new Vuex.Store({
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
           Prismic.Predicates.at('document.type', 'product'),
-          { lang: '*', pageSize: 1000 }
+          { lang: '*', pageSize: 100 }
         )
-        const data = response.results
-
+        var data = response.results
+        if (response.total_pages != 1)
+        {
+          for (var i=2; i <= response.total_pages; i++)
+          {
+            var colResponse = await api.query(
+              Prismic.Predicates.at('document.type', 'product'),
+              { lang: '*', pageSize: 100, page: i }
+            )
+            data = data.concat(colResponse.results)
+          }
+        }
+        
         let products = []
 
         data.forEach(obj => {
@@ -100,16 +105,23 @@ export default new Vuex.Store({
         let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
           Prismic.Predicates.at('document.type', 'category'),
-          { lang: '*', pageSize: 1000 }
+          { lang: '*', pageSize: 100 }
         ).then(function (response) {
+
           let data = response.results
           let categories = []
+
           data.forEach(obj => {
             let category = {}
             let c = obj.data
+            if (c.logo.url != undefined) {
+              category.image = c.logo.url
+            }
+            else {
+              category.image = "http://www.pngmart.com/files/2/Black-Panther-Logo-Transparent-Background.png"
+            }
             category.language = obj.lang
             category.name = c.name[0].text
-            category.image = c.logo.url
             category.description = c.description
             categories.push(category)
           })
@@ -126,7 +138,7 @@ export default new Vuex.Store({
         let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
           Prismic.Predicates.at('document.type', 'sub-category'),
-          { lang: '*', pageSize: 1000 }
+          { lang: '*', pageSize: 100 }
         ).then(function (response) {
           let data = response.results
           let subCategories = []
@@ -152,7 +164,8 @@ export default new Vuex.Store({
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
-          Prismic.Predicates.at('document.type', 'homepage_carousel')
+          Prismic.Predicates.at('document.type', 'homepage_carousel'),
+          { pageSize: 100 }
         )
         const data = response.results
 
@@ -189,9 +202,6 @@ export default new Vuex.Store({
     setLanguage (state, newLanguage) {
       state.language = newLanguage
       console.info(`Language changed to ${newLanguage}`)
-    },
-    setHomepageData (state, data) {
-      state.homepageData = data
     },
     setAboutPages (state, data) {
       state.aboutPages = data

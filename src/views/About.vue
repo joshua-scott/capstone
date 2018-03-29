@@ -2,12 +2,12 @@
   <b-container v-if="page">
     <b-row>
 
-      <b-col class="mt-4" xs="12" md="8">
+      <b-col class="mt-4" xs="12" md="6" >
         <div v-html="page.title"></div>
         <div v-html="page.description"></div>
       </b-col>
 
-      <b-col class="mt-4" xs="12" md="4">
+      <b-col class="mt-4" xs="12" md="6">
          <google-map></google-map>
       </b-col>
 
@@ -19,13 +19,11 @@
         <div v-html="page.manufacturerList"></div>
         <div v-html="page.certificatesList"></div>
       </b-col>
-
     </b-row>
   </b-container>
 </template>
 
 <script>
-/* eslint-disable */
 import GoogleMap from '@/components/GoogleMap.vue'
 
 export default {
@@ -42,5 +40,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>
