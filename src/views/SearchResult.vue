@@ -6,7 +6,7 @@
           <b-img thumbnail fluid width="75" height="75" :src="result.image"></b-img>
         </b-col>
         <b-col align-self="center">
-          <router-link :to="{name: 'Product', params: { productName: result.name }}"
+          <router-link :to="{name: 'Product', params: { productNumber: result.number }}"
                   class="nav-link">
             {{ result.name }}
           </router-link>

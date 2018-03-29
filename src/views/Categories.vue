@@ -1,11 +1,10 @@
 <template>
-  <b-container class="container clickable">
+  <b-container fluid class="container clickable">
     <b-jumbotron
       class="edited-jumbotron"
       v-b-toggle="category.name"
       v-for="category in categories"
       :key="`${category.name}-${category.language}`"
-      :bg-variant="colours[Math.floor(Math.random() * 8)]"
       text-variant="white"
       border-variant="dark"
     >
@@ -14,7 +13,7 @@
           <b-img class="reposition-logo" :src="category.image" fluid alt="Responsive image" />
         </b-col>
         <b-col>
-          <h2 slot="header" class="display-3">
+          <h2 slot="header" class="display-4">
             {{ category.name }}
           </h2>
           <h3 slot="lead" class="lead">
@@ -24,7 +23,7 @@
         </b-col>
       </b-row>
       <!-- <hr class="my-4"> -->
-      <b-collapse :id="category.name" class="mt-2">
+      <b-container fluid :id="category.name" class="mt-2">
           <b-card
             v-for="subCategory in subCategories(category.name)"
             :key="`${subCategory.name}-${subCategory.language}`"
@@ -35,7 +34,7 @@
               class="nav-link"
             >{{ subCategory.name }}</router-link>
           </b-card>
-      </b-collapse>
+      </b-container>
     </b-jumbotron>
   </b-container>
 </template>
@@ -97,8 +96,10 @@ export default {
   .edited-jumbotron{
     padding-top: 30px;
     padding-bottom:15px;
+    background-color:#282e34;
   }
   .reposition-logo{
     margin-top:10px;
   }
+
 </style>
