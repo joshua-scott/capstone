@@ -12,7 +12,7 @@
         <b-col cols="3">
           <b-img class="reposition-logo" :src="category.image" fluid alt="Responsive image" />
         </b-col>
-        <b-col>
+        <b-col cols="9" align-v="center">
           <h2 slot="header" class="display-4">
             {{ category.name }}
           </h2>
@@ -100,6 +100,23 @@ export default {
   }
   .reposition-logo{
     margin-top:10px;
+  }
+
+  /* Resizes the font-size when the screen gets smaller (for mobile devices) */
+  @media screen and (max-device-width : 1024px)
+  {
+    h2.display-4
+    {
+      font-size:9vw;
+      font-weight: 300;
+    }
+    h3.lead
+    {
+      font-size:6vw;
+    }
+    div.card {
+      font-size:4vw;
+    }
   }
 
 </style>
