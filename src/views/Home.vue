@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="homePage">
     <b-container fluid>
     <div class="pimg1">
       <div id="board">
