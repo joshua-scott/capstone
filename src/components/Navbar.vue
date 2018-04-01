@@ -40,13 +40,12 @@
             <SearchBox></SearchBox>
           </b-nav-form>
 
-          <b-nav-item-dropdown text="Langs" right>
-            <b-dropdown-item @click="setLanguage('en-gb')">EN</b-dropdown-item>
-            <b-dropdown-item @click="setLanguage('fi')">FI</b-dropdown-item>
+          <b-nav-item-dropdown :text="language == 'fi' ? 'Finnish' : 'English'" right>
+            <b-dropdown-item @click="setLanguage('en-gb')"><img :src="flags.gb" alt="GB flag" class="flag"> English</b-dropdown-item>
+            <b-dropdown-item @click="setLanguage('fi')"><img :src="flags.fi" alt="Finland flag" class="flag"> Finnish</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown right>
-            <!-- Using button-content slot -->
             <template slot="button-content">
               <em>User</em>
             </template>
@@ -64,10 +63,14 @@ import routes from '@/router/routes.js'
 import SearchBox from '@/components/SearchBox.vue'
 
 export default {
-  props: ['width'],
+  // props: ['width'],
   data () {
     return {
-      routes
+      routes,
+      flags: {
+        fi: require('@/assets/flags/fi.svg'),
+        gb: require('@/assets/flags/gb.svg')
+      }
     }
   },
   components: {
@@ -115,5 +118,9 @@ export default {
 
   .nav-list {
     margin-left: 50px;
+  }
+
+  .flag {
+    max-width: 40px;
   }
 </style>

@@ -30,20 +30,24 @@
       </b-col>
 
     </b-row> -->
-      <b-col cols="2">
+
+      <!-- <b-col cols="2">
         <b-img
           class="flag"
           :src="flagImage"
-          @click="toggleLanguage">
+          :click="toggleLanguage">
         </b-img>
-      </b-col>
+      </b-col> -->
+      <Navbar></Navbar>
   </b-container>
 </template>
 
 <script>
+import Navbar from '@/components/Navbar.vue'
 
 export default {
   components: {
+    Navbar
   },
   props: ['width'],
   data () {
