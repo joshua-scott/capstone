@@ -43,6 +43,11 @@ export default {
     background-size: contain;
     min-height: 700px;
 
+    @media screen and (max-width: 950px) {
+      background-size: cover;
+      background-position: 80% 80%;
+    }
+
     display: flex;
     align-items: center;
     justify-content: center;
