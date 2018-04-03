@@ -1,28 +1,14 @@
 <template>
   <b-container fluid role="navigation">
-    <!-- b-nav(
-      justified
-      :tabs="width > 425"
-      :vertical="width <= 425")
-      b-nav-item(
-        v-for="( route, index ) in displayedRoutes"
-          :key="index"
-          :to="route.path"
-          :exact="route.name === 'Home'")
-        | {{ language === 'en-gb' ? route.name : route.nameFin }}
-    -->
     <b-navbar toggleable="md" type="light" variant="" class="edited-nav">
-
-      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
       <b-navbar-brand>
         <router-link to="/">
-          <b-img
-            class="imgedit"
-            src="@/assets/logo.jpg">
-          </b-img>
+          <b-img src="@/assets/logo.jpg" />
         </router-link>
       </b-navbar-brand>
+
+      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
       <b-collapse is-nav id="nav_collapse">
 
@@ -34,11 +20,9 @@
 
       <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-form>
-            <!-- <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button> -->
+          <!-- <b-nav-form>
             <SearchBox></SearchBox>
-          </b-nav-form>
+          </b-nav-form> -->
 
           <b-navbar variant="faded" type="light">
             <b-navbar-brand href="#">
@@ -65,10 +49,9 @@
 
 <script>
 import routes from '@/router/routes.js'
-import SearchBox from '@/components/SearchBox.vue'
+// import SearchBox from '@/components/SearchBox.vue'
 
 export default {
-  // props: ['width'],
   data () {
     return {
       routes,
@@ -79,7 +62,7 @@ export default {
     }
   },
   components: {
-    SearchBox
+    // SearchBox
   },
   computed: {
     language () {
