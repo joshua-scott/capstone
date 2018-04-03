@@ -4,8 +4,6 @@
     <div class="pimg1">
       <div id="board">
         <span class="border">Register Now</span>
-        <div class="class">
-        </div>
       </div>
     </div>
 
@@ -150,5 +148,4 @@ footer{
     background-attachment: scroll;
   }
 }
-
 </style>
