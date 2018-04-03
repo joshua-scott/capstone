@@ -1,60 +1,35 @@
 <template>
-  <b-container v-if="homePage" fluid>
+  <b-container fluid>
 
-    <div class="pimg1">
-      <div id="board">
-        <span class="border">Welcome to Renotech Oy</span>
-      </div>
+    <div class="parallax main-image">
+      <!-- <div class="welcome">Welcome</div> -->
     </div>
 
-    <section class="section section-dark">
-      <h2>{{ homePage.section1_heading}}</h2>
-      <p>{{ homePage.section1_text}}</p>
+    <section v-for="( slide, index ) in slides" :key="index">
+      <div class="sales-text dark">
+        <h2>{{ slide.heading }}</h2>
+        <p>{{ slide.description }}</p>
+      </div>
+      <div class="parallax" :style="{ backgroundImage: `url(${slide.imageUrl})` }"></div>
     </section>
-    <div class="pimg2">
-      <div class="ptext">
-        <span class="border trans">Image Two Text</span>
-      </div>
-    </div>
 
-    <section class="section section-dark">
-      <h2>{{ homePage.section2_heading}}</h2>
-        <p>{{ homePage.section2_text}}</p>
-    </section>
-    <div class="pimg3">
-      <div class="ptext">
-        <span class="border trans">Image Three Text</span>
-      </div>
-    </div>
-
-    <section class="section section-dark">
-      <h2>{{ homePage.section3_heading}}</h2>
-      <p>{{ homePage.section3_text}}</p>
-    </section>
-    <div class="pimg4">
-      <div class="ptext">
-        <span class="border">Image 4 text</span>
-      </div>
-    </div>
   </b-container>
 </template>
 
 <script>
 export default {
   computed: {
-    // gets HomePage data in current language
-    homePage () {
+    slides () {
+      const slides = this.$store.state.carouselItems
       const language = this.$store.state.language
-      const homePage = this.$store.state.homePages.find(page => page.language === language)
-      console.log(homePage)
-      return homePage
+      return slides.filter(slide => slide.language === language)
     }
   }
 }
 </script>
 
-<style>
-.pimg1, .pimg2, .pimg3, .pimg4{
+<style scoped lang="scss">
+.parallax {
   position: relative;
   opacity: 0.80;
   background-position: center;
@@ -62,82 +37,35 @@ export default {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-color: blue;
-}
-.pimg1{
-  background-image: url('https://images.pexels.com/photos/704982/pexels-photo-704982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-  min-height: 700px;
-}
-.pimg2{
-  background-image: url('https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
   min-height: 400px;
-}
-.pimg3{
-  background-image: url('https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-  min-height: 400px;
-}
-.pimg4{
-  background-image: url('https://images.pexels.com/photos/584399/living-room-couch-interior-room-584399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-  min-height: 400px;
+
+  &.main-image {
+    min-height: 700px;
+    background-image: url('../assets/marketing.jpg');
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-.section{
-  text-align: center;
-  padding: 50px 80px;
-}
-
-.section-light{
-  background-color: #f4f4f4;
-  color: #666;
-}
-.section-dark{
-  background-color: #282e34;
-  color: #ddd;
-}
-
-.ptext{
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  color: #00a1c9;
-  font-size: 27px;
-  letter-spacing: 8px;
-  text-transform: uppercase;
-}
-
-#board{
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  text-align: center;
+.welcome {
   letter-spacing: 4px;
   text-transform: uppercase;
   font-size: 30px;
-}
-
-.ptext .border{
-  background-color: #111;
-  color:#fff;
-  padding: 20px;
-}
-#board .border{
-  padding: 30px;
   background-color: rgba(0, 0, 0, 0.6);
-  color: white;
-  font-weight: bold;
+  color:#fff;
+  padding: 30px;
 }
 
-footer{
-  padding: 6px;
+.sales-text {
   text-align: center;
-  background-color: white;
-  font-weight: bold;
-  border-top: 3px black solid;
-}
+  padding: 50px 80px;
+  background-color: #282e34;
+  color: #ddd;
 
-@media(max-width: 568px){
-  .pimg1,.pimg2,.pimg3{
-    background-attachment: scroll;
+  @media screen and (max-width: 480px) {
+    padding: 40px 50px;
   }
 }
 </style>
