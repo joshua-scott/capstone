@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid role="navigation">
+  <b-container role="navigation">
     <b-navbar toggleable="lg" type="light" variant="" class="nav-main">
 
       <b-navbar-brand>
