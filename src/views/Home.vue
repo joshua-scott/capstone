@@ -1,9 +1,9 @@
 <template>
-  <div v-if="homePage">
-    <b-container fluid>
+  <b-container v-if="homePage" fluid>
+
     <div class="pimg1">
       <div id="board">
-        <span class="border">Register Now</span>
+        <span class="border">Welcome to Renotech Oy</span>
       </div>
     </div>
 
@@ -13,33 +13,30 @@
     </section>
     <div class="pimg2">
       <div class="ptext">
-        <span class="border trans">Image Two Text
-        </span>
+        <span class="border trans">Image Two Text</span>
       </div>
     </div>
-  <section class="section section-dark">
-    <h2>{{ homePage.section2_heading}}</h2>
-      <p>{{ homePage.section2_text}}</p>
-  </section>
 
-  <div class="pimg3">
-    <div class="ptext">
-      <span class="border trans">Image Three Text</span>
+    <section class="section section-dark">
+      <h2>{{ homePage.section2_heading}}</h2>
+        <p>{{ homePage.section2_text}}</p>
+    </section>
+    <div class="pimg3">
+      <div class="ptext">
+        <span class="border trans">Image Three Text</span>
+      </div>
     </div>
-  </div>
-  <section class="section section-dark">
-    <h2>{{ homePage.section3_heading}}</h2>
+
+    <section class="section section-dark">
+      <h2>{{ homePage.section3_heading}}</h2>
       <p>{{ homePage.section3_text}}</p>
     </section>
     <div class="pimg4">
       <div class="ptext">
-        <span class="border">
-          Image 4 text
-        </span>
+        <span class="border">Image 4 text</span>
       </div>
     </div>
-</b-container>
-</div>
+  </b-container>
 </template>
 
 <script>
