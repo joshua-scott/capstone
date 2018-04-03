@@ -26,9 +26,7 @@
           </b-nav-form> -->
 
           <b-navbar variant="faded" type="light">
-            <b-navbar-brand href="#">
-              <img class="flag" :src="flagImage">
-            </b-navbar-brand>
+            <img class="flag" :src="flagImage">
             <b-nav-item-dropdown :text="language === 'fi' ? 'Suomi' : 'English'" right>
               <b-dropdown-item @click="setLanguage('en-gb')"><img :src="flags.gb" alt="GB flag" class="flag"> English</b-dropdown-item>
               <b-dropdown-item @click="setLanguage('fi')"><img :src="flags.fi" alt="Finland flag" class="flag"> Suomi</b-dropdown-item>
