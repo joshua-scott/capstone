@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid>
+  <b-container>
 
     <div class="parallax main-image">
       <!-- <div class="welcome">Welcome</div> -->
@@ -30,18 +30,18 @@ export default {
 
 <style scoped lang="scss">
 .parallax {
-  position: relative;
-  opacity: 0.80;
-  background-position: center;
+  opacity: 0.95;
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-color: blue;
-  min-height: 400px;
+  background-color: #fff;
+  min-height: 600px;
 
   &.main-image {
-    min-height: 700px;
     background-image: url('../assets/marketing.jpg');
+    background-size: contain;
+    min-height: 700px;
 
     display: flex;
     align-items: center;
