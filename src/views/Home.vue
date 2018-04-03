@@ -36,12 +36,12 @@ export default {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-color: #fff;
-  min-height: 600px;
+  height: 475px;
 
   &.main-image {
     background-image: url('../assets/marketing.jpg');
     background-size: contain;
-    min-height: 700px;
+    height: 700px;
 
     @media screen and (max-width: 950px) {
       background-size: cover;
