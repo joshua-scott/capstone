@@ -1,7 +1,7 @@
 <template lang="pug">
   #app
     app-header(:width="width")
-    navbar(:width="width")
+    //- navbar(:width="width")
     router-view
     app-footer
     //- adds a global top-scroller
@@ -14,7 +14,7 @@
 
 <script>
 import Header from '@/components/Header.vue'
-import Navbar from '@/components/Navbar.vue'
+
 import Footer from '@/components/Footer.vue'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
@@ -27,7 +27,6 @@ export default {
   },
   components: {
     appHeader: Header,
-    Navbar,
     appFooter: Footer,
     FontAwesomeIcon
   },
@@ -42,6 +41,7 @@ export default {
     this.$store.dispatch('getCategories')
     this.$store.dispatch('getSubCategories')
     this.$store.dispatch('getProducts')
+    this.$store.dispatch('getHomePage')
   },
   mounted () {
     window.addEventListener('resize', this.handleResize)

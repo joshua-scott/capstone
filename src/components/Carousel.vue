@@ -1,7 +1,7 @@
 <template lang="pug">
-  b-container
+  <b-container fluid>
     b-carousel(
-      class="carousel"
+      class="carousel edited-carousel"
       controls
       indicators
       :interval="5000")
@@ -11,6 +11,7 @@
           :img-src="slide.imageUrl"
           :caption="slide.heading"
           :text="slide.description")
+  </b-container>
 </template>
 
 <script>
@@ -29,5 +30,9 @@ export default {
   .carousel {
     margin-top: 30px;
     text-shadow: 1px 1px 2px #333;
+  }
+  .edited-carousel {
+    height:400px;
+    margin-top:0;
   }
 </style>
