@@ -1,15 +1,14 @@
-<template lang="pug">
-  #app
-    app-header(:width="width")
-    //- navbar(:width="width")
-    router-view
-    app-footer
-    //- adds a global top-scroller
+<template>
+  <div id="app">
+    <app-header :width="width" />
+    <router-view />
+    <app-footer />
     <back-to-top bottom="50px" right="50px" visibleOffset="50px">
       <button type="button" class="btn btn-info btn-to-top">
         <font-awesome-icon icon="chevron-up"></font-awesome-icon>
       </button>
     </back-to-top>
+  </div>
 </template>
 
 <script>
