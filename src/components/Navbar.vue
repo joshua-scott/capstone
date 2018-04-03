@@ -1,18 +1,18 @@
 <template>
   <b-container fluid role="navigation">
-    <b-navbar toggleable="md" type="light" variant="" class="edited-nav">
+    <b-navbar toggleable="lg" type="light" variant="" class="nav-main">
 
       <b-navbar-brand>
         <router-link to="/">
-          <b-img src="@/assets/logo.jpg" />
+          <b-img src="@/assets/logo.jpg" class="renotech-logo"/>
         </router-link>
       </b-navbar-brand>
 
-      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse is-nav id="nav_collapse">
+      <b-collapse is-nav id="nav-collapse">
 
-        <b-navbar-nav class="nav-list">
+        <b-navbar-nav class="link-items">
           <b-nav-item
             v-for="( route, index ) in displayedRoutes"
             :key="index" :to="route.path" exact>
@@ -77,21 +77,32 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .active.nav-link {
     font-weight: 700;
-    color: #495057;
   }
 
-  .edited-nav {
-    font-size:20px;
+  .nav-main {
+    font-size: 1.5em;
   }
 
-  .nav-list {
-    margin-left: 50px;
+  .link-items {
+    margin: auto;
   }
 
   .flag {
     max-width: 40px;
+  }
+
+  #nav-collapse {
+    text-align: center;
+
+    nav {
+      justify-content: center;
+
+      img {
+        margin-right: 0.4em;
+      }
+    }
   }
 </style>
