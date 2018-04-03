@@ -43,12 +43,7 @@
 </template>
 
 <script>
-import Carousel from '@/components/Carousel.vue'
-
 export default {
-  components: {
-    Carousel
-  },
   computed: {
     // gets HomePage data in current language
     homePage () {
