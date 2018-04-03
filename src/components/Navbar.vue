@@ -72,12 +72,24 @@ export default {
     setLanguage (newLanguage) {
       this.$store.commit('setLanguage', newLanguage)
       if (this.$route.params.subCategoryName) this.$router.push('/products')
-    },
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
+  #nav-collapse {
+    text-align: center;
+
+    nav {
+      justify-content: center;
+
+      img {
+        margin-right: 0.4em;
+      }
+    }
+  }
+
   .active.nav-link {
     font-weight: 700;
   }
@@ -94,14 +106,16 @@ export default {
     max-width: 40px;
   }
 
-  #nav-collapse {
-    text-align: center;
-
-    nav {
-      justify-content: center;
-
-      img {
-        margin-right: 0.4em;
+  @media screen and (max-width: 435px) {
+    .nav-main {
+      padding: 0;
+    }
+    .navbar-brand {
+      width: 80%;
+      max-width: 250px;
+      margin-right: 0;
+      .renotech-logo {
+        width: 80%;
       }
     }
   }
