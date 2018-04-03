@@ -45,9 +45,9 @@ export default {
     // gets HomePage data in current language
     homePage () {
       const language = this.$store.state.language
-      const homePage = this.$store.state.homePages.filter(page => page.language === language)
+      const homePage = this.$store.state.homePages.find(page => page.language === language)
       console.log(homePage)
-      return homePage[0]
+      return homePage
     }
   }
 }
