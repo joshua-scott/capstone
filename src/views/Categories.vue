@@ -41,20 +41,6 @@
 
 <script>
 export default {
-  data () {
-    return {
-      variantIndex: 0,
-      colours: [
-        'primary',
-        'secondary',
-        'success ',
-        'warning',
-        'danger',
-        'info',
-        'dark'
-      ]
-    }
-  },
   methods: {
     // gets the subCategories by the Main Category
     subCategories (categoryName) {
