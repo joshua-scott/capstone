@@ -1,11 +1,11 @@
 <template>
   <div>
     <b-input-group>
-      <b-form-input v-on:input="search()" v-model="searchInput" type="text" placeholder="Search...">
+      <b-form-input @keyup.enter.native="search()" v-model="searchInput" type="text" placeholder="Search...">
       </b-form-input>
       <b-input-group-append>
         <!-- <font-awesome-icon icon="search"></font-awesome-icon> -->
-        <b-btn disabled variant="outline-dark" >
+        <b-btn variant="outline-dark" @click="search()">
           <font-awesome-icon icon="search"></font-awesome-icon>
         </b-btn>
       </b-input-group-append>
@@ -26,14 +26,17 @@ export default {
     }
   },
   methods: {
+    // search all products that match the given criterias
     search () {
       if (this.searchInput) {
         this.$router.push({
           name: 'SearchResult', query: { searchInput: this.searchInput }
         })
-      } else {
-        this.$router.push('/')
       }
+      // else {
+      //   // go back to the homepage
+      //   this.$router.push('/')
+      // }
       if (event) event.preventDefault()
     }
   }
