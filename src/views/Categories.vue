@@ -1,55 +1,40 @@
 <template>
-  <b-container fluid class="container clickable">
-    <b-jumbotron
-      class="edited-jumbotron"
-      v-b-toggle="category.name"
+  <b-container>
+    <section
       v-for="category in categories"
       :key="`${category.name}-${category.language}`"
-      text-variant="white"
-      border-variant="dark"
+      class="category-section"
     >
-      <b-row>
-        <b-col cols="3">
-          <b-img class="reposition-logo" :src="category.image" fluid alt="Responsive image" />
-        </b-col>
-        <b-col cols="9" align-v="center">
-          <h2 slot="header" class="display-4">
-            {{ category.name }}
-          </h2>
-          <h3 slot="lead" class="lead">
-            {{ category.description }}
-          </h3>
-          <hr class="thick-hr">
-        </b-col>
-      </b-row>
-      <!-- <hr class="my-4"> -->
-      <b-container fluid :id="category.name" class="mt-2">
-          <b-card
-            v-for="subCategory in subCategories(category.name)"
-            :key="`${subCategory.name}-${subCategory.language}`"
-          >
-          <!-- <p class="card-text">{{ subCategory.name }}</p> -->
-            <router-link
-              :to="`/products/${slug(subCategory.name)}`"
-              class="nav-link"
-            >{{ subCategory.name }}</router-link>
-          </b-card>
-      </b-container>
-    </b-jumbotron>
+      <div class="section-top">
+        <div class="section-top-text">
+          <h2 class="category-title">{{ category.name }}</h2>
+          <h5 class="category-description">{{ category.description }}</h5>
+        </div>
+        <img class="logo" :src="category.image" :alt="`${category.name} icon`" />
+      </div>
+      <div class="links">
+      <ul>
+        <li
+          v-for="subCategory in subCategories(category.name)"
+          :key="`${subCategory.name}-${subCategory.language}`"
+        >
+          <b-link :to="`/products/${slug(subCategory.name)}`">{{ subCategory.name }}</b-link>
+        </li>
+      </ul>
+    </div>
+    </section>
   </b-container>
 </template>
 
 <script>
 export default {
   methods: {
-    // gets the subCategories by the Main Category
     subCategories (categoryName) {
-      const subCats = this.$store.state.subCategories
+      const subcats = this.$store.state.subCategories
       const language = this.$store.state.language
 
-      return subCats.filter(subCat => {
-        const catName = this.slug(categoryName)
-        return subCat.language === language && subCat.category === catName
+      return subcats.filter(subcat => {
+        return subcat.language === language && subcat.category === this.slug(categoryName)
       })
     }
   },
@@ -63,46 +48,47 @@ export default {
 }
 </script>
 
-<style scoped>
-  .container {
-      margin-top: 30px;
-  }
-  .card-text {
-      color: black !important;
-  }
-  .clickable :hover {
-    cursor: pointer;
-  }
-  .thick-hr {
-  border: none;
-  height: 10px;
-  /* Set the hr color */
-  background-color:rgba(255,255,255,0.5);
-  }
-  .edited-jumbotron{
-    padding-top: 30px;
-    padding-bottom:15px;
-    background-color:#282e34;
-  }
-  .reposition-logo{
-    margin-top:10px;
+<style scoped lang="scss">
+  .category-section {
+    margin: 2rem;
+    border: 3px solid var(--dark);
+    border-radius: 5px;
+    background: var(--dark);
+    color: var(--light);
   }
 
-  /* Resizes the font-size when the screen gets smaller (for mobile devices) */
-  @media screen and (max-device-width : 1024px)
-  {
-    h2.display-4
-    {
-      font-size:9vw;
-      font-weight: 300;
-    }
-    h3.lead
-    {
-      font-size:6vw;
-    }
-    div.card {
-      font-size:4vw;
+  .section-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.3rem;
+
+    .logo {
+      height: 100px;
+      width: auto;
     }
   }
 
+  .links {
+    background: var(--light);
+    color: var(--dark);
+    padding: 1rem;
+    font-size: 1.2em;
+    li {
+      list-style-type: square;
+      padding: 0.3em;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .section-top {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      .logo {
+        order: -1;
+        padding-bottom: 1rem;
+      }
+    }
+  }
 </style>
