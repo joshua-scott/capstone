@@ -57,10 +57,8 @@ export default new Vuex.Store({
           { lang: '*', pageSize: 100 }
         )
         var data = response.results
-        if (response.total_pages != 1)
-        {
-          for (var i=2; i <= response.total_pages; i++)
-          {
+        if (response.total_pages != 1) {
+          for (var i=2; i <= response.total_pages; i++) {
             var colResponse = await api.query(
               Prismic.Predicates.at('document.type', 'product'),
               { lang: '*', pageSize: 100, page: i }
@@ -68,7 +66,7 @@ export default new Vuex.Store({
             data = data.concat(colResponse.results)
           }
         }
-        
+
         let products = []
 
         data.forEach(obj => {
@@ -79,6 +77,10 @@ export default new Vuex.Store({
           product.number = p.product_number
           product.description = PrismicDOM.RichText.asHtml(p.product_description)
           product.image = p.repeatable_picture_field[0].picture_1.url
+
+          if (p.product_documents[0].repeatable_product_documents.name) {
+            product.document = p.product_documents[0].repeatable_product_documents
+          }
 
           if (p['sub-category'].id) {
             product.subCategory = p['sub-category'].id
@@ -213,7 +215,7 @@ export default new Vuex.Store({
         data.forEach(page => {
           const lang = page.lang
           const data = page.data
-          
+
           //English
           let englishData = {}
           englishData.language = 'en-gb'
