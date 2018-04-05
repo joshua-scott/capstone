@@ -16,7 +16,7 @@
         <!-- <b-row v-b-tooltip="{title: result.description, html: true}"> -->
         <b-row>
           <b-col sm="*" class="px-2">
-            <b-img thumbnail fluid width="200vw" height="200vh" :src="result.image || 'http://www.pngmart.com/files/2/Black-Panther-Logo-Transparent-Background.png'"></b-img>
+            <b-img thumbnail fluid width="200vw" height="200vh" :src="result.image || defaultImage"></b-img>
           </b-col>
           <b-col align-self="center">
             <h3>{{ result.name }}</h3>
@@ -42,7 +42,8 @@ export default {
   },
   data () {
     return {
-      variantColor: 'dark'
+      variantColor: 'dark',
+      defaultImage: require('../assets/logo_r.jpg')
     }
   },
   methods: {
