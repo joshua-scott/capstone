@@ -1,6 +1,17 @@
 <template>
-  <b-container>
-    <search-box></search-box>
+  <b-container style="max-width: 1000px;">
+    <b-jumbotron
+      class="welcome-jumbotron"
+      v-if="lang === 'en-gb'"
+      header="Welcome to our products!"
+      :lead="`We currently have ${productCount} products on offer. Feel free to search below or choose from a category.`"
+      bg-variant="dark"
+      text-variant="light"
+      header-level="4"
+    >
+      <search-box></search-box>
+    </b-jumbotron>
+
     <section
       v-for="category in categories"
       :key="`${category.name}-${category.language}`"
@@ -34,6 +45,20 @@ export default {
   components: {
     SearchBox
   },
+  computed: {
+    categories () {
+      const categories = this.$store.state.categories
+      const language = this.$store.state.language
+      return categories.filter(category => category.language === language)
+    },
+    lang () {
+      return this.$store.state.language
+    },
+    productCount () {
+      const products = this.$store.state.products.filter(p => p.language === this.lang)
+      return products.length
+    }
+  },
   methods: {
     subCategories (categoryName) {
       const subcats = this.$store.state.subCategories
@@ -43,21 +68,17 @@ export default {
         return subcat.language === language && subcat.category === this.slug(categoryName)
       })
     }
-  },
-  computed: {
-    categories () {
-      const categories = this.$store.state.categories
-      const language = this.$store.state.language
-      return categories.filter(category => category.language === language)
-    }
   }
 }
 </script>
 
 <style scoped lang="scss">
+  .welcome-jumbotron {
+    padding-bottom: 1rem;
+  }
+
   .category-section {
     margin: 2rem auto;
-    max-width: 1000px;
     border: 3px solid var(--dark);
     border-radius: 5px;
     background: var(--dark);

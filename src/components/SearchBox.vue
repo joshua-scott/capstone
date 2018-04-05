@@ -1,19 +1,17 @@
 <template>
-  <div>
-    <b-input-group>
-      <b-form-input
-        @keyup.enter.native="search()"
-        v-model="searchInput"
-        type="text"
-        :placeholder="placeholder[lang]">
-      </b-form-input>
-      <b-input-group-append>
-        <b-btn variant="outline-dark" @click="search()">
-          <font-awesome-icon icon="search"></font-awesome-icon>
-        </b-btn>
-      </b-input-group-append>
-    </b-input-group>
-  </div>
+  <b-input-group class="search">
+    <b-form-input
+      @keyup.enter.native="search()"
+      v-model="searchInput"
+      type="text"
+      :placeholder="placeholder[lang]"
+    ></b-form-input>
+    <b-input-group-append>
+      <b-btn @click="search()">
+        <font-awesome-icon icon="search"></font-awesome-icon>
+      </b-btn>
+    </b-input-group-append>
+  </b-input-group>
 </template>
 
 <script>
@@ -54,3 +52,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .search {
+    max-width: 600px;
+    margin: 2em auto;
+  }
+</style>
