@@ -4,8 +4,6 @@
     <div class="pimg1">
       <div id="board">
         <span class="border">Register Now</span>
-        <div class="class">
-        </div>
       </div>
     </div>
 
@@ -45,12 +43,7 @@
 </template>
 
 <script>
-import Carousel from '@/components/Carousel.vue'
-
 export default {
-  components: {
-    Carousel
-  },
   computed: {
     // gets HomePage data in current language
     homePage () {
@@ -150,5 +143,4 @@ footer{
     background-attachment: scroll;
   }
 }
-
 </style>

@@ -13,16 +13,11 @@ module.exports = {
   }),
   cssSourceMap: sourceMapEnabled,
   cacheBusting: config.dev.cacheBusting,
-  // Below is transformToRequire before I changed to
-  // this bootstrap-vue fix: 
-  // https://bootstrap-vue.js.org/docs/reference/images/
-  // transformToRequire: {
-  //   video: ['src', 'poster'],
-  //   source: 'src',
-  //   img: 'src',
-  //   image: 'xlink:href'
-  // },
+
+  // see: https://bootstrap-vue.js.org/docs/reference/images/
   transformToRequire: {
+    'video': ['src', 'poster'],
+    'source': 'src',
     'img': 'src',
     'image': 'xlink:href',
     'b-img': 'src',

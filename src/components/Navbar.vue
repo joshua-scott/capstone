@@ -1,74 +1,50 @@
 <template>
   <b-container fluid role="navigation">
-    <!-- b-nav(
-      justified
-      :tabs="width > 425"
-      :vertical="width <= 425")
-      b-nav-item(
-        v-for="( route, index ) in displayedRoutes"
-          :key="index"
-          :to="route.path"
-          :exact="route.name === 'Home'")
-        | {{ language === 'en-gb' ? route.name : route.nameFin }}
-    -->
-    <b-navbar toggleable="md" type="light" variant="" class="edited-nav">
-
-      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+    <b-navbar toggleable="lg" type="light" variant="" class="nav-main">
 
       <b-navbar-brand>
         <router-link to="/">
-          <b-img
-            class="imgedit"
-            src="@/assets/logo.jpg">
-          </b-img>
+          <b-img src="@/assets/logo.jpg" class="renotech-logo"/>
         </router-link>
       </b-navbar-brand>
 
-      <b-collapse is-nav id="nav_collapse">
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-        <b-navbar-nav class="nav-list">
-          <b-nav-item v-for="( route, index ) in displayedRoutes" :key="index" :to="route.path" exact>
+      <b-collapse is-nav id="nav-collapse">
+
+        <b-navbar-nav class="link-items">
+          <b-nav-item
+            v-for="( route, index ) in displayedRoutes"
+            :key="index" :to="route.path" exact>
             {{ language === 'en-gb' ? route.name : route.nameFin }}
           </b-nav-item>
         </b-navbar-nav>
 
-      <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-form>
-            <!-- <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button> -->
+          <!-- <b-nav-form>
             <SearchBox></SearchBox>
-          </b-nav-form>
+          </b-nav-form> -->
 
           <b-navbar variant="faded" type="light">
-            <b-navbar-brand href="#">
-              <img class="flag" :src="flagImage">
-            </b-navbar-brand>
-            <b-nav-item-dropdown :text="languageText" right>
-              <b-dropdown-item @click="setLanguage('en-gb')"><img :src="flags.gb" alt="GB flag" class="flag"> {{ languageEnglishText }}</b-dropdown-item>
-              <b-dropdown-item @click="setLanguage('fi')"><img :src="flags.fi" alt="Finland flag" class="flag"> {{ languageFinnishText }}</b-dropdown-item>
+            <img class="flag" :src="flagImage">
+            <b-nav-item-dropdown :text="language === 'fi' ? 'Suomi' : 'English'" right>
+              <b-dropdown-item @click="setLanguage('en-gb')"><img :src="flags.gb" alt="GB flag" class="flag"> English</b-dropdown-item>
+              <b-dropdown-item @click="setLanguage('fi')"><img :src="flags.fi" alt="Finland flag" class="flag"> Suomi</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar>
 
-          <!-- <b-nav-item-dropdown right>
-            <template slot="button-content">
-              <em>User</em>
-            </template>
-            <b-dropdown-item href="#">Sign in</b-dropdown-item>
-            <b-dropdown-item href="#">Sign up</b-dropdown-item>
-          </b-nav-item-dropdown> -->
         </b-navbar-nav>
       </b-collapse>
+
     </b-navbar>
   </b-container>
 </template>
 
 <script>
 import routes from '@/router/routes.js'
-import SearchBox from '@/components/SearchBox.vue'
+// import SearchBox from '@/components/SearchBox.vue'
 
 export default {
-  // props: ['width'],
   data () {
     return {
       routes,
@@ -79,28 +55,12 @@ export default {
     }
   },
   components: {
-    SearchBox
+    // SearchBox
   },
   computed: {
     language () {
       return this.$store.state.language
     },
-
-    // gets the corresponding display to the current site language
-    languageText () {
-      return this.$store.state.language === 'fi' ? this.languageFinnishText : this.languageEnglishText
-    },
-    // displaying text of 'English' in chosen language
-    languageEnglishText () {
-      let english = this.$store.state.language === 'fi' ? 'Englanti' : 'English'
-      return english
-    },
-    // displaying text of 'Finnish' in chosen language
-    languageFinnishText () {
-      let finnish = this.$store.state.language === 'fi' ? 'Suomi' : 'Finnish'
-      return finnish
-    },
-
     flagImage () {
       return require(`@/assets/flags/${this.$store.state.language === 'fi' ? 'fi' : 'gb'}.svg`)
     },
@@ -111,12 +71,7 @@ export default {
   methods: {
     setLanguage (newLanguage) {
       this.$store.commit('setLanguage', newLanguage)
-
-      // If user changes language while viewing product subcategories, link to the new language version if possible.
       if (this.$route.params.subCategoryName) this.$router.push('/products')
-    },
-    handleResize () {
-      this.width = window.innerWidth
     }
   },
   mounted () {
@@ -128,10 +83,47 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  #nav-collapse {
+    text-align: center;
+
+    nav {
+      justify-content: center;
+
+      img {
+        margin-right: 0.4em;
+      }
+    }
+  }
+
   .active.nav-link {
     font-weight: 700;
-    color: #495057;
+  }
+
+  .nav-main {
+    font-size: 1.5em;
+  }
+
+  .link-items {
+    margin: auto;
+  }
+
+  .flag {
+    max-width: 40px;
+  }
+
+  @media screen and (max-width: 435px) {
+    .nav-main {
+      padding: 0;
+    }
+    .navbar-brand {
+      width: 80%;
+      max-width: 250px;
+      margin-right: 0;
+      .renotech-logo {
+        width: 80%;
+      }
+    }
   }
   .edited-nav {
     font-size:20px;
