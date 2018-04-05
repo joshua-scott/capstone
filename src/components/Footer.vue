@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid class="footer">
+  <b-container class="footer">
     <hr class="hr">
     <b-card text-variant="dark">
       <b-row>
