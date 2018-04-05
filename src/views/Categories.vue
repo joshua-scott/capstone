@@ -62,11 +62,11 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.3rem;
+    padding: 2rem;
 
     .category-title,
     .category-description {
-      padding-left: 2rem;
+      padding-left: 1.8rem;
     }
 
     .logo {
