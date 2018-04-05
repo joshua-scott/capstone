@@ -79,7 +79,9 @@ export default new Vuex.Store({
           product.image = p.repeatable_picture_field[0].picture_1.url
 
           if (p.product_documents[0].repeatable_product_documents.name) {
-            product.document = p.product_documents[0].repeatable_product_documents
+            product.documents = p.product_documents.map(item => {
+              return { ...item.repeatable_product_documents }
+            });
           }
 
           if (p['sub-category'].id) {

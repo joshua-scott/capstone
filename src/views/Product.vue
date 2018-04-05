@@ -9,8 +9,13 @@
         <div v-html="product.description"></div>
         <p>Sold by the: {{ product.salesUnit }}</p>
         <p>Contact: {{ product.representative }}</p>
-        <div class="document" v-if="product.document">
-          <p>{{ lang === 'fi' ? 'Lataa ' : 'Download ' }}<b-link :href="product.document.url">{{ product.document.name }}</b-link></p>
+        <div class="document" v-if="product.documents">
+          <h5>{{ lang === 'fi' ? 'Asiakirjat:' : 'Documents:' }}</h5>
+          <ul>
+            <li v-for="( doc, i ) in product.documents" :key="i">
+              <b-link :href="doc.url">{{ doc.name }}</b-link>
+            </li>
+          </ul>
         </div>
       </b-col>
       <b-col xs="12" lg="6">
