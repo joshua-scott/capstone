@@ -13,7 +13,7 @@ export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   // State is where all the data is stored
   state: {
-    language: 'en-gb',
+    language: 'fi',
     aboutPages: {},
     products: [],
     categories: [],
