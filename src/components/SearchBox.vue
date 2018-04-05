@@ -8,7 +8,7 @@
     ></b-form-input>
     <b-input-group-append>
       <b-btn @click="search()">
-        <font-awesome-icon icon="search"></font-awesome-icon>
+        <font-awesome-icon icon="search" size="1x"></font-awesome-icon>
       </b-btn>
     </b-input-group-append>
   </b-input-group>
