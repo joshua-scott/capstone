@@ -1,10 +1,13 @@
 <template>
   <div>
     <b-input-group>
-      <b-form-input @keyup.enter.native="search()" v-model="searchInput" type="text" placeholder="Search...">
+      <b-form-input
+        @keyup.enter.native="search()"
+        v-model="searchInput"
+        type="text"
+        :placeholder="placeholder[lang]">
       </b-form-input>
       <b-input-group-append>
-        <!-- <font-awesome-icon icon="search"></font-awesome-icon> -->
         <b-btn variant="outline-dark" @click="search()">
           <font-awesome-icon icon="search"></font-awesome-icon>
         </b-btn>
@@ -22,7 +25,16 @@ export default {
   },
   data () {
     return {
-      searchInput: ''
+      searchInput: '',
+      placeholder: {
+        fi: 'Etsi kaikki tuotteet...',
+        'en-gb': 'Search all products...'
+      }
+    }
+  },
+  computed: {
+    lang () {
+      return this.$store.state.language
     }
   },
   methods: {
