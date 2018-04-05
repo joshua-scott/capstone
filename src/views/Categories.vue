@@ -50,7 +50,8 @@ export default {
 
 <style scoped lang="scss">
   .category-section {
-    margin: 2rem;
+    margin: 2rem auto;
+    max-width: 1000px;
     border: 3px solid var(--dark);
     border-radius: 5px;
     background: var(--dark);
@@ -63,6 +64,11 @@ export default {
     align-items: center;
     padding: 1.3rem;
 
+    .category-title,
+    .category-description {
+      padding-left: 2rem;
+    }
+
     .logo {
       height: 100px;
       width: auto;
@@ -72,7 +78,7 @@ export default {
   .links {
     background: var(--light);
     color: var(--dark);
-    padding: 1rem;
+    padding: 0.8rem;
     font-size: 1.2em;
     li {
       list-style-type: square;
@@ -88,6 +94,10 @@ export default {
       .logo {
         order: -1;
         padding-bottom: 1rem;
+      }
+      .category-title,
+      .category-description {
+        padding-left: 0;
       }
     }
   }
