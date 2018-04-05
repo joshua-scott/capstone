@@ -4,7 +4,7 @@
       class="welcome-jumbotron"
       v-if="lang === 'en-gb'"
       header="Welcome to our products!"
-      :lead="`We currently have ${productCount} products on offer. Feel free to search below or choose from a category.`"
+      lead="We have over 100 products for professional use available. Choose a category or use the search function below."
       bg-variant="dark"
       text-variant="light"
       header-level="4"
