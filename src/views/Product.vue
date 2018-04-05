@@ -17,6 +17,39 @@
             </li>
           </ul>
         </div>
+        <b-card bg-variant="dark" text-variant="white">
+          <h1 class="feed">{{ feedBack[lang] }}</h1>
+          <b-form-group horizontal
+                :label-cols="6"
+                label-size="lg"
+                label-class="text-lg-left"
+                :label="name[lang]"
+                label-for="input_lg">
+          <b-form-input id="input_lg" size="sm"></b-form-input>
+          </b-form-group>
+          <b-form-group horizontal
+                :label-cols="6"
+                label-size="lg"
+                :label="email[lang]"
+                label-for="input_lg">
+          <b-form-input id="input_lg" size="sm"></b-form-input>
+          </b-form-group>
+          <b-form-group horizontal
+                :label-cols="6"
+                label-size="lg"
+                :label="productName[lang]"
+                label-for="input_lg">
+          <b-form-input id="input_lg" size="sm"></b-form-input>
+          </b-form-group>
+          <b-form-group horizontal
+                :label-cols="6"
+                label-size="lg"
+                :label="message[lang]"
+                label-for="input_lg">
+          <b-form-input id="input_lg" size="lg"></b-form-input>
+          </b-form-group>
+          <b-button style="margin-top: 20px" variant="light">Submit</b-button>
+        </b-card>
       </b-col>
       <b-col xs="12" lg="6">
         <b-img v-img fluid :src="product.image"></b-img>
@@ -26,6 +59,7 @@
 </template>
 
 <script>
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 export default {
   props: ['productNumber'],
   data () {
@@ -37,6 +71,26 @@ export default {
       viewAll: {
         fi: 'Takaisin tuotteisiin?',
         'en-gb': 'Back to products?'
+      },
+      feedBack: {
+        fi: 'Palaute',
+        'en-gb': 'Feedback'
+      },
+      name: {
+        fi: 'Nimi:',
+        'en-gb': 'Name:'
+      },
+      email: {
+        fi: 'Sähköposti:',
+        'en-gb': 'E-mail:'
+      },
+      productName: {
+        fi: 'Tuotteen Nimi:',
+        'en-gb': 'Product Name:'
+      },
+      message: {
+        fi: 'Viesti:',
+        'en-gb': 'Message:'
       }
     }
   },
@@ -52,10 +106,18 @@ export default {
           prod.language === language
       })
     }
+  },
+  components: {
+    FontAwesomeIcon
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.feed {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
 </style>
