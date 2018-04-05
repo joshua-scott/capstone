@@ -86,7 +86,7 @@ export default new Vuex.Store({
 
           if (p['sub-category'].id) {
             product.subCategory = p['sub-category'].id
-            product.subCategorySlug = p['sub-category'].slug
+            product.subCategorySlug = p['sub-category'].slug.replace('--', '-')
             // console.log(`"${product.language} ${product.name}"'s subcategory: ${product.subCategorySlug}`)
           } else {
             // console.log(`"${product.language} ${product.name}" HAS NO SUBCATEGORY :(`)
