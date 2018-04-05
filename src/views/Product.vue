@@ -9,7 +9,9 @@
         <div v-html="product.description"></div>
         <p>Sold by the: {{ product.salesUnit }}</p>
         <p>Contact: {{ product.representative }}</p>
-        <p>Download <b-link v-if="product.document" :href="product.document.url">{{ product.document.name }}</b-link></p>
+        <div class="document" v-if="product.document">
+          <p>{{ lang === 'fi' ? 'Lataa ' : 'Download ' }}<b-link :href="product.document.url">{{ product.document.name }}</b-link></p>
+        </div>
       </b-col>
       <b-col xs="12" lg="6">
         <b-img v-img fluid :src="product.image"></b-img>
