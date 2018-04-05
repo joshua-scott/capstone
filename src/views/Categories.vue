@@ -1,5 +1,7 @@
 <template>
-  <b-container fluid class="container clickable">
+  <b-container fluid class="container">
+    <SearchBox></SearchBox>
+    <hr>
     <b-jumbotron
       class="edited-jumbotron"
       v-b-toggle="category.name"
@@ -40,7 +42,11 @@
 </template>
 
 <script>
+import SearchBox from '@/components/SearchBox.vue'
 export default {
+  components: {
+    SearchBox
+  },
   data () {
     return {
       variantIndex: 0,
