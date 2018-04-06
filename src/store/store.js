@@ -15,6 +15,7 @@ export default new Vuex.Store({
   state: {
     language: 'en-gb',
     aboutPages: {},
+    rdpages: {},
     products: [],
     categories: [],
     subCategories: [],
@@ -48,6 +49,40 @@ export default new Vuex.Store({
       }
     },
 
+    async getRdPage ({ commit }) {
+      try {
+        const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
+        const response = await api.query(
+          Prismic.Predicates.at('document.type', 'r-d-page'),
+          { lang: '*',  pageSize: 100 }
+        )
+
+        const data = response.results
+        console.log('data:')
+        console.dir(data)
+
+        let rdpages = {}
+
+
+        data.forEach(obj => {
+          console.log('object in data:')
+          console.log({ obj })
+          let rdpage = []
+          let r = obj.data
+
+          rdpage.image = r.rdimage.url
+          rdpage.description = r.rdimgdescription.text
+
+          console.log({ rdpage })
+rdpages.push(rdpage)
+}) 
+
+        commit('setRdPages', rdpages)
+      } catch (err) {
+        console.warn('Error on getrdPages action', err)
+      }
+    },
+
     async getProducts ({ commit }) {
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
@@ -67,7 +102,7 @@ export default new Vuex.Store({
             data = data.concat(colResponse.results)
           }
         }
-        
+
         let products = []
 
         data.forEach(obj => {
@@ -205,6 +240,9 @@ export default new Vuex.Store({
     },
     setAboutPages (state, data) {
       state.aboutPages = data
+    },
+    setRdPages (state, data) {
+      state.rdpages = data
     },
     setProducts (state, data) {
       state.products = data
