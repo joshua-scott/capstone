@@ -20,13 +20,19 @@
       </b-col>
       <b-col xs="12" lg="6">
         <b-img v-img fluid :src="product.image"></b-img>
+        <button @click="alertVisible = true">Open Dialog</button>
+        <alert :visible.sync="alertVisible"></alert>
       </b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
+//import Form from '@/components/Form.vue'
 export default {
+  components: {
+    Form
+  },
   props: ['productNumber'],
   data () {
     return {
@@ -54,6 +60,17 @@ export default {
     }
   }
 }
+</script>
+<script>
+  const Alert = require('./alert.vue');
+  export default {
+    components: { Alert },
+    data() {
+      return {
+        alertVisible: false
+      };
+    }
+  };
 </script>
 
 <style lang="scss" scoped>
