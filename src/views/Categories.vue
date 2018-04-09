@@ -73,16 +73,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  $bootstrap-light: #f8f9fa;
+  $renotech-blue: #263977;
+
   .welcome-jumbotron {
     padding-bottom: 1rem;
   }
 
   .category-section {
     margin: 2rem auto;
-    border: 3px solid var(--dark);
+    border: 3px solid $renotech-blue;
     border-radius: 5px;
-    background: var(--dark);
-    color: var(--light);
+    background: darken($bootstrap-light, 20%);
+    color: $renotech-blue;
   }
 
   .section-top {
@@ -104,7 +107,7 @@ export default {
 
   .links {
     background: var(--light);
-    color: var(--dark);
+    color: $renotech-blue;
     padding: 0.8rem;
     font-size: 1.2em;
     li {
