@@ -91,18 +91,18 @@ export default {
     align-items: center;
     padding: 2rem;
 
-   .category-title,
-   .category-description {
-     padding-left: 1.8rem;
-     }
+    .category-title,
+    .category-description {
+      padding-left: 1.8rem;
+    }
 
-   .logo {
-     height: 100px;
-     width: auto;
-     }
-   }
+    .logo {
+      height: 100px;
+      width: auto;
+    }
+  }
 
- .links {
+  .links {
     background: var(--light);
     color: var(--dark);
     padding: 0.8rem;
