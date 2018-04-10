@@ -18,7 +18,7 @@
           </ul>
         </div>
         <b-card bg-variant="dark" text-variant="white">
-          <form name="contact" method="POST" action="thank-you" netlify>
+          <form name="feedback" method="POST" action="thank-you" netlify>
           <h1 class="feed">{{ feedBack[lang] }}</h1>
           <b-form-group horizontal
                 :label-cols="6"
@@ -26,30 +26,30 @@
                 label-class="text-lg-left"
                 :label="name[lang]"
                 label-for="input_lg">
-          <b-form-input id="input_lg" size="sm"></b-form-input>
+          <b-form-input id="input_lg" size="sm" name="name"></b-form-input>
           </b-form-group>
           <b-form-group horizontal
                 :label-cols="6"
                 label-size="lg"
                 :label="email[lang]"
                 label-for="input_lg">
-          <b-form-input id="input_lg" size="sm"></b-form-input>
+          <b-form-input id="input_lg" size="sm" name="email"></b-form-input>
           </b-form-group>
           <b-form-group horizontal
                 :label-cols="6"
                 label-size="lg"
                 :label="productName[lang]"
                 label-for="input_lg">
-          <b-form-input id="input_lg" size="sm"></b-form-input>
+          <b-form-input id="input_lg" size="sm" name="product-name"></b-form-input>
           </b-form-group>
           <b-form-group horizontal
                 :label-cols="6"
                 label-size="lg"
                 :label="message[lang]"
                 label-for="input_lg">
-          <b-form-input id="input_lg" size="lg"></b-form-input>
+          <b-form-input id="input_lg" size="lg" name="message"></b-form-input>
           </b-form-group>
-          <b-button href="rt@renotech.fi" style="margin-top: 20px,margin-bottom: 20px" variant="light">{{ send[lang] }}</b-button>
+          <b-button type="submit" style="margin-top: 20px,margin-bottom: 20px" variant="light">{{ send[lang] }}</b-button>
           </form>
         </b-card>
       </b-col>
