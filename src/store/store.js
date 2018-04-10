@@ -15,11 +15,11 @@ export default new Vuex.Store({
   state: {
     language: 'fi',
     aboutPages: {},
-    rdpages: {},
     products: [],
     categories: [],
     subCategories: [],
     carouselItems: [],
+    rdImages: [],
     homePages: []
   },
   // Actions main job is to get data from somewhere else
@@ -49,37 +49,38 @@ export default new Vuex.Store({
       }
     },
 
-    async getRdPage ({ commit }) {
+    async getRdImages ({ commit }) {
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
-          Prismic.Predicates.at('document.type', 'r-d-page'),
-          { lang: '*',  pageSize: 100 }
+          Prismic.Predicates.at('document.type', 'r_and_d_images'),
+          { pageSize: 100 }
         )
-
         const data = response.results
-        console.log('data:')
-        console.dir(data)
 
-        let rdpages = {}
-
+        let rdImages = []
 
         data.forEach(obj => {
-          console.log('object in data:')
-          console.log({ obj })
-          let rdpage = []
-          let r = obj.data
+          const i = obj.data
 
-          rdpage.image = r.rdimage.url
-          rdpage.description = r.rdimgdescription.text
+          // English
+          let rdEng = {}
+          rdEng.language = 'en-gb'
+          rdEng.imageUrl = i.rd_image.url
+          rdEng.description = PrismicDOM.RichText.asHtml(i.description_eng)
+          rdImages.push(rdEng)
 
-          console.log({ rdpage })
-rdpages.push(rdpage)
-}) 
+          // Finnish
+          let rdFin = {}
+          rdFin.language = 'fi'
+          rdFin.imageUrl = i.rd_image.url
+          rdFin.description = PrismicDOM.RichText.asHtml(i.description_fin)
+          rdImages.push(rdFin)
+        })
 
-        commit('setRdPages', rdpages)
+        commit('setRdImages', rdImages)
       } catch (err) {
-        console.warn('Error on getrdPages action', err)
+        console.warn('Error on getRdImages action', err)
       }
     },
 
@@ -138,7 +139,6 @@ rdpages.push(rdpage)
       }
     },
 
-    // gets all category type documents
     async getCategories ({ commit }) {
       try {
         let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
@@ -171,7 +171,6 @@ rdpages.push(rdpage)
       }
     },
 
-    // gets all sub-category type documents
     async getSubCategories ({ commit }) {
       try {
         let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
@@ -236,7 +235,6 @@ rdpages.push(rdpage)
       }
     },
 
-    // get homepage data
     async getHomePage ({ commit }) {
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
@@ -291,9 +289,6 @@ rdpages.push(rdpage)
     setAboutPages (state, data) {
       state.aboutPages = data
     },
-    setRdPages (state, data) {
-      state.rdpages = data
-    },
     setProducts (state, data) {
       state.products = data
     },
@@ -308,6 +303,9 @@ rdpages.push(rdpage)
     },
     setHomePage (state, data) {
       state.homePages = data
+    },
+    setRdImages (state, data) {
+      state.rdImages = data
     }
   }
 })

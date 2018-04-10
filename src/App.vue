@@ -32,7 +32,7 @@ export default {
   beforeMount () {
     this.$store.dispatch('getCarousel')
     this.$store.dispatch('getAboutPage')
-    this.$store.dispatch('getRdPage')
+    this.$store.dispatch('getRdImages')
     this.$store.dispatch('getCategories')
     this.$store.dispatch('getSubCategories')
     this.$store.dispatch('getProducts')
