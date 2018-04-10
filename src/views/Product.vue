@@ -57,7 +57,7 @@
         <b-img v-img fluid :src="product.image"></b-img>
       </b-col>
     </b-row>
-     <form id="netlify-form-actual" name="feedback" method="post" form-name="feedback" data-netlify="true" netlify>
+     <form id="netlify-form" name="feedback" @submit.prevent="postForm" netlify>
       <p>
         <label>Your Name: <input type="text" name="name"></label>   
       </p>
@@ -129,6 +129,19 @@ export default {
         return prod.number === Number(this.productNumber) &&
           prod.language === language
       })
+    }
+  },
+  methods: {
+    postForm (e) {
+     fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "feedback", name: "Josh testing", email: "hello", 'product-name': "product 123", message: "hello again" })
+      })
+        .then(() => alert("Success!"))
+        .catch(error => alert(error));
+
+      e.preventDefault();
     }
   }
 }
