@@ -11,7 +11,7 @@
     <noscript>You must enable JavaScript to continue.</noscript>
 
     <!-- hidden form for Netlify Forms -->
-    <form id="netlify-form" name="feedback" method="POST" netlify>
+    <form hidden id="netlify-form" name="feedback" method="POST" netlify>
       <p>
         <label>Your Name: <input type="text" name="name"></label>   
       </p>
@@ -28,10 +28,10 @@
         <button type="submit">Send</button>
       </p>
     </form>
-    <style>
+    <!-- <style>
       #netlify-form {
-        /* display: none; */
+        display: none;
       }
-    </style>
+    </style> -->
   </body>
 </html>

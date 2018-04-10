@@ -57,7 +57,7 @@
         <b-img v-img fluid :src="product.image"></b-img>
       </b-col>
     </b-row>
-     <form id="netlify-form-actual" name="feedback" method="POST" netlify>
+     <form id="netlify-form-actual" name="feedback" method="post" form-name="feedback" data-netlify="true" netlify>
       <p>
         <label>Your Name: <input type="text" name="name"></label>   
       </p>
