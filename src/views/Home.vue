@@ -1,19 +1,15 @@
-<template lang="pug">
-<div>
+<template>
+  <b-container>
     <carousel></carousel>
-</div>
+  </b-container>
 </template>
 
 <script>
-import Carousel from '@/components/Carousel.vue'
-
+import carousel from '../components/Carousel.vue'
 export default {
-  components: {
-    Carousel
-  }
+  components: {carousel}
 }
 </script>
 
-<style>
-
+<style scoped lang="scss">
 </style>

@@ -1,5 +1,5 @@
 <template lang="pug">
-  b-container
+  <b-container fluid>
     b-carousel(
       class="carousel"
       controls
@@ -11,6 +11,7 @@
           :img-src="slide.imageUrl"
           :caption="slide.heading"
           :text="slide.description")
+  </b-container>
 </template>
 
 <script>

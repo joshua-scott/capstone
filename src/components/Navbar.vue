@@ -1,41 +1,139 @@
-<template lang="pug">
-  b-container(role="navigation")
-    b-nav(
-      justified
-      :tabs="width > 425"
-      :vertical="width <= 425")
-      b-nav-item(
-        v-for="( route, index ) in displayedRoutes"
-          :key="index"
-          :to="route.path"
-          :exact="route.name === 'Home'")
-        | {{ language === 'en-gb' ? route.name : route.nameFin }}
+<template>
+  <b-container role="navigation">
+    <b-navbar toggleable="lg" type="light" variant="" class="nav-main">
+
+      <b-navbar-brand>
+        <router-link to="/">
+          <b-img src="@/assets/logo.jpg" class="renotech-logo"/>
+        </router-link>
+      </b-navbar-brand>
+
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse is-nav id="nav-collapse">
+
+        <b-navbar-nav class="link-items">
+          <b-nav-item
+            v-for="( route, index ) in displayedRoutes"
+            :key="index" :to="route.path" exact>
+            {{ language === 'en-gb' ? route.name : route.nameFin }}
+          </b-nav-item>
+        </b-navbar-nav>
+
+        <b-navbar-nav class="ml-auto">
+          <!-- <b-nav-form>
+            <SearchBox></SearchBox>
+          </b-nav-form> -->
+
+          <b-navbar variant="faded" type="light">
+            <img class="flag" :src="flagImage">
+            <b-nav-item-dropdown :text="language === 'fi' ? 'Suomi' : 'English'" right>
+              <b-dropdown-item @click="setLanguage('en-gb')"><img :src="flags.gb" alt="GB flag" class="flag"> English</b-dropdown-item>
+              <b-dropdown-item @click="setLanguage('fi')"><img :src="flags.fi" alt="Finland flag" class="flag"> Suomi</b-dropdown-item>
+            </b-nav-item-dropdown>
+          </b-navbar>
+
+        </b-navbar-nav>
+      </b-collapse>
+
+    </b-navbar>
+  </b-container>
 </template>
 
 <script>
 import routes from '@/router/routes.js'
+// import SearchBox from '@/components/SearchBox.vue'
 
 export default {
-  props: ['width'],
   data () {
     return {
-      routes
+      routes,
+      flags: {
+        fi: require('@/assets/flags/fi.svg'),
+        gb: require('@/assets/flags/gb.svg')
+      }
     }
   },
+  components: {
+    // SearchBox
+  },
   computed: {
-    displayedRoutes () {
-      return routes.filter(route => ['Home', 'Products', 'R & D', 'About'].includes(route.name))
-    },
     language () {
       return this.$store.state.language
+    },
+    flagImage () {
+      return require(`@/assets/flags/${this.$store.state.language === 'fi' ? 'fi' : 'gb'}.svg`)
+    },
+    displayedRoutes () {
+      return routes.filter(route => ['Home', 'Products', 'R & D', 'About'].includes(route.name))
     }
+  },
+  methods: {
+    setLanguage (newLanguage) {
+      this.$store.commit('setLanguage', newLanguage)
+      if (this.$route.params.subCategoryName) this.$router.push('/products')
+    }
+  },
+  mounted () {
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize', this.handleResize)
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  #nav-collapse {
+    text-align: center;
+
+    nav {
+      justify-content: center;
+
+      img {
+        margin-right: 0.4em;
+      }
+    }
+  }
+
   .active.nav-link {
     font-weight: 700;
-    color: #495057;
+  }
+
+  .nav-main {
+    font-size: 1.5em;
+  }
+
+  .link-items {
+    margin: auto;
+  }
+
+  .flag {
+    max-width: 40px;
+  }
+
+  @media screen and (max-width: 435px) {
+    .nav-main {
+      padding: 0;
+    }
+    .navbar-brand {
+      width: 80%;
+      max-width: 250px;
+      margin-right: 0;
+      .renotech-logo {
+        width: 80%;
+      }
+    }
+  }
+  .edited-nav {
+    font-size:20px;
+  }
+
+  .nav-list {
+    margin-left: 50px;
+  }
+
+  .flag {
+    max-width: 40px;
   }
 </style>

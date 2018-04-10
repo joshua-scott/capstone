@@ -7,8 +7,16 @@
       <b-col xs="12" lg="6">
         <h2>{{ product.name }}</h2>
         <div v-html="product.description"></div>
-        <p>Sold by the: {{ product.salesUnit }}</p>
-        <p>Contact: {{ product.representative }}</p>
+        <p>{{ lang === 'fi' ? 'Myydään yksitellen:' : 'Sold by the:' }} {{ product.salesUnit }}</p>
+        <p>{{ lang === 'fi' ? 'Yhteystiedot:' : 'Contact:' }} {{ product.representative }}</p>
+        <div class="document" v-if="product.documents">
+          <h5>{{ lang === 'fi' ? 'Asiakirjat:' : 'Documents:' }}</h5>
+          <ul>
+            <li v-for="( doc, i ) in product.documents" :key="i">
+              <b-link :href="doc.url">{{ doc.name }}</b-link>
+            </li>
+          </ul>
+        </div>
       </b-col>
       <b-col xs="12" lg="6">
         <b-img v-img fluid :src="product.image"></b-img>
