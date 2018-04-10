@@ -17,8 +17,8 @@
             </li>
           </ul>
         </div>
-        <b-card bg-variant="dark" text-variant="white">
-          <form name="feedback" method="POST" action="thank-you" netlify>
+        <!-- <b-card bg-variant="dark" text-variant="white">
+          <form name="feedback" method="POST" netlify>
           <h1 class="feed">{{ feedBack[lang] }}</h1>
           <b-form-group horizontal
                 :label-cols="6"
@@ -51,12 +51,30 @@
           </b-form-group>
           <b-button type="submit" style="margin-top: 20px,margin-bottom: 20px" variant="light">{{ send[lang] }}</b-button>
           </form>
-        </b-card>
+        </b-card> -->
       </b-col>
       <b-col xs="12" lg="6">
         <b-img v-img fluid :src="product.image"></b-img>
       </b-col>
     </b-row>
+     <form id="netlify-form-actual" name="feedback" method="POST" netlify>
+      <p>
+        <label>Your Name: <input type="text" name="name"></label>   
+      </p>
+      <p>
+        <label>Your Email: <input type="email" name="email"></label>
+      </p>
+      <p>
+        <label>Your Email: <input type="text" name="product-name"></label>
+      </p>
+      <p>
+        <label>Message: <textarea name="message"></textarea></label>
+      </p>
+      <p>
+        <button type="submit">Send</button>
+      </p>
+    </form>
+   
   </b-container>
 </template>
 
