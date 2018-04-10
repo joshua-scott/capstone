@@ -1,20 +1,18 @@
 <template>
-  <div>
-      <div>
-        <rdcarousel></rdcarousel>
-      </div>
-      <div>
-        <research-development-article
-          v-for="( article, i ) in articles" :key="i"
-          :article="article"
-        />
-      </div>
-  </div>
+  <b-container>
+    <research-development-carousel></research-development-carousel>
+    <div>
+      <research-development-article
+        v-for="( article, i ) in articles" :key="i"
+        :article="article"
+      />
+    </div>
+  </b-container>
 </template>
 
 <script>
 
-import Rdcarousel from '@/components/rdcarousel.vue'
+import ResearchDevelopmentCarousel from '@/components/ResearchDevelopmentCarousel.vue'
 import ResearchDevelopmentArticle from '@/components/ResearchDevelopmentArticle.vue'
 
 export default {
@@ -27,7 +25,7 @@ export default {
     }
   },
   components: {
-    Rdcarousel,
+    ResearchDevelopmentCarousel,
     ResearchDevelopmentArticle
   }
 }
