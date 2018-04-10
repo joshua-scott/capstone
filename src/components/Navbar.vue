@@ -73,6 +73,12 @@ export default {
       this.$store.commit('setLanguage', newLanguage)
       if (this.$route.params.subCategoryName) this.$router.push('/products')
     }
+  },
+  mounted () {
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize', this.handleResize)
   }
 }
 </script>
@@ -118,5 +124,16 @@ export default {
         width: 80%;
       }
     }
+  }
+  .edited-nav {
+    font-size:20px;
+  }
+
+  .nav-list {
+    margin-left: 50px;
+  }
+
+  .flag {
+    max-width: 40px;
   }
 </style>

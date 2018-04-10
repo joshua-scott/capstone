@@ -1,7 +1,7 @@
 <template lang="pug">
   <b-container fluid>
     b-carousel(
-      class="carousel edited-carousel"
+      class="carousel"
       controls
       indicators
       :interval="5000")
@@ -30,9 +30,5 @@ export default {
   .carousel {
     margin-top: 30px;
     text-shadow: 1px 1px 2px #333;
-  }
-  .edited-carousel {
-    height:400px;
-    margin-top:0;
   }
 </style>

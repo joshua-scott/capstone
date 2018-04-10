@@ -13,7 +13,7 @@ export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   // State is where all the data is stored
   state: {
-    language: 'en-gb',
+    language: 'fi',
     aboutPages: {},
     products: [],
     categories: [],
@@ -40,7 +40,6 @@ export default new Vuex.Store({
           aboutPages[lang].description = PrismicDOM.RichText.asHtml(page.data.about_description)
           aboutPages[lang].contactInfo = PrismicDOM.RichText.asHtml(page.data.sales_billing_contact_info)
           aboutPages[lang].manufacturerList = PrismicDOM.RichText.asHtml(page.data.manufacturer_list)
-          aboutPages[lang].certificatesList = PrismicDOM.RichText.asHtml(page.data.certificates_list)
         })
 
         commit('setAboutPages', aboutPages)
