@@ -1,10 +1,13 @@
-<template lang="pug">
+<template>
   <div>
       <div>
         <rdcarousel></rdcarousel>
       </div>
       <div>
-        <articles></articles>
+        <research-development-article
+          v-for="( article, i ) in articles" :key="i"
+          :article="article"
+        />
       </div>
   </div>
 </template>
@@ -12,11 +15,20 @@
 <script>
 
 import Rdcarousel from '@/components/rdcarousel.vue'
-import Articles from '@/components/Articles.vue'
+import ResearchDevelopmentArticle from '@/components/ResearchDevelopmentArticle.vue'
 
 export default {
+  computed: {
+    lang () {
+      return this.$store.state.language
+    },
+    articles () {
+      return this.$store.state.rdImages.filter(obj => obj.language === this.lang)
+    }
+  },
   components: {
-    Rdcarousel, Articles
+    Rdcarousel,
+    ResearchDevelopmentArticle
   }
 }
 </script>
