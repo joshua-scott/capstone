@@ -18,6 +18,7 @@
           </ul>
         </div>
         <b-card bg-variant="dark" text-variant="white">
+          <form name="contact" method="POST" action="thank-you" netlify>
           <h1 class="feed">{{ feedBack[lang] }}</h1>
           <b-form-group horizontal
                 :label-cols="6"
@@ -48,7 +49,8 @@
                 label-for="input_lg">
           <b-form-input id="input_lg" size="lg"></b-form-input>
           </b-form-group>
-          <b-button style="margin-top: 20px" variant="light">Submit</b-button>
+          <b-button href="rt@renotech.fi" style="margin-top: 20px,margin-bottom: 20px" variant="light">{{ send[lang] }}</b-button>
+          </form>
         </b-card>
       </b-col>
       <b-col xs="12" lg="6">
@@ -59,7 +61,7 @@
 </template>
 
 <script>
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+
 export default {
   props: ['productNumber'],
   data () {
@@ -91,6 +93,10 @@ export default {
       message: {
         fi: 'Viesti:',
         'en-gb': 'Message:'
+      },
+      send: {
+        fi: 'Lähettää:',
+        'en-gb': 'Submit'
       }
     }
   },
@@ -106,9 +112,6 @@ export default {
           prod.language === language
       })
     }
-  },
-  components: {
-    FontAwesomeIcon
   }
 }
 </script>
