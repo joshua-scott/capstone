@@ -20,6 +20,10 @@
           </b-nav-item>
         </b-navbar-nav>
 
+        <b-navbar-nav>
+          <Categories></Categories>
+        </b-navbar-nav>
+
         <b-navbar-nav class="ml-auto">
           <!-- <b-nav-form>
             <SearchBox></SearchBox>
@@ -42,6 +46,7 @@
 
 <script>
 import routes from '@/router/routes.js'
+import Categories from '@/views/Categories'
 // import SearchBox from '@/components/SearchBox.vue'
 
 export default {
@@ -56,6 +61,7 @@ export default {
   },
   components: {
     // SearchBox
+    Categories
   },
   computed: {
     language () {
