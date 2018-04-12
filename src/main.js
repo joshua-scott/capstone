@@ -13,9 +13,9 @@ import slugify from 'slugify'
 
 import fontawesome from '@fortawesome/fontawesome'
 import { faFacebook, faYoutube } from '@fortawesome/fontawesome-free-brands'
-import { faSpinner, faChevronUp, faSearch } from '@fortawesome/fontawesome-free-solid'
+import { faSpinner, faChevronUp, faChevronCircleDown, faChevronCircleRight, faSearch } from '@fortawesome/fontawesome-free-solid'
 
-fontawesome.library.add(faFacebook, faYoutube, faSpinner, faChevronUp, faSearch)
+fontawesome.library.add(faFacebook, faYoutube, faSpinner, faChevronUp, faChevronCircleDown, faChevronCircleRight, faSearch)
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)

@@ -1,10 +1,16 @@
 <template>
   <div>
     <div role="group" :aria-lableledby="categoryName">
-        <b-dropdown-header @click="showSubCat(!show)" :id="categoryName" class="category-header">{{ categoryName }}</b-dropdown-header>
+        <b-dropdown-header @click="showSubCat(!show)" :id="categoryName" class="category-header">
+          {{ categoryName }}
+          <span v-show="hasSubCat">
+            <font-awesome-icon v-if="!show" icon="chevron-circle-right"></font-awesome-icon>
+            <font-awesome-icon v-else-if="show" icon="chevron-circle-down"></font-awesome-icon>
+          </span>
+        </b-dropdown-header>
         <transition name="shiftx">
           <div v-show="show">
-            <b-nav-item :to="`/products/${slug(subCategory.name)}`" :aria-describedby="categoryName" v-for="subCategory in subCategories(categoryName)"
+            <b-nav-item class="sub-category" :to="`/products/${slug(subCategory.name)}`" :aria-describedby="categoryName" v-for="subCategory in subCategories"
               :key="`${subCategory.name}-${subCategory.language}`">{{ subCategory.name}}
             </b-nav-item>
           </div>
@@ -15,32 +21,37 @@
 </template>
 
 <script>
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 export default {
   props: [
-    'categoryName'
+    'categoryName',
+    'show'
   ],
   components: {
+    FontAwesomeIcon
   },
   data () {
     return {
-      show: false
     }
   },
   computed: {
     lang () {
       return this.$store.state.language
-    }
-  },
-  methods: {
-    subCategories (categoryName) {
+    },
+    subCategories () {
       const subcats = this.$store.state.subCategories
       const language = this.$store.state.language
 
-      console.log(subcats)
       return subcats.filter(subcat => {
-        return subcat.language === language && subcat.category === this.slug(categoryName)
+        return subcat.language === language && subcat.category === this.slug(this.categoryName)
       })
     },
+    // checks if the category has > 1 sub-cat
+    hasSubCat () {
+      return this.subCategories && this.subCategories.length > 0
+    }
+  },
+  methods: {
 
     // trigger the subcategories list
     showSubCat (isShown) {
@@ -105,6 +116,11 @@ export default {
   }
   .shiftx-enter, .shiftx-leave-to /* .fade-leave-active below version 2.1.8 */ {
     transform :  translateX(10px);
+  }
+
+  /* style for subcategories*/
+  .sub-category:hover {
+    background-color: $bootstrap-light;
   }
 
   @media screen and (max-width: 600px) {

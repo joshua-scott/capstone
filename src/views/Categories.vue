@@ -38,17 +38,6 @@
       </section>
     </b-container> -->
     <b-nav-item-dropdown :text="title" class="m-md-2">
-      <!-- <div role="group" :aria-lableledby="category.name" v-for="category in categories" :key="`${category.name}-${category.language}`">
-        <b-dropdown-header @mouseover="showSubCat(true)" @mouseleave="showSubCat(false)" :id="category.name" class="category-header">{{ category.name }}</b-dropdown-header>
-        <transition name="shiftx">
-          <div v-show="show">
-            <b-nav-item :to="`/products/${slug(subCategory.name)}`" @mouseover="showSubCat(true)" :aria-describedby="category.name" v-for="subCategory in subCategories(category.name)"
-              :key="`${subCategory.name}-${subCategory.language}`">{{ subCategory.name}}
-            </b-nav-item>
-          </div>
-        </transition>
-        <b-dropdown-divider></b-dropdown-divider>
-      </div> -->
       <category-detail v-for="category in categories" :key="`${category.name}-${category.language}`" :categoryName="`${category.name}`"></category-detail>
     </b-nav-item-dropdown>
   </div>
