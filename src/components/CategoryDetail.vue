@@ -24,14 +24,14 @@
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 export default {
   props: [
-    'categoryName',
-    'show'
+    'categoryName'
   ],
   components: {
     FontAwesomeIcon
   },
   data () {
     return {
+      show: false
     }
   },
   computed: {
