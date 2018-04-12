@@ -2,7 +2,7 @@ import Home from '@/views/Home'
 import About from '@/views/About'
 import SearchResult from '@/views/SearchResult'
 import ResearchDevelopment from '@/views/ResearchDevelopment'
-import Categories from '@/views/Categories'
+// import Categories from '@/views/Categories'
 import ProductList from '@/views/ProductList'
 import Product from '@/views/Product'
 import PageNotFound from '@/views/PageNotFound'
@@ -14,12 +14,12 @@ export default [
     path: '/',
     component: Home
   },
-  {
-    name: 'Products',
-    nameFin: 'Tuotteet',
-    path: '/products',
-    component: Categories
-  },
+  // {
+  //   name: 'Products',
+  //   nameFin: 'Tuotteet',
+  //   path: '/products',
+  //   component: Categories
+  // },
   {
     name: 'R & D',
     nameFin: 'R & D',
