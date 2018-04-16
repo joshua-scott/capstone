@@ -289,14 +289,27 @@ export default new Vuex.Store({
           Prismic.Predicates.at('document.type', 'productline'),
           // { pageSize: 100 }
         )
-        const data = response.results
-        console.log('productlines:', data)
+        const data = response.results[0]
+        // console.log('productlines:', data)
 
         let productlines = []
-        data.forEach(line => {
-          const lang = line.lang
-          const data = line.data
-        })
+        const lang = data.lang
+        const prodlineData = data.data
+        let prodline = {}
+        prodline.language = lang
+        prodline.category = prodlineData.productline_category.slug
+        prodline.description = prodlineData.productline_description[0].text
+        prodline.documents = prodlineData.productline_group_field.map((repMedia) => ({
+          name: repMedia.producline_repmedia.name,
+          url: repMedia.producline_repmedia.url
+        }))
+        prodline.images = prodlineData.productline_group_field_2.map(item => item.productline_image_carousel.url)
+        prodline.name = prodlineData.productline_heading[0].text
+        prodline.productSizes = prodlineData.productline_product_sizes
+        prodline.video = prodlineData.productline_video.embed_url
+
+        console.log('data in productline:', prodline)
+        productlines.push(prodline)
         commit('setProductlines', productlines)
       } catch (err) {
         console.warn('Error on getProductlines action', err)
