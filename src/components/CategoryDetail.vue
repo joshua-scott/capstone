@@ -59,7 +59,7 @@ export default {
 
     // checks if the category has > 1 sub-cat
     hasSubCat () {
-      return this.subCategories && this.subCategories.length > 0
+      return this.productlines && this.productlines.length > 0
     }
   },
   methods: {
