@@ -10,8 +10,8 @@
         </b-dropdown-header>
         <transition name="shiftx">
           <div v-show="show">
-            <b-nav-item class="sub-category" :to="`/products/${slug(subCategory.name)}`" :aria-describedby="categoryName" v-for="subCategory in subCategories"
-              :key="`${subCategory.name}-${subCategory.language}`">{{ subCategory.name}}
+            <b-nav-item class="sub-category" :to="`/product/${slug(productline.name)}`" :aria-describedby="categoryName" v-for="productline in productlines"
+              :key="`${productline.name}-${productline.language}`">{{ productline.name}}
             </b-nav-item>
           </div>
         </transition>
@@ -46,6 +46,17 @@ export default {
         return subcat.language === language && subcat.category === this.slug(this.categoryName)
       })
     },
+
+    // gets productlines which replace subCategories
+    productlines () {
+      const prodlines = this.$store.state.productlines
+      const language = this.$store.state.language
+
+      return prodlines.filter(prodline => {
+        return prodline.language === language && prodline.category === this.slug(this.categoryName)
+      })
+    },
+
     // checks if the category has > 1 sub-cat
     hasSubCat () {
       return this.subCategories && this.subCategories.length > 0
