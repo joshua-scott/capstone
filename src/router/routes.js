@@ -4,7 +4,7 @@ import SearchResult from '@/views/SearchResult'
 import ResearchDevelopment from '@/views/ResearchDevelopment'
 // import Categories from '@/views/Categories'
 import ProductList from '@/views/ProductList'
-import Product from '@/views/Product'
+// import Product from '@/views/Product'
 import PageNotFound from '@/views/PageNotFound'
 import ProductLine from '@/views/ProductLine'
 
@@ -44,12 +44,12 @@ export default [
     component: ProductList,
     props: true
   },
-  {
-    name: 'Product',
-    path: '/product/:productNumber',
-    component: Product,
-    props: true
-  },
+  // {
+  //   name: 'Product',
+  //   path: '/product/:productNumber',
+  //   component: Product,
+  //   props: true
+  // },
   {
     name: 'PageNotFound',
     path: '*',
@@ -57,7 +57,8 @@ export default [
   },
   {
     name: 'ProductLine',
-    path: '/ProductLine',
-    component: ProductLine
+    path: '/product/:productlineName',
+    component: ProductLine,
+    props: true
   }
 ]
