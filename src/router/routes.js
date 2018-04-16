@@ -6,6 +6,7 @@ import Categories from '@/views/Categories'
 import ProductList from '@/views/ProductList'
 import Product from '@/views/Product'
 import PageNotFound from '@/views/PageNotFound'
+import ProductLine from '@/views/ProductLine'
 
 export default [
   {
@@ -53,5 +54,10 @@ export default [
     name: 'PageNotFound',
     path: '*',
     component: PageNotFound
+  },
+  {
+    name: 'ProductLine',
+    path: '/ProductLine',
+    component: ProductLine
   }
 ]
