@@ -308,7 +308,7 @@ export default new Vuex.Store({
         prodline.productSizes = prodlineData.productline_product_sizes
         prodline.video = prodlineData.productline_video.embed_url
 
-        console.log('data in productline:', prodline)
+        // console.log('data in productline:', prodline)
         productlines.push(prodline)
         commit('setProductlines', productlines)
       } catch (err) {
