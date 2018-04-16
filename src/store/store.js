@@ -20,7 +20,8 @@ export default new Vuex.Store({
     subCategories: [],
     carouselItems: [],
     rdImages: [],
-    homePages: []
+    homePages: [],
+    productlines: []
   },
   // Actions main job is to get data from somewhere else
   // and then commit the mutations defined below
@@ -278,6 +279,28 @@ export default new Vuex.Store({
       } catch (err) {
         console.warn('Error on getHomePage action', err)
       }
+    },
+
+    // gets the ProductLine documents
+    async getProductlines ({ commit }) {
+      try {
+        const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
+        const response = await api.query(
+          Prismic.Predicates.at('document.type', 'productline'),
+          // { pageSize: 100 }
+        )
+        const data = response.results
+        console.log('productlines:', data)
+
+        let productlines = []
+        data.forEach(line => {
+          const lang = line.lang
+          const data = line.data
+        })
+        commit('setProductlines', productlines)
+      } catch (err) {
+        console.warn('Error on getProductlines action', err)
+      }
     }
   },
   // Mutations are the only place we actually alter the state
@@ -303,6 +326,9 @@ export default new Vuex.Store({
     },
     setHomePage (state, data) {
       state.homePages = data
+    },
+    setProductlines (state, data) {
+      state.productlines = data
     },
     setRdImages (state, data) {
       state.rdImages = data
