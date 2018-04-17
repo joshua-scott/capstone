@@ -15,12 +15,15 @@ export default new Vuex.Store({
   state: {
     language: 'fi',
     aboutPages: {},
+    aboutBrief: {},
     products: [],
     categories: [],
     subCategories: [],
     carouselItems: [],
+    rdPages: {},
     rdImages: [],
-    homePages: []
+    homePages: [],
+    productlines: []
   },
   // Actions main job is to get data from somewhere else
   // and then commit the mutations defined below
@@ -34,8 +37,15 @@ export default new Vuex.Store({
         )
 
         let aboutPages = {}
+        let aboutBrief = { fi: {}, 'en-gb': {} }
+
         response.results.forEach(page => {
           const lang = page.lang
+          // console.dir(page.data.about_title)
+          aboutBrief[lang].title = page.data.about_title[0].text
+          aboutBrief[lang].intro = page.data.about_description[0].text
+          aboutBrief[lang].manufacturerList = PrismicDOM.RichText.asHtml(page.data.manufacturer_list)
+
           aboutPages[lang] = {}
           aboutPages[lang].title = PrismicDOM.RichText.asHtml(page.data.about_title)
           aboutPages[lang].description = PrismicDOM.RichText.asHtml(page.data.about_description)
@@ -44,8 +54,32 @@ export default new Vuex.Store({
         })
 
         commit('setAboutPages', aboutPages)
+        commit('setAboutBrief', aboutBrief)
       } catch (err) {
         console.warn('Error on getAboutPages action', err)
+      }
+    },
+
+    async getRdPages({ commit }) {
+      try {
+        const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
+        let rdPages = {}
+
+        // Welcome to async/await hell!
+        let response = await api.query(
+          Prismic.Predicates.at('document.type', 'rd-team')
+        )
+        console.log(response)
+        rdPages.team = PrismicDOM.RichText.asHtml(response.results[0].data.team_presentation)
+
+        response = await api.query(
+          Prismic.Predicates.at('document.type', 'rd-contact')
+        )
+        rdPages.contact = PrismicDOM.RichText.asHtml(response.results[0].data.contact_info)
+
+        commit('setRdPages', rdPages)
+      } catch (err) {
+        console.warn('Error on getRdPages action', err)
       }
     },
 
@@ -278,6 +312,41 @@ export default new Vuex.Store({
       } catch (err) {
         console.warn('Error on getHomePage action', err)
       }
+    },
+
+    // gets the ProductLine documents
+    async getProductlines ({ commit }) {
+      try {
+        const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
+        const response = await api.query(
+          Prismic.Predicates.at('document.type', 'productline'),
+          // { pageSize: 100 }
+        )
+        const data = response.results[0]
+        // console.log('productlines:', data)
+
+        let productlines = []
+        const lang = data.lang
+        const prodlineData = data.data
+        let prodline = {}
+        prodline.language = lang
+        prodline.category = prodlineData.productline_category.slug
+        prodline.description = prodlineData.productline_description[0].text
+        prodline.documents = prodlineData.productline_group_field.map((repMedia) => ({
+          name: repMedia.producline_repmedia.name,
+          url: repMedia.producline_repmedia.url
+        }))
+        prodline.images = prodlineData.productline_group_field_2.map(item => item.productline_image_carousel.url)
+        prodline.name = prodlineData.productline_heading[0].text
+        prodline.productSizes = prodlineData.productline_product_sizes
+        prodline.video = prodlineData.productline_video.embed_url
+
+        // console.log('data in productline:', prodline)
+        productlines.push(prodline)
+        commit('setProductlines', productlines)
+      } catch (err) {
+        console.warn('Error on getProductlines action', err)
+      }
     }
   },
   // Mutations are the only place we actually alter the state
@@ -304,8 +373,17 @@ export default new Vuex.Store({
     setHomePage (state, data) {
       state.homePages = data
     },
+    setProductlines (state, data) {
+      state.productlines = data
+    },
     setRdImages (state, data) {
       state.rdImages = data
+    },
+    setRdPages (state, data) {
+      state.rdPages = data
+    },
+    setAboutBrief (state, data) {
+      state.aboutBrief = data
     }
   }
 })
