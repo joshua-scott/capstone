@@ -30,13 +30,15 @@ export default {
     }
   },
   beforeMount () {
+    this.$store.dispatch('getHomePage')
     this.$store.dispatch('getCarousel')
     this.$store.dispatch('getAboutPage')
-    this.$store.dispatch('getRdImages')
+    this.$store.dispatch('getRdPages')
     this.$store.dispatch('getCategories')
     this.$store.dispatch('getSubCategories')
     this.$store.dispatch('getProducts')
-    this.$store.dispatch('getHomePage')
+    this.$store.dispatch('getRdImages')
+    this.$store.dispatch('getProductlines')
   },
   mounted () {
     window.addEventListener('resize', this.handleResize)

@@ -2,10 +2,11 @@ import Home from '@/views/Home'
 import About from '@/views/About'
 import SearchResult from '@/views/SearchResult'
 import ResearchDevelopment from '@/views/ResearchDevelopment'
-import Categories from '@/views/Categories'
+// import Categories from '@/views/Categories'
 import ProductList from '@/views/ProductList'
-import Product from '@/views/Product'
+// import Product from '@/views/Product'
 import PageNotFound from '@/views/PageNotFound'
+import ProductLine from '@/views/ProductLine'
 
 export default [
   {
@@ -14,23 +15,24 @@ export default [
     path: '/',
     component: Home
   },
-  {
-    name: 'Products',
-    nameFin: 'Tuotteet',
-    path: '/products',
-    component: Categories
-  },
-  {
-    name: 'R & D',
-    nameFin: 'R & D',
-    path: '/rd',
-    component: ResearchDevelopment
-  },
+  // {
+  //   name: 'Products',
+  //   nameFin: 'Tuotteet',
+  //   path: '/products',
+  //   component: Categories
+  // },
   {
     name: 'About',
     nameFin: 'Meistä',
     path: '/about',
     component: About
+  },
+  {
+    name: 'R & D',
+    nameFin: 'R & D',
+    path: '/rd/:currentView',
+    component: ResearchDevelopment,
+    props: true
   },
   {
     name: 'SearchResult',
@@ -43,15 +45,21 @@ export default [
     component: ProductList,
     props: true
   },
-  {
-    name: 'Product',
-    path: '/product/:productNumber',
-    component: Product,
-    props: true
-  },
+  // {
+  //   name: 'Product',
+  //   path: '/product/:productNumber',
+  //   component: Product,
+  //   props: true
+  // },
   {
     name: 'PageNotFound',
     path: '*',
     component: PageNotFound
+  },
+  {
+    name: 'ProductLine',
+    path: '/product/:productlineName',
+    component: ProductLine,
+    props: true
   }
 ]

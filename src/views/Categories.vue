@@ -1,51 +1,64 @@
 <template>
-  <b-container style="max-width: 1000px;">
-    <b-jumbotron
-      class="welcome-jumbotron"
-      v-if="lang === 'en-gb'"
-      header="Welcome to our products!"
-      lead="We have over 100 products for professional use available. Choose a category or use the search function below."
-      bg-variant="dark"
-      text-variant="light"
-      header-level="4"
-    >
-      <search-box></search-box>
-    </b-jumbotron>
+  <div>
+    <!-- <b-container style="max-width: 1000px;">
+      <b-jumbotron
+        class="welcome-jumbotron"
+        v-if="lang === 'en-gb'"
+        header="Welcome to our products!"
+        lead="We have over 100 products for professional use available. Choose a category or use the search function below."
+        bg-variant="dark"
+        text-variant="light"
+        header-level="4"
+      >
+        <search-box></search-box>
+      </b-jumbotron>
 
-    <section
-      v-for="category in categories"
-      :key="`${category.name}-${category.language}`"
-      class="category-section"
-    >
-      <div class="section-top">
-        <div class="section-top-text">
-          <h2 class="category-title">{{ category.name }}</h2>
-          <h5 class="category-description">{{ category.description }}</h5>
+      <section
+        v-for="category in categories"
+        :key="`${category.name}-${category.language}`"
+        class="category-section"
+      >
+        <div class="section-top">
+          <div class="section-top-text">
+            <h2 class="category-title">{{ category.name }}</h2>
+            <h5 class="category-description">{{ category.description }}</h5>
+          </div>
+          <img class="logo" :src="category.image" :alt="`${category.name} icon`" />
         </div>
-        <img class="logo" :src="category.image" :alt="`${category.name} icon`" />
-      </div>
-      <div class="links">
-        <ul>
-          <li
-            v-for="subCategory in subCategories(category.name)"
-            :key="`${subCategory.name}-${subCategory.language}`"
-          >
-            <b-link :to="`/products/${slug(subCategory.name)}`">{{ subCategory.name }}</b-link>
-          </li>
-        </ul>
-      </div>
-    </section>
-  </b-container>
+        <div class="links">
+          <ul>
+            <li
+              v-for="subCategory in subCategories(category.name)"
+              :key="`${subCategory.name}-${subCategory.language}`"
+            >
+              <b-link :to="`/products/${slug(subCategory.name)}`">{{ subCategory.name }}</b-link>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </b-container> -->
+    <b-nav-item-dropdown :text="title" class="m-md-2">
+      <category-detail v-for="category in categories" :key="`${category.name}-${category.language}`" :categoryName="`${category.name}`"></category-detail>
+    </b-nav-item-dropdown>
+  </div>
 </template>
 
 <script>
 import SearchBox from '@/components/SearchBox.vue'
-
+import CategoryDetail from '@/components/CategoryDetail.vue'
 export default {
   components: {
-    SearchBox
+    SearchBox,
+    CategoryDetail
+  },
+  data () {
+    return {
+    }
   },
   computed: {
+    title () {
+      return this.lang === 'fi' ? 'Tuotteet' : 'Products'
+    },
     categories () {
       const categories = this.$store.state.categories
       const language = this.$store.state.language
