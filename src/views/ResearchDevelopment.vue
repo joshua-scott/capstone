@@ -1,5 +1,6 @@
 <template>
   <b-container>
+    <div v-if="currentView">{{ `I am the ${currentView} view!` }}</div>
     <research-development-carousel></research-development-carousel>
     <div>
       <research-development-article
@@ -11,11 +12,11 @@
 </template>
 
 <script>
-
 import ResearchDevelopmentCarousel from '@/components/ResearchDevelopmentCarousel.vue'
 import ResearchDevelopmentArticle from '@/components/ResearchDevelopmentArticle.vue'
 
 export default {
+  props: ['currentView'],
   computed: {
     lang () {
       return this.$store.state.language
