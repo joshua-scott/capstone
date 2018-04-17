@@ -15,10 +15,12 @@ export default new Vuex.Store({
   state: {
     language: 'fi',
     aboutPages: {},
+    aboutBrief: {},
     products: [],
     categories: [],
     subCategories: [],
     carouselItems: [],
+    rdPages: {},
     rdImages: [],
     homePages: [],
     productlines: []
@@ -26,7 +28,7 @@ export default new Vuex.Store({
   // Actions main job is to get data from somewhere else
   // and then commit the mutations defined below
   actions: {
-    async getAboutPage ({ commit }) {
+    async getAboutPage({ commit }) {
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
@@ -35,8 +37,14 @@ export default new Vuex.Store({
         )
 
         let aboutPages = {}
+        let aboutBrief = { fi: {}, 'en-gb': {} }
+
         response.results.forEach(page => {
           const lang = page.lang
+          aboutBrief[lang].title = page.data.about_title[0].text
+          aboutBrief[lang].intro = page.data.about_description[0].text
+          aboutBrief[lang].manufacturerList = PrismicDOM.RichText.asHtml(page.data.manufacturer_list)
+
           aboutPages[lang] = {}
           aboutPages[lang].title = PrismicDOM.RichText.asHtml(page.data.about_title)
           aboutPages[lang].description = PrismicDOM.RichText.asHtml(page.data.about_description)
@@ -45,12 +53,51 @@ export default new Vuex.Store({
         })
 
         commit('setAboutPages', aboutPages)
+        commit('setAboutBrief', aboutBrief)
       } catch (err) {
         console.warn('Error on getAboutPages action', err)
       }
     },
 
-    async getRdImages ({ commit }) {
+    async getRdPages({ commit }) {
+      try {
+        const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
+        let rdPages = {}
+
+        // Welcome to async/await hell!
+        let response = await api.query(
+          Prismic.Predicates.at('document.type', 'rd-team')
+        )
+        console.log(response)
+        rdPages.team = PrismicDOM.RichText.asHtml(response.results[0].data.team_presentation)
+
+        response = await api.query(
+          Prismic.Predicates.at('document.type', 'rd-contact')
+        )
+        rdPages.contact = PrismicDOM.RichText.asHtml(response.results[0].data.contact_info)
+
+        response = await api.query(
+          Prismic.Predicates.at('document.type', 'rd-publications')
+        )
+        rdPages.publications = PrismicDOM.RichText.asHtml(response.results[0].data.publications_list)
+
+        response = await api.query(
+          Prismic.Predicates.at('document.type', 'rd-partners')
+        )
+        rdPages.partners = PrismicDOM.RichText.asHtml(response.results[0].data.partners_list)
+
+        response = await api.query(
+          Prismic.Predicates.at('document.type', 'rd_news')
+        )
+        rdPages.news = PrismicDOM.RichText.asHtml(response.results[0].data.news_list)
+
+        commit('setRdPages', rdPages)
+      } catch (err) {
+        console.warn('Error on getRdPages action', err)
+      }
+    },
+
+    async getRdImages({ commit }) {
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
@@ -85,7 +132,7 @@ export default new Vuex.Store({
       }
     },
 
-    async getProducts ({ commit }) {
+    async getProducts({ commit }) {
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
@@ -94,7 +141,7 @@ export default new Vuex.Store({
         )
         var data = response.results
         if (response.total_pages != 1) {
-          for (var i=2; i <= response.total_pages; i++) {
+          for (var i = 2; i <= response.total_pages; i++) {
             var colResponse = await api.query(
               Prismic.Predicates.at('document.type', 'product'),
               { lang: '*', pageSize: 100, page: i }
@@ -140,7 +187,7 @@ export default new Vuex.Store({
       }
     },
 
-    async getCategories ({ commit }) {
+    async getCategories({ commit }) {
       try {
         let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
@@ -172,7 +219,7 @@ export default new Vuex.Store({
       }
     },
 
-    async getSubCategories ({ commit }) {
+    async getSubCategories({ commit }) {
       try {
         let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
@@ -199,7 +246,7 @@ export default new Vuex.Store({
       }
     },
 
-    async getCarousel ({ commit }) {
+    async getCarousel({ commit }) {
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
@@ -236,7 +283,7 @@ export default new Vuex.Store({
       }
     },
 
-    async getHomePage ({ commit }) {
+    async getHomePage({ commit }) {
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
@@ -244,7 +291,6 @@ export default new Vuex.Store({
           { pageSize: 100 }
         )
         const data = response.results
-        // console.log('homepage:', data);
 
         let homePage = []
         data.forEach(page => {
@@ -282,7 +328,7 @@ export default new Vuex.Store({
     },
 
     // gets the ProductLine documents
-    async getProductlines ({ commit }) {
+    async getProductlines({ commit }) {
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
@@ -318,33 +364,39 @@ export default new Vuex.Store({
   },
   // Mutations are the only place we actually alter the state
   mutations: {
-    setLanguage (state, newLanguage) {
+    setLanguage(state, newLanguage) {
       state.language = newLanguage
       console.info(`Language changed to ${newLanguage}`)
     },
-    setAboutPages (state, data) {
+    setAboutPages(state, data) {
       state.aboutPages = data
     },
-    setProducts (state, data) {
+    setProducts(state, data) {
       state.products = data
     },
-    setCarousel (state, data) {
+    setCarousel(state, data) {
       state.carouselItems = data
     },
-    setCategories (state, data) {
+    setCategories(state, data) {
       state.categories = data
     },
-    setSubCategories (state, data) {
+    setSubCategories(state, data) {
       state.subCategories = data
     },
-    setHomePage (state, data) {
+    setHomePage(state, data) {
       state.homePages = data
     },
-    setProductlines (state, data) {
+    setProductlines(state, data) {
       state.productlines = data
     },
-    setRdImages (state, data) {
+    setRdImages(state, data) {
       state.rdImages = data
+    },
+    setRdPages(state, data) {
+      state.rdPages = data
+    },
+    setAboutBrief(state, data) {
+      state.aboutBrief = data
     }
   }
 })
