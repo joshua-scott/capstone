@@ -41,10 +41,6 @@ export default new Vuex.Store({
 
         response.results.forEach(page => {
           const lang = page.lang
-<<<<<<< HEAD
-          // console.dir(page.data.about_title)
-=======
->>>>>>> eb881c3bf14fa3be9928b3ac33fe737840768099
           aboutBrief[lang].title = page.data.about_title[0].text
           aboutBrief[lang].intro = page.data.about_description[0].text
           aboutBrief[lang].manufacturerList = PrismicDOM.RichText.asHtml(page.data.manufacturer_list)
@@ -80,8 +76,6 @@ export default new Vuex.Store({
         )
         rdPages.contact = PrismicDOM.RichText.asHtml(response.results[0].data.contact_info)
 
-<<<<<<< HEAD
-=======
         response = await api.query(
           Prismic.Predicates.at('document.type', 'rd-publications')
         )
@@ -97,18 +91,13 @@ export default new Vuex.Store({
         )
         rdPages.news = PrismicDOM.RichText.asHtml(response.results[0].data.news_list)
 
->>>>>>> eb881c3bf14fa3be9928b3ac33fe737840768099
         commit('setRdPages', rdPages)
       } catch (err) {
         console.warn('Error on getRdPages action', err)
       }
     },
 
-<<<<<<< HEAD
-    async getRdImages ({ commit }) {
-=======
     async getRdImages({ commit }) {
->>>>>>> eb881c3bf14fa3be9928b3ac33fe737840768099
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
@@ -339,11 +328,7 @@ export default new Vuex.Store({
     },
 
     // gets the ProductLine documents
-<<<<<<< HEAD
-    async getProductlines ({ commit }) {
-=======
     async getProductlines({ commit }) {
->>>>>>> eb881c3bf14fa3be9928b3ac33fe737840768099
       try {
         const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         const response = await api.query(
@@ -401,18 +386,6 @@ export default new Vuex.Store({
     setHomePage(state, data) {
       state.homePages = data
     },
-<<<<<<< HEAD
-    setProductlines (state, data) {
-      state.productlines = data
-    },
-    setRdImages (state, data) {
-      state.rdImages = data
-    },
-    setRdPages (state, data) {
-      state.rdPages = data
-    },
-    setAboutBrief (state, data) {
-=======
     setProductlines(state, data) {
       state.productlines = data
     },
@@ -423,7 +396,6 @@ export default new Vuex.Store({
       state.rdPages = data
     },
     setAboutBrief(state, data) {
->>>>>>> eb881c3bf14fa3be9928b3ac33fe737840768099
       state.aboutBrief = data
     }
   }
