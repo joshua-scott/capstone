@@ -38,6 +38,7 @@ export default new Vuex.Store({
 
         let aboutPages = {}
         let aboutBrief = { fi: {}, 'en-gb': {} }
+        console.log(response)
 
         response.results.forEach(page => {
           const lang = page.lang
@@ -346,8 +347,8 @@ export default new Vuex.Store({
         prodline.category = prodlineData.productline_category.slug
         prodline.description = prodlineData.productline_description[0].text
         prodline.documents = prodlineData.productline_group_field.map((repMedia) => ({
-          name: repMedia.producline_repmedia.name,
-          url: repMedia.producline_repmedia.url
+          name: repMedia.productline_repmedia.name,
+          url: repMedia.productline_repmedia.url
         }))
         prodline.images = prodlineData.productline_group_field_2.map(item => item.productline_image_carousel.url)
         prodline.name = prodlineData.productline_heading[0].text
