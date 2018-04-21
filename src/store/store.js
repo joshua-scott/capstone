@@ -336,9 +336,8 @@ export default new Vuex.Store({
           Prismic.Predicates.at('document.type', 'productline'),
           // { pageSize: 100 }
         )
-        // console.log('productlines:', response.results)
         const data = response.results
-        // console.log('productlines:', data)
+        console.log('productlines:', data)
 
         let productlines = []
         data.forEach(productline => {
@@ -355,9 +354,9 @@ export default new Vuex.Store({
           prodline.images = prodlineData.productline_group_field_2.map(item => item.productline_image_carousel.url)
           prodline.name = prodlineData.productline_heading[0].text
           prodline.productSizes = prodlineData.productline_product_sizes
-          prodline.video = prodlineData.productline_video.embed_url
+          prodline.video = prodlineData.productline_video.html
 
-          // console.log('data in productline:', prodline)
+          console.log('data in productline:', prodline)
           productlines.push(prodline)
         })
         

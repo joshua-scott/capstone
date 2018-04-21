@@ -15,13 +15,7 @@
           <p v-for="size of productline.productSizes" :key="size.text">
             {{ size.text }}
           </p>
-          <div>
-            <b-embed type="iframe"
-            aspect="16by9"
-            frameborder="0"
-            :src="getYoutubeEmbedCode(productline.video)"
-            allowfullscreen>
-            </b-embed>
+          <div v-html="productline.video">
           </div>
         </b-col>
         <b-col>
@@ -69,21 +63,6 @@ export default {
         return this.slug(prod.name) === this.productlineName &&
           prod.language === language
       })
-    }
-  },
-  methods: {
-    // gets the embed code from youtube URL
-    getYoutubeEmbedCode (url) {
-      const originalPlaylist = 'playlist?list='
-      const embedPlaylist = 'embed/?listType=playlist&list='
-      const originalSingleVideo = 'watch?v='
-      const embedSingleVideo = 'embed/'
-      // changes the URL depending on the type of the URL (playlist or single)
-      if (url.includes('playlist?list=')) {
-        return url.replace(originalPlaylist, embedPlaylist)
-      } else {
-        return url.replace(originalSingleVideo, embedSingleVideo)
-      }
     }
   }
 }
