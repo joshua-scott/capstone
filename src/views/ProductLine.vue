@@ -18,7 +18,8 @@
           <div>
             <b-embed type="iframe"
             aspect="16by9"
-            src="https://www.youtube.com/embed/Q_I2ZWUcrJ0?list=PLZS9OI300UE-yPTFpfRN9HsZJ2GzjgsKX&amp;ecver=1"
+            frameborder="0"
+            :src="getYoutubeEmbedCode(productline.video)"
             allowfullscreen>
             </b-embed>
           </div>
@@ -59,15 +60,30 @@ export default {
       const language = this.$store.state.language
       // console.log(this.productlineName)
 
-      // console.log(productlines.find(prod => {
-      //   return this.slug(prod.name) === this.productlineName &&
-      //     prod.language === language
-      // }))
+      console.log(productlines.find(prod => {
+        return this.slug(prod.name) === this.productlineName &&
+          prod.language === language
+      }))
 
       return productlines.find(prod => {
         return this.slug(prod.name) === this.productlineName &&
           prod.language === language
       })
+    }
+  },
+  methods: {
+    // gets the embed code from youtube URL
+    getYoutubeEmbedCode (url) {
+      const originalPlaylist = 'playlist?list='
+      const embedPlaylist = 'embed/?listType=playlist&list='
+      const originalSingleVideo = 'watch?v='
+      const embedSingleVideo = 'embed/'
+      // changes the URL depending on the type of the URL (playlist or single)
+      if (url.includes('playlist?list=')) {
+        return url.replace(originalPlaylist, embedPlaylist)
+      } else {
+        return url.replace(originalSingleVideo, embedSingleVideo)
+      }
     }
   }
 }
