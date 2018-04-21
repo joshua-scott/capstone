@@ -22,16 +22,17 @@ export default [
   //   component: Categories
   // },
   {
-    name: 'R & D',
-    nameFin: 'R & D',
-    path: '/rd',
-    component: ResearchDevelopment
-  },
-  {
     name: 'About',
     nameFin: 'Meistä',
     path: '/about',
     component: About
+  },
+  {
+    name: 'R & D',
+    nameFin: 'R & D',
+    path: '/rd/:currentView',
+    component: ResearchDevelopment,
+    props: true
   },
   {
     name: 'SearchResult',

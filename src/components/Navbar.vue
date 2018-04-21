@@ -13,11 +13,16 @@
       <b-collapse is-nav id="nav-collapse">
 
         <b-navbar-nav class="link-items">
-          <b-nav-item
-            v-for="( route, index ) in displayedRoutes"
-            :key="index" :to="route.path" exact>
-            {{ language === 'en-gb' ? route.name : route.nameFin }}
-          </b-nav-item>
+          <template v-for="( route, index ) in displayedRoutes">
+            <b-nav-item-dropdown v-if="route.name === 'R & D'" :key="index" text="R & D" class="m-md-2">
+              <b-dropdown-header v-for="section in rdSections" :key="section"
+              ><router-link :to="`/rd/${section.toLowerCase()}`">{{ section }}</router-link></b-dropdown-header>
+            </b-nav-item-dropdown>
+            <b-nav-item v-else
+              :to="route.path" :key="index" class="m-md-2" exact>
+              {{ language === 'en-gb' ? route.name : route.nameFin }}
+            </b-nav-item>
+          </template>
         </b-navbar-nav>
 
         <b-navbar-nav>
@@ -56,7 +61,8 @@ export default {
       flags: {
         fi: require('@/assets/flags/fi.svg'),
         gb: require('@/assets/flags/gb.svg')
-      }
+      },
+      rdSections: ['Team', 'Publications', 'Partners', 'Contact', 'News']
     }
   },
   components: {
