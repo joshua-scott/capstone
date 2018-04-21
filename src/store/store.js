@@ -145,12 +145,12 @@ export default new Vuex.Store({
         let api = await Prismic.getApi('https://reno.prismic.io/api/v2')
         await api.query(
           Prismic.Predicates.at('document.type', 'category'),
-          { lang: '*', pageSize: 100 }
+          { lang: '*', pageSize: 100, orderings: '[my.category.category_priority_level desc]' }
         ).then(function (response) {
 
           let data = response.results
           let categories = []
-
+          // console.log('categories:', data)
           data.forEach(obj => {
             let category = {}
             let c = obj.data
@@ -300,8 +300,8 @@ export default new Vuex.Store({
         prodline.category = prodlineData.productline_category.slug
         prodline.description = prodlineData.productline_description[0].text
         prodline.documents = prodlineData.productline_group_field.map((repMedia) => ({
-          name: repMedia.producline_repmedia.name,
-          url: repMedia.producline_repmedia.url
+          name: repMedia.productline_repmedia.name,
+          url: repMedia.productline_repmedia.url
         }))
         prodline.images = prodlineData.productline_group_field_2.map(item => item.productline_image_carousel.url)
         prodline.name = prodlineData.productline_heading[0].text
