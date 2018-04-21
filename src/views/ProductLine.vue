@@ -15,12 +15,7 @@
           <p v-for="size of productline.productSizes" :key="size.text">
             {{ size.text }}
           </p>
-          <div>
-            <b-embed type="iframe"
-            aspect="16by9"
-            src="https://www.youtube.com/embed/Q_I2ZWUcrJ0?list=PLZS9OI300UE-yPTFpfRN9HsZJ2GzjgsKX&amp;ecver=1"
-            allowfullscreen>
-            </b-embed>
+          <div v-html="productline.video">
           </div>
         </b-col>
         <b-col>
@@ -59,10 +54,10 @@ export default {
       const language = this.$store.state.language
       // console.log(this.productlineName)
 
-      // console.log(productlines.find(prod => {
-      //   return this.slug(prod.name) === this.productlineName &&
-      //     prod.language === language
-      // }))
+      console.log(productlines.find(prod => {
+        return this.slug(prod.name) === this.productlineName &&
+          prod.language === language
+      }))
 
       return productlines.find(prod => {
         return this.slug(prod.name) === this.productlineName &&
