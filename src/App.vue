@@ -30,7 +30,7 @@ export default {
     }
   },
   beforeMount () {
-    this.$store.dispatch('getHomePage')
+    // this.$store.dispatch('getHomePage')
     this.$store.dispatch('getCarousel')
     this.$store.dispatch('getAboutPage')
     this.$store.dispatch('getRdPages')
@@ -39,6 +39,7 @@ export default {
     this.$store.dispatch('getProducts')
     this.$store.dispatch('getRdImages')
     this.$store.dispatch('getProductlines')
+    this.$store.dispatch('getHomeLinks')
   },
   mounted () {
     window.addEventListener('resize', this.handleResize)

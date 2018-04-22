@@ -22,8 +22,9 @@ export default new Vuex.Store({
     carouselItems: [],
     rdPages: {},
     rdImages: [],
-    homePages: [],
-    productlines: []
+    // homePages: [],
+    productlines: [],
+    homeLinks: []
   },
   // Actions main job is to get data from somewhere else
   // and then commit the mutations defined below
@@ -283,49 +284,74 @@ export default new Vuex.Store({
       }
     },
 
-    async getHomePage({ commit }) {
-      try {
-        const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
-        const response = await api.query(
-          Prismic.Predicates.at('document.type', 'homepage'),
-          { pageSize: 100 }
-        )
-        const data = response.results
+      async getHomeLinks({ commit }) {
+        try {
+          const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
+          const response = await api.query(
+            Prismic.Predicates.at('document.type', 'home_links'),
+            { lang: 'fi' }
+          )
+          const data = response.results
+          console.log(data)
+          let homeLinks = []
 
-        let homePage = []
-        data.forEach(page => {
-          const lang = page.lang
-          const data = page.data
+          data.forEach(obj => {
+            const h = obj.data
+            homeLinks.videoLink = h.youtube_videos[0].video_link.url
+            console.log(homeLinks.videoLink)
+            homeLinks.push(homeLinks.videoLink)
+          })
+          console.log(homeLinks)
+          commit('setHomeLinks', homeLinks)
+        } catch (err) {
+          console.warn('Error on getHomeLinks action', err)
+        }
+      },
+  
+    // Code for old homepage layout, before it got reverted to the carousel again
+    // async getHomePage({ commit }) {
+    //   try {
+    //     const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
+    //     const response = await api.query(
+    //       Prismic.Predicates.at('document.type', 'homepage'),
+    //       { pageSize: 100 }
+    //     )
+    //     const data = response.results
 
-          //English
-          let englishData = {}
-          englishData.language = 'en-gb'
-          englishData.section1_heading = data.homepage_section_1_heading_en[0].text
-          englishData.section1_text = data.homepage_section_1_text_en[0].text
-          englishData.section2_heading = data.homepage_section_2_heading_en[0].text
-          englishData.section2_text = data.homepage_section_2_text_en[0].text
-          englishData.section3_heading = data.homepage_section_3_heading_en[0].text
-          englishData.section3_text = data.homepage_section_3_text_en[0].text
+    //     let homePage = []
+    //     data.forEach(page => {
+    //       const lang = page.lang
+    //       const data = page.data
 
-          homePage.push(englishData)
+    //       //English
+    //       let englishData = {}
+    //       englishData.language = 'en-gb'
+    //       englishData.section1_heading = data.homepage_section_1_heading_en[0].text
+    //       englishData.section1_text = data.homepage_section_1_text_en[0].text
+    //       englishData.section2_heading = data.homepage_section_2_heading_en[0].text
+    //       englishData.section2_text = data.homepage_section_2_text_en[0].text
+    //       englishData.section3_heading = data.homepage_section_3_heading_en[0].text
+    //       englishData.section3_text = data.homepage_section_3_text_en[0].text
 
-          //Finnish
-          let finnishData = {}
-          finnishData.language = 'fi'
-          finnishData.section1_heading = data.homepage_section_1_heading_fi[0].text
-          finnishData.section1_text = data.homepage_section_1_text_fi[0].text
-          finnishData.section2_heading = data.homepage_section_2_heading_fi[0].text
-          finnishData.section2_text = data.homepage_section_2_text_fi[0].text
-          finnishData.section3_heading = data.homepage_section_heading_3_fi[0].text
-          finnishData.section3_text = data.homepage_section_3_text_fi[0].text
+    //       homePage.push(englishData)
 
-          homePage.push(finnishData)
-        })
-        commit('setHomePage', homePage)
-      } catch (err) {
-        console.warn('Error on getHomePage action', err)
-      }
-    },
+    //       //Finnish
+    //       let finnishData = {}
+    //       finnishData.language = 'fi'
+    //       finnishData.section1_heading = data.homepage_section_1_heading_fi[0].text
+    //       finnishData.section1_text = data.homepage_section_1_text_fi[0].text
+    //       finnishData.section2_heading = data.homepage_section_2_heading_fi[0].text
+    //       finnishData.section2_text = data.homepage_section_2_text_fi[0].text
+    //       finnishData.section3_heading = data.homepage_section_heading_3_fi[0].text
+    //       finnishData.section3_text = data.homepage_section_3_text_fi[0].text
+
+    //       homePage.push(finnishData)
+    //     })
+    //     commit('setHomePage', homePage)
+    //   } catch (err) {
+    //     console.warn('Error on getHomePage action', err)
+    //   }
+    // },
 
     // gets the ProductLine documents
     async getProductlines({ commit }) {
@@ -346,8 +372,8 @@ export default new Vuex.Store({
         prodline.category = prodlineData.productline_category.slug
         prodline.description = prodlineData.productline_description[0].text
         prodline.documents = prodlineData.productline_group_field.map((repMedia) => ({
-          name: repMedia.producline_repmedia.name,
-          url: repMedia.producline_repmedia.url
+          name: repMedia.productline_repmedia.name,
+          url: repMedia.productline_repmedia.url
         }))
         prodline.images = prodlineData.productline_group_field_2.map(item => item.productline_image_carousel.url)
         prodline.name = prodlineData.productline_heading[0].text
@@ -383,9 +409,9 @@ export default new Vuex.Store({
     setSubCategories(state, data) {
       state.subCategories = data
     },
-    setHomePage(state, data) {
-      state.homePages = data
-    },
+    // setHomePage(state, data) {
+    //   state.homePages = data
+    // },
     setProductlines(state, data) {
       state.productlines = data
     },
@@ -397,6 +423,9 @@ export default new Vuex.Store({
     },
     setAboutBrief(state, data) {
       state.aboutBrief = data
+    },
+    setHomeLinks(state, data) {
+      state.homeLinks = data
     }
   }
 })
