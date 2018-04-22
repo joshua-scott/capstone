@@ -92,6 +92,7 @@ export default {
   margin-bottom:10px;
 }
 .styling-embed{
-  margin-top:30px;
+  padding-top:25px;
+  padding-bottom:50px;
 }
 </style>
