@@ -71,8 +71,12 @@ export default {
 <style>
 .jumbotron-styling{
   background-color:#263779;
-  opacity:0.6;
-  max-height:200px;
+  height:125px;
+  margin-bottom:40px;
+  padding:25px;
+  padding-top:10px;
+  color:white;
+  border-radius:5px;
 }
 .header-padding{
 }
