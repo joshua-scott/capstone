@@ -12,11 +12,11 @@
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in inventore necessitatibus. Hic nihil numquam accusantium iusto totam sapiente consequuntur reiciendis harum. Aliquid iste maxime odit corrupti omnis laboriosam totam.</p>
       <b-row>
         <b-col>
-          <h3>{{ productline.productSizes[0].text}}</h3>
+          <!-- <h3>{{ productline.productSizes[0].text}}</h3> -->
           <p v-for="size of productline.productSizes" :key="size.text">
             {{ size.text }}
           </p>
-          <carousel class="edited-carousel"></carousel>
+          <carousel :images="productline.images" class="edited-carousel"></carousel>
           <div class="video" v-html="productline.video">
           </div>
         </b-col>
