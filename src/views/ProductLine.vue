@@ -9,9 +9,9 @@
           Some introductions
         </h5> -->
       </b-jumbotron>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in inventore necessitatibus. Hic nihil numquam accusantium iusto totam sapiente consequuntur reiciendis harum. Aliquid iste maxime odit corrupti omnis laboriosam totam.</p>
       <b-row>
         <b-col>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in inventore necessitatibus. Hic nihil numquam accusantium iusto totam sapiente consequuntur reiciendis harum. Aliquid iste maxime odit corrupti omnis laboriosam totam.</p>
           <h3>{{ productline.productSizes[0].text}}</h3>
           <p v-for="size of productline.productSizes" :key="size.text">
             {{ size.text }}
@@ -75,11 +75,11 @@ export default {
 .jumbotron-styling{
   background-color:#263779;
   height:85px;
-  margin-bottom:40px;
   padding:25px;
   padding-top:10px;
   color:white;
   border-radius:5px;
+  text-align: center;
 }
 .header-padding{
 }
@@ -93,5 +93,9 @@ export default {
 .edited-carousel{
   margin-left:0px;
   margin-bottom:30px;
+}
+.cover{
+  padding:20px;
+  background-color:black;
 }
 </style>
