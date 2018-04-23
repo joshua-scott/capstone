@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <b-container v-if="brief">
       <carousel></carousel>
@@ -10,11 +9,7 @@
             <h3>{{ brief.title }}</h3>
             <p>{{ brief.intro }}</p>
             <div v-html="brief.manufacturerList"></div>
-            <b-embed type="iframe"
-              aspect="16by9"
-              src="https://www.youtube.com/embed/dOTttRvR2tI"
-              allowfullscreen
-            ></b-embed>
+            <b-embed v-if="homeLinks" type="iframe" aspect="16by9" v-src="homeLinks.videoLink" allowfullscreen></b-embed>
           </b-col>
           <b-col class="mt-4 text-center" sm=12 lg=6>
           <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Frenotechoy&tabs=timeline&width=470&height=700&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId"
