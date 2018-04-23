@@ -3,6 +3,7 @@
     b-carousel(
       class="carousel"
       controls
+      img-height="400"
       indicators
       :interval="5000")
       template(v-for="(slide, index) in slides")
