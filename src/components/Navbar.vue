@@ -112,6 +112,28 @@ export default {
     font-weight: 700;
   }
 
+  .router-link-exact-active{
+    color: #6c757d !important;
+    display: block;
+padding: 0.25rem 0.5rem;
+font-size: 1.5rem;
+white-space: nowrap;
+margin-bottom: 0;
+
+  }
+  a{
+    color: #6c757d !important;
+    display: block;
+padding: 0.25rem 0.5rem;
+font-size: 1.5rem;
+white-space: nowrap;
+margin-bottom: 0;
+  }
+  .nav-link{
+    padding: 0.5rem 1.5rem;
+
+  }
+
   .nav-main {
     font-size: 1.5em;
   }

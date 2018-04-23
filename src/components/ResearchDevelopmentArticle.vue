@@ -10,10 +10,10 @@
       - Potentially, make Carousel.vue into a reusable component that receives its props (data) from the parent component (e.g. Home.vue for the one on the homepage, and ResearchDevelopment.vue for RD page).
      -->
 
-    <b-row>
+  <!--  <b-row>
       <b-img :src="article.imageUrl" style="margin: auto;" />
       <div v-html="article.description"></div>
-    </b-row>
+    </b-row> -->
   </b-container>
 </template>
 
