@@ -10,6 +10,7 @@
         </h5> -->
       </b-jumbotron>
       <p :class="description.type" v-for="description of productline.description" :key="description.text"> {{description.text}}</p>
+      <hr>
       <b-row>
         <b-col>
           <p :class="size.type" v-for="size of productline.productSizes" :key="size.text">
@@ -21,7 +22,7 @@
         </b-col>
         <b-col cols="5">
           <b-media v-show="document.url" class="b-media-margin" v-for="document of productline.documents" :key="document.name">
-            <b-img slot="aside" src="http://www.iconarchive.com/download/i86107/graphicloads/filetype/pdf.ico" width="64" height="64" alt="placeholder" />
+            <b-img slot="aside" src="https://image.freepik.com/free-icon/pdf-file-format-symbol_318-45340.jpg" width="64" height="64" alt="placeholder" />
             <h6 class="mt-0">{{ document.name }}</h6>
             <b-link :href="document.url">Download</b-link>
           </b-media>
