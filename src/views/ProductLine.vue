@@ -9,10 +9,9 @@
           Some introductions
         </h5> -->
       </b-jumbotron>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime in inventore necessitatibus. Hic nihil numquam accusantium iusto totam sapiente consequuntur reiciendis harum. Aliquid iste maxime odit corrupti omnis laboriosam totam.</p>
+      <p> {{ productline.description}}</p>
       <b-row>
         <b-col>
-          <!-- <h3>{{ productline.productSizes[0].text}}</h3> -->
           <p v-for="size of productline.productSizes" :key="size.text">
             {{ size.text }}
           </p>
