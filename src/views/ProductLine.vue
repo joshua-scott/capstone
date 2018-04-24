@@ -9,10 +9,10 @@
           Some introductions
         </h5> -->
       </b-jumbotron>
-      <p v-for="description of productline.description" :key="description"> {{description.text}}</p>
+      <p :class="description.type" v-for="description of productline.description" :key="description.text"> {{description.text}}</p>
       <b-row>
         <b-col>
-          <p v-for="size of productline.productSizes" :key="size.text">
+          <p :class="size.type" v-for="size of productline.productSizes" :key="size.text">
             {{ size.text }}
           </p>
           <carousel :images="productline.images" class="edited-carousel"></carousel>
@@ -80,7 +80,16 @@ export default {
   border-radius:5px;
   text-align: center;
 }
-.header-padding{
+.heading2 {
+  /* adds style for heading2 text */
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.list-item {
+  /* adds style for text as list-item */
+  display: list-item;
+  list-style-type: square;
+  margin-left: 2vw;
 }
 .b-media-margin{
   margin-bottom:3%;
