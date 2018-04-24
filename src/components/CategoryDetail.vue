@@ -1,7 +1,7 @@
 <template>
   <div>
     <div role="group" :aria-lableledby="categoryName">
-        <b-dropdown-header @click="showSubCat(!show)" :id="categoryName" class="category-header">
+        <b-dropdown-header @click="showSubCat(!show)" :id="categoryName" :class="{clickable: hasSubCat}" class="category-header">
           {{ categoryName }}
           <span v-show="hasSubCat">
             <font-awesome-icon v-if="!show" icon="chevron-circle-right"></font-awesome-icon>
@@ -132,6 +132,11 @@ export default {
   /* style for subcategories*/
   .sub-category:hover {
     background-color: $bootstrap-light;
+  }
+
+  /* change the cursor type for clickable field*/
+  .clickable {
+    cursor: pointer;
   }
 
   @media screen and (max-width: 600px) {
