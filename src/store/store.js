@@ -337,7 +337,7 @@ export default new Vuex.Store({
           // { pageSize: 100 }
         )
         const data = response.results
-        console.log('productlines:', data)
+        // console.log('productlines:', data)
 
         let productlines = []
         data.forEach(productline => {
@@ -356,7 +356,7 @@ export default new Vuex.Store({
           prodline.productSizes = prodlineData.productline_product_sizes
           prodline.video = prodlineData.productline_video.html
 
-          console.log('data in productline:', prodline)
+          // console.log('data in productline:', prodline)
           productlines.push(prodline)
         })
         
