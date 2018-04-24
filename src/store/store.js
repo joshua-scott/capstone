@@ -346,7 +346,7 @@ export default new Vuex.Store({
           let prodline = {}
           prodline.language = lang
           prodline.category = prodlineData.productline_category.slug
-          prodline.description = prodlineData.productline_description[0].text
+          prodline.description = prodlineData.productline_description
           prodline.documents = prodlineData.productline_group_field.map((repMedia) => ({
             name: repMedia.productline_repmedia.name,
             url: repMedia.productline_repmedia.url

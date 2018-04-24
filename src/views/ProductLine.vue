@@ -9,7 +9,7 @@
           Some introductions
         </h5> -->
       </b-jumbotron>
-      <p> {{ productline.description}}</p>
+      <p v-for="description of productline.description" :key="description"> {{description.text}}</p>
       <b-row>
         <b-col>
           <p v-for="size of productline.productSizes" :key="size.text">
