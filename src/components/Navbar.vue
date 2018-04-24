@@ -23,11 +23,14 @@
               {{ language === 'en-gb' ? route.name : route.nameFin }}
             </b-nav-item>
           </template>
+          <template>
+            <Categories></Categories>
+          </template>
         </b-navbar-nav>
 
-        <b-navbar-nav>
+        <!-- <b-navbar-nav>
           <Categories></Categories>
-        </b-navbar-nav>
+        </b-navbar-nav> -->
 
         <b-navbar-nav class="ml-auto">
           <!-- <b-nav-form>
