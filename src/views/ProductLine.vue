@@ -20,7 +20,7 @@
           </div>
         </b-col>
         <b-col cols="5">
-          <b-media class="b-media-margin" v-for="document of productline.documents" :key="document.name">
+          <b-media v-show="document.url" class="b-media-margin" v-for="document of productline.documents" :key="document.name">
             <b-img slot="aside" src="http://www.iconarchive.com/download/i86107/graphicloads/filetype/pdf.ico" width="64" height="64" alt="placeholder" />
             <h6 class="mt-0">{{ document.name }}</h6>
             <b-link :href="document.url">Download</b-link>
@@ -56,10 +56,10 @@ export default {
       const language = this.$store.state.language
       // console.log(this.productlineName)
 
-      console.log(productlines.find(prod => {
-        return this.slug(prod.name) === this.productlineName &&
-          prod.language === language
-      }))
+      // console.log(productlines.find(prod => {
+      //   return this.slug(prod.name) === this.productlineName &&
+      //     prod.language === language
+      // }))
 
       return productlines.find(prod => {
         return this.slug(prod.name) === this.productlineName &&
