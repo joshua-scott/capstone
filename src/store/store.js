@@ -22,7 +22,6 @@ export default new Vuex.Store({
     carouselItems: [],
     rdPages: {},
     rdImages: [],
-    homePages: [],
     productlines: []
   },
   // Actions main job is to get data from somewhere else
@@ -38,7 +37,6 @@ export default new Vuex.Store({
 
         let aboutPages = {}
         let aboutBrief = { fi: {}, 'en-gb': {} }
-        console.log(response)
 
         response.results.forEach(page => {
           const lang = page.lang
@@ -51,6 +49,7 @@ export default new Vuex.Store({
           aboutPages[lang].description = PrismicDOM.RichText.asHtml(page.data.about_description)
           aboutPages[lang].contactInfo = PrismicDOM.RichText.asHtml(page.data.sales_billing_contact_info)
           aboutPages[lang].manufacturerList = PrismicDOM.RichText.asHtml(page.data.manufacturer_list)
+          aboutPages[lang].youtubeLink = "https://youtube.com/embed/" + page.data.youtube_link
         })
 
         commit('setAboutPages', aboutPages)
@@ -69,7 +68,6 @@ export default new Vuex.Store({
         let response = await api.query(
           Prismic.Predicates.at('document.type', 'rd-team')
         )
-        console.log(response)
         rdPages.team = PrismicDOM.RichText.asHtml(response.results[0].data.team_presentation)
 
         response = await api.query(
@@ -284,50 +282,6 @@ export default new Vuex.Store({
       }
     },
 
-    async getHomePage({ commit }) {
-      try {
-        const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
-        const response = await api.query(
-          Prismic.Predicates.at('document.type', 'homepage'),
-          { pageSize: 100 }
-        )
-        const data = response.results
-
-        let homePage = []
-        data.forEach(page => {
-          const lang = page.lang
-          const data = page.data
-
-          //English
-          let englishData = {}
-          englishData.language = 'en-gb'
-          englishData.section1_heading = data.homepage_section_1_heading_en[0].text
-          englishData.section1_text = data.homepage_section_1_text_en[0].text
-          englishData.section2_heading = data.homepage_section_2_heading_en[0].text
-          englishData.section2_text = data.homepage_section_2_text_en[0].text
-          englishData.section3_heading = data.homepage_section_3_heading_en[0].text
-          englishData.section3_text = data.homepage_section_3_text_en[0].text
-
-          homePage.push(englishData)
-
-          //Finnish
-          let finnishData = {}
-          finnishData.language = 'fi'
-          finnishData.section1_heading = data.homepage_section_1_heading_fi[0].text
-          finnishData.section1_text = data.homepage_section_1_text_fi[0].text
-          finnishData.section2_heading = data.homepage_section_2_heading_fi[0].text
-          finnishData.section2_text = data.homepage_section_2_text_fi[0].text
-          finnishData.section3_heading = data.homepage_section_heading_3_fi[0].text
-          finnishData.section3_text = data.homepage_section_3_text_fi[0].text
-
-          homePage.push(finnishData)
-        })
-        commit('setHomePage', homePage)
-      } catch (err) {
-        console.warn('Error on getHomePage action', err)
-      }
-    },
-
     // gets the ProductLine documents
     async getProductlines({ commit }) {
       try {
@@ -386,9 +340,6 @@ export default new Vuex.Store({
     },
     setSubCategories(state, data) {
       state.subCategories = data
-    },
-    setHomePage(state, data) {
-      state.homePages = data
     },
     setProductlines(state, data) {
       state.productlines = data

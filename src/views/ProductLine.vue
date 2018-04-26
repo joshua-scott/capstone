@@ -73,7 +73,7 @@ export default {
 
 <style>
 .jumbotron-styling{
-  background-color:#263779;
+  background-color:#263779 !important;
   height:85px;
   padding:25px;
   padding-top:10px;

@@ -7,7 +7,7 @@
           <div class="info-block">
             <h1 class="title">{{ contactInfo[language] }}</h1>
             <div>Renotech Oy</div>
-            <div>Sampsankatu 4 B 20528</div>
+            <div>Sampsankatu 4 B 20520</div>
             <div>Turku, Finland</div>
             <div>+358 40 485 1550</div>
             <div>+358 50 558 1806</div>
