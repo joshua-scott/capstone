@@ -30,7 +30,6 @@ export default {
     }
   },
   beforeMount () {
-    this.$store.dispatch('getHomePage')
     this.$store.dispatch('getCarousel')
     this.$store.dispatch('getAboutPage')
     this.$store.dispatch('getRdPages')
