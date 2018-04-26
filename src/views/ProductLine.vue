@@ -72,15 +72,13 @@ export default {
 
 <style>
 .jumbotron-styling{
-  background-color:#263779;
+  background-color:#263779 !important;
   height:85px;
   padding:25px;
   padding-top:10px;
   color:white;
   border-radius:5px;
   text-align: center;
-}
-.header-padding{
 }
 .b-media-margin{
   margin-bottom:3%;
