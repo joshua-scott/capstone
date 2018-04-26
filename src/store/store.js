@@ -51,7 +51,6 @@ export default new Vuex.Store({
           aboutPages[lang].contactInfo = PrismicDOM.RichText.asHtml(page.data.sales_billing_contact_info)
           aboutPages[lang].manufacturerList = PrismicDOM.RichText.asHtml(page.data.manufacturer_list)
           aboutPages[lang].youtubeLink = "http://youtube.com/embed/" + page.data.youtube_link
-          console.log("YOUTUBE LINK" + aboutPages[lang].youtube_link)
         })
 
         commit('setAboutPages', aboutPages)
@@ -70,7 +69,6 @@ export default new Vuex.Store({
         let response = await api.query(
           Prismic.Predicates.at('document.type', 'rd-team')
         )
-        console.log(response)
         rdPages.team = PrismicDOM.RichText.asHtml(response.results[0].data.team_presentation)
 
         response = await api.query(
