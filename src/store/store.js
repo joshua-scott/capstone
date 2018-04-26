@@ -38,7 +38,6 @@ export default new Vuex.Store({
 
         let aboutPages = {}
         let aboutBrief = { fi: {}, 'en-gb': {} }
-        console.log(response)
 
         response.results.forEach(page => {
           const lang = page.lang
@@ -51,6 +50,8 @@ export default new Vuex.Store({
           aboutPages[lang].description = PrismicDOM.RichText.asHtml(page.data.about_description)
           aboutPages[lang].contactInfo = PrismicDOM.RichText.asHtml(page.data.sales_billing_contact_info)
           aboutPages[lang].manufacturerList = PrismicDOM.RichText.asHtml(page.data.manufacturer_list)
+          aboutPages[lang].youtubeLink = "http://youtube.com/embed/" + page.data.youtube_link
+          console.log("YOUTUBE LINK" + aboutPages[lang].youtube_link)
         })
 
         commit('setAboutPages', aboutPages)

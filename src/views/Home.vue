@@ -16,7 +16,7 @@
             <div v-html="brief.manufacturerList"></div>
             <b-embed type="iframe"
               aspect="16by9"
-              src="https://www.youtube.com/embed/dOTttRvR2tI"
+              :src="page.youtubeLink"
               allowfullscreen
             ></b-embed>
           </b-col>
@@ -34,6 +34,10 @@ export default {
     brief () {
       const language = this.$store.state.language
       return this.$store.state.aboutBrief[language]
+    },
+    page () {
+      const language = this.$store.state.language
+      return this.$store.state.aboutPages[language]
     }
   }
 }
