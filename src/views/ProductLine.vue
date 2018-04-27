@@ -9,10 +9,11 @@
           Some introductions
         </h5> -->
       </b-jumbotron>
-      <p v-for="description of productline.description" :key="description"> {{description.text}}</p>
+      <p :class="description.type" v-for="description of productline.description" :key="description.text"> {{description.text}}</p>
+      <hr>
       <b-row>
         <b-col>
-          <p v-for="size of productline.productSizes" :key="size.text">
+          <p :class="size.type" v-for="size of productline.productSizes" :key="size.text">
             {{ size.text }}
           </p>
           <carousel :images="productline.images" class="edited-carousel"></carousel>
@@ -21,7 +22,7 @@
         </b-col>
         <b-col cols="5">
           <b-media v-show="document.url" class="b-media-margin" v-for="document of productline.documents" :key="document.name">
-            <b-img slot="aside" src="http://www.iconarchive.com/download/i86107/graphicloads/filetype/pdf.ico" width="64" height="64" alt="placeholder" />
+            <b-img slot="aside" src="https://image.freepik.com/free-icon/pdf-file-format-symbol_318-45340.jpg" width="64" height="64" alt="placeholder" />
             <h6 class="mt-0">{{ document.name }}</h6>
             <b-link :href="document.url">Download</b-link>
           </b-media>
@@ -79,6 +80,17 @@ export default {
   color:white;
   border-radius:5px;
   text-align: center;
+}
+.heading2 {
+  /* adds style for heading2 text */
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.list-item {
+  /* adds style for text as list-item */
+  display: list-item;
+  list-style-type: square;
+  margin-left: 2vw;
 }
 .b-media-margin{
   margin-bottom:3%;
