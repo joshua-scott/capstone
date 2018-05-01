@@ -29,7 +29,7 @@ export default {
       this.width = window.innerWidth
     }
   },
-  beforeMount () {
+  created () {
     this.$store.dispatch('getCarousel')
     this.$store.dispatch('getAboutPage')
     this.$store.dispatch('getRdPages')
