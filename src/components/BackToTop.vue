@@ -7,10 +7,12 @@
 </template>
 
 <script>
+import BackToTop from 'vue-backtotop'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
 export default {
   components: {
+    BackToTop,
     FontAwesomeIcon
   }
 }

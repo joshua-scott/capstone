@@ -8,18 +8,30 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import BootstrapVue from 'bootstrap-vue'
 import VueImg from 'v-img'
 import * as VueGoogleMaps from 'vue2-google-maps'
-import BackToTop from 'vue-backtotop'
 import slugify from 'slugify'
 
+// Font Awesome icons
 import fontawesome from '@fortawesome/fontawesome'
-import { faFacebook, faYoutube } from '@fortawesome/fontawesome-free-brands'
-import { faSpinner, faChevronUp, faChevronCircleDown, faChevronCircleRight, faSearch } from '@fortawesome/fontawesome-free-solid'
+import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook'
+import faYoutube from '@fortawesome/fontawesome-free-brands/faYoutube'
+import faSpinner from '@fortawesome/fontawesome-free-solid/faSpinner'
+import faChevronUp from '@fortawesome/fontawesome-free-solid/faChevronUp'
+import faChevronCircleDown from '@fortawesome/fontawesome-free-solid/faChevronCircleDown'
+import faChevronCircleRight from '@fortawesome/fontawesome-free-solid/faChevronCircleRight'
+import faSearch from '@fortawesome/fontawesome-free-solid/faSearch'
 
-fontawesome.library.add(faFacebook, faYoutube, faSpinner, faChevronUp, faChevronCircleDown, faChevronCircleRight, faSearch)
+fontawesome.library.add(
+  faFacebook,
+  faYoutube,
+  faSpinner,
+  faChevronUp,
+  faChevronCircleDown,
+  faChevronCircleRight,
+  faSearch
+)
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
-Vue.use(BackToTop)
 Vue.use(VueImg)
 Vue.use(VueGoogleMaps, {
   load: { key: 'AIzaSyBAhIUWHFPvIsQVKeSemfaVf88fdQl4oCs' }
