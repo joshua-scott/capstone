@@ -23,19 +23,10 @@
               {{ language === 'en-gb' ? route.name : route.nameFin }}
             </b-nav-item>
           </template>
-          <template>
-            <Categories></Categories>
-          </template>
+          <Categories></Categories>
         </b-navbar-nav>
 
-        <!-- <b-navbar-nav>
-          <Categories></Categories>
-        </b-navbar-nav> -->
-
         <b-navbar-nav class="ml-auto">
-          <!-- <b-nav-form>
-            <SearchBox></SearchBox>
-          </b-nav-form> -->
 
           <b-navbar variant="faded" type="light">
             <img class="flag" :src="flagImage">
@@ -55,7 +46,6 @@
 <script>
 import routes from '@/router/routes.js'
 import Categories from '@/views/Categories'
-// import SearchBox from '@/components/SearchBox.vue'
 
 export default {
   data () {
@@ -69,7 +59,6 @@ export default {
     }
   },
   components: {
-    // SearchBox
     Categories
   },
   computed: {
@@ -118,23 +107,24 @@ export default {
   .router-link-exact-active{
     color: #6c757d !important;
     display: block;
-padding: 0.25rem 0.5rem;
-font-size: 1.5rem;
-white-space: nowrap;
-margin-bottom: 0;
+    padding: 0.25rem 0.5rem;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    margin-bottom: 0;
 
   }
-  a{
+
+  a {
     color: #6c757d !important;
     display: block;
-padding: 0.25rem 0.5rem;
-font-size: 1.5rem;
-white-space: nowrap;
-margin-bottom: 0;
+    padding: 0.25rem 0.5rem;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    margin-bottom: 0;
   }
+
   .nav-link{
     padding: 0.5rem 1.5rem;
-
   }
 
   .nav-main {
@@ -162,6 +152,7 @@ margin-bottom: 0;
       }
     }
   }
+
   .edited-nav {
     font-size:20px;
   }
