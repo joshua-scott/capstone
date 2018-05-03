@@ -16,6 +16,7 @@ export default new Vuex.Store({
     language: 'fi',
     aboutPages: {},
     aboutBrief: {},
+    footerContent: {},
     products: [],
     categories: [],
     subCategories: [],
@@ -58,6 +59,40 @@ export default new Vuex.Store({
         console.warn('Error on getAboutPages action', err)
       }
     },
+
+    async getFooter({ commit }) {
+      try {
+        const api = await Prismic.getApi('https://reno.prismic.io/api/v2')
+        const response = await api.query(
+          Prismic.Predicates.at('document.type', 'footer'),
+          { lang: '*' }
+        )
+
+        let footerContent = {}
+        console.log(response.results)
+        response.results.forEach(page => {
+          const lang = page.lang
+
+          footerContent[lang] = {}
+          footerContent[lang].contactInfoTitle = page.data.contact_info_title
+          footerContent[lang].companyName = page.data.company_name
+          footerContent[lang].address1 = page.data.address_1
+          footerContent[lang].address2 = page.data.address_2
+          footerContent[lang].phoneNumber1 = page.data.phone_number_1
+          footerContent[lang].phoneNumber2 = page.data.phone_number_2
+          footerContent[lang].emailAddressName = page.data.email_address
+          footerContent[lang].emailAddress = "mailto:" + page.data.email_address
+          console.log("EMAIL" + footerContent[lang].emailAddress)
+          footerContent[lang].openTimesTitle = page.data.open_times_title
+          footerContent[lang].openDaysAndTimes = page.data.open_days_and_times
+        })
+
+        commit('setFooter', footerContent)
+      } catch (err) {
+        console.warn('Error on getFooter action', err)
+      }
+    },
+
 
     async getRdPages({ commit }) {
       try {
@@ -328,6 +363,9 @@ export default new Vuex.Store({
     },
     setAboutPages(state, data) {
       state.aboutPages = data
+    },
+    setFooter(state, data) {
+      state.footerContent = data
     },
     setProducts(state, data) {
       state.products = data
