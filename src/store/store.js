@@ -69,7 +69,6 @@ export default new Vuex.Store({
         )
 
         let footerContent = {}
-        console.log(response.results)
         response.results.forEach(page => {
           const lang = page.lang
 
@@ -82,9 +81,10 @@ export default new Vuex.Store({
           footerContent[lang].phoneNumber2 = page.data.phone_number_2
           footerContent[lang].emailAddressName = page.data.email_address
           footerContent[lang].emailAddress = "mailto:" + page.data.email_address
-          console.log("EMAIL" + footerContent[lang].emailAddress)
           footerContent[lang].openTimesTitle = page.data.open_times_title
           footerContent[lang].openDaysAndTimes = page.data.open_days_and_times
+          footerContent[lang].facebookLink = page.data.facebook_link
+          footerContent[lang].youtubeLink = page.data.youtube_link
         })
 
         commit('setFooter', footerContent)
